@@ -79,6 +79,7 @@ class AdvertisePage extends GetView<AdvertiseController> {
         ];
         return SafeArea(
           child: Scaffold(
+            bottomNavigationBar: BottomNavbar(),
             backgroundColor: Color(0xffF2F2F2),
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

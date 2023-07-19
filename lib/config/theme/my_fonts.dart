@@ -107,7 +107,7 @@ const textTheme = TextTheme(
     bodySmall:
         TextStyle(
         fontWeight: FontWeight.w300,
-        fontSize: 12,
+        fontSize: 14,
         height: 46 / 40,
         color: Colors.black),
     labelLarge:

@@ -22,6 +22,7 @@ class HomeView extends GetView<HomeController> {
     Get.lazyPut(() => FavoriteController());
     return SafeArea(
         child: Scaffold(
+      bottomNavigationBar: BottomNavbar(),
       backgroundColor: Color(0xffBEBEBE),
       // child: BottomNavigationBar(
       //   currentIndex: controller.currentIndex.value,
@@ -418,61 +419,64 @@ class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius:  BorderRadius.only(
+      borderRadius: BorderRadius.only(
         topRight: Radius.circular(30),
         topLeft: Radius.circular(30),
       ),
-      child: BottomAppBar(
-        elevation: 10, // Gölge için elevation değerini belirleyin
-        shadowColor: Colors.black, // Gölgenin rengini belirleyin
-        shape: CircularNotchedRectangle(),
-        color: Colors.white, 
-        height: 79.h,
-        clipBehavior: Clip.antiAlias,
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: 6.h,
-            right: 6.h,
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Get.to(HomeView());
-                },
-                icon: Image.asset(
-                    "assets/images/tabbar/majesticons_home-line-aktif.png"),
-              ),
-              IconButton(
-                onPressed: () {
-                  Get.to(AdvertisePage());
-                },
-                icon:
-                    Image.asset("assets/images/tabbar/icons8_advertising.png"),
-              ),
-              IconButton(
-                onPressed: () {
-                  Get.to(FavoritePage());
-                },
-                icon: Image.asset(
-                    "assets/images/tabbar/material-symbols_favorite-outline.png"),
-              ),
-              IconButton(
-                onPressed: () {
-                  Get.to(AdvertisePage());
-                },
-                icon: Image.asset("assets/images/tabbar/ci_chat.png"),
-              ),
-              IconButton(
-                onPressed: () {
-                  Get.to(AdvertisePage());
-                },
-                icon: Image.asset(
-                    "assets/images/tabbar/iconamoon_profile-fill.png"),
-              ),
-            ],
+      child: Container(
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(color: Colors.black54, blurRadius: 10)
+              ]),
+        child: BottomAppBar(
+          color: Colors.white,
+          height: 79.h,
+          clipBehavior: Clip.antiAlias,
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 6.h,
+              right: 6.h,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.to(HomeView());
+                  },
+                  icon: Image.asset(
+                      "assets/images/tabbar/majesticons_home-line-aktif.png"),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(AdvertisePage());
+                  },
+                  icon: Image.asset(
+                      "assets/images/tabbar/icons8_advertising.png"),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(FavoritePage());
+                  },
+                  icon: Image.asset(
+                      "assets/images/tabbar/material-symbols_favorite-outline.png"),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(AdvertisePage());
+                  },
+                  icon: Image.asset("assets/images/tabbar/ci_chat.png"),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(AdvertisePage());
+                  },
+                  icon: Image.asset(
+                      "assets/images/tabbar/iconamoon_profile-fill.png"),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -20,6 +20,7 @@ class FavoritePage extends GetView<FavoriteController> {
     return GetBuilder<FavoriteController>(
       builder: (_) {
         return Scaffold(
+          bottomNavigationBar: BottomNavbar(),
           backgroundColor: Color(0xffF2F2F2),
           body: SafeArea(
               child: Column(
@@ -47,7 +48,7 @@ class FavoritePage extends GetView<FavoriteController> {
                             width: 315.w,
                             decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
+                                  BorderRadius.all(Radius.circular(12)),
                               image: DecorationImage(
                                 image: AssetImage(
                                   'assets/images/favorite/ozel-ders-listem.png',

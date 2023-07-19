@@ -56,7 +56,7 @@ Future<void> main() async {
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                 child: Scaffold(
                   body: widget!,
-                  bottomNavigationBar: BottomNavbar(),
+                  //bottomNavigationBar: BottomNavbar(),
                 ),
               ),
             );
