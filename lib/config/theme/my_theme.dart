@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/config/theme/my_fonts.dart';
 
 import '../../app/data/local/my_shared_pref.dart';
 import 'dark_theme_colors.dart';
@@ -58,6 +59,7 @@ class MyTheme {
 
       // icon theme
       iconTheme: MyStyles.getIconTheme(isLightTheme: isLight),
+      primaryTextTheme: textTheme,
     );
   }
 

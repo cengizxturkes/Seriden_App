@@ -12,6 +12,7 @@ dependencies:
   logger: # log events in clear way insted of (print)
 
   flutter_screenutil: ^5.2.0
+  google_fonts: ^5.1.0
 
   dio: # for api requests
   http_mock_adapter: # mocking dio for testing
@@ -55,8 +56,12 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/category/
+    - assets/images/tabbar/
     - assets/vectors/
     - assets/fonts/
+    - assets/images/favorite/
+    
 
   fonts:
     - family: Poppins
@@ -75,4 +80,12 @@ flutter:
           weight: 500
         - asset: assets/fonts/Cairo-SemiBold.ttf
           weight: 900
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy-Black.ttf
+          weight: 300
+        - asset: assets/fonts/Gilroy-Bold.ttf
+          weight: 500
+        
+
 

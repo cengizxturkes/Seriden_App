@@ -9,4 +9,7 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
+  static const ADVERTISE = '/advertise';
+  static const FAVORITE = '/favorite';
+
 }

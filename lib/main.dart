@@ -7,6 +7,7 @@ import 'package:getx_skeleton/utils/awesome_notifications_helper.dart';
 import 'app/data/local/my_hive.dart';
 import 'app/data/local/my_shared_pref.dart';
 import 'app/data/models/user_model.dart';
+import 'app/modules/home/views/home_view.dart';
 import 'app/routes/app_pages.dart';
 import 'config/theme/my_theme.dart';
 import 'config/translations/localization_service.dart';
@@ -53,7 +54,10 @@ Future<void> main() async {
                 // prevent font from scalling (some people use big/small device fonts)
                 // but we want our app font to still the same and dont get affected
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: widget!,
+                child: Scaffold(
+                  body: widget!,
+                  bottomNavigationBar: BottomNavbar(),
+                ),
               ),
             );
           },

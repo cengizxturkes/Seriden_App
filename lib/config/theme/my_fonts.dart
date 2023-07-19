@@ -5,10 +5,11 @@ import '../../app/data/local/my_shared_pref.dart';
 import '../translations/localization_service.dart';
 
 // todo configure text family and size
-class MyFonts
-{
+class MyFonts {
   // return the right font depending on app language
-  static TextStyle get getAppFontType => LocalizationService.supportedLanguagesFontsFamilies[MySharedPref.getCurrentLocal().languageCode]!;
+  static TextStyle get getAppFontType =>
+      LocalizationService.supportedLanguagesFontsFamilies[
+          MySharedPref.getCurrentLocal().languageCode]!;
 
   // headlines text font
   static TextStyle get headlineTextStyle => getAppFontType;
@@ -20,10 +21,10 @@ class MyFonts
   static TextStyle get buttonTextStyle => getAppFontType;
 
   // app bar text font
-  static TextStyle get appBarTextStyle  => getAppFontType;
+  static TextStyle get appBarTextStyle => getAppFontType;
 
   // chips text font
-  static TextStyle get chipTextStyle  => getAppFontType;
+  static TextStyle get chipTextStyle => getAppFontType;
 
   // appbar font size
   static double get appBarTittleSize => 18.sp;
@@ -49,3 +50,71 @@ class MyFonts
   //chip font size
   static double get chipTextSize => 10.sp;
 }
+
+/*
+    Tasarım dokümantasyonunda elimizde 11 adet textStyle bulunmaktaydı.
+        --Headline için 5 adet
+        --Body için 6 adet
+
+    M3 tasarımda elimizde bu sayılarda headline ve body bulunmadığı için diğer
+    style'lar adapte edildi.
+    Yukarıdan aşağıya
+
+    Headline ve title style'lar headline 1-2-3-4-5 e ayrıldı
+
+    Body ve label style'lar body 1-2-3-4-5-6 ya ayrıldı.
+
+    Uygulamada tek bir adet fontFamily olduğu için BeVietnamPro default font olarak app.dart'da tanımlandı.
+    Renkler tasarımda farklı yerlerde farklı uygulandığı için kullanılan yerde tanımlanmak üzere bırakıldı.
+ */
+const textTheme = TextTheme(
+    headlineLarge: TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.w700,
+      height: 46 / 40,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.w700,
+      height: 44 / 36,
+    ),
+    headlineSmall:
+        TextStyle(fontSize: 32, fontWeight: FontWeight.w700, height: 42 / 32),
+    titleLarge:
+       TextStyle(
+                  fontSize: 20,
+                  color: Color(0xff343434),
+                  fontFamily: "Gilroy",
+                  fontWeight: FontWeight.w500,
+                ),
+    titleMedium: TextStyle(
+                  fontSize: 15,
+                  color: Color(0xff343434),
+                  fontFamily: "Gilroy",
+                  fontWeight: FontWeight.w500,
+                ),
+    bodyLarge: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        height: 46 / 40,
+        fontFamily: "Gilroy",
+        color: Colors.white),
+    bodyMedium: TextStyle(
+        fontSize: 16,
+        color: Colors.white,
+        fontFamily: "Gilroy",
+        fontWeight: FontWeight.w500),
+    bodySmall:
+        TextStyle(
+        fontWeight: FontWeight.w300,
+        fontSize: 12,
+        height: 46 / 40,
+        color: Colors.black),
+    labelLarge:
+        TextStyle(fontWeight: FontWeight.w400, fontSize: 24, height: 32 / 24),
+    labelMedium:
+        TextStyle(fontWeight: FontWeight.w400, fontSize: 16, height: 24 / 16),
+    labelSmall:
+        TextStyle(fontWeight: FontWeight.w400, fontSize: 12, height: 12 / 8),
+    titleSmall:
+        TextStyle(fontWeight: FontWeight.w700, fontSize: 12, height: 12 / 10));
