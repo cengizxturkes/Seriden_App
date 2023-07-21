@@ -89,9 +89,8 @@ class ProfilePage extends GetView<ProfileController> {
                           height: 15.h,
                         ),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Get.toNamed(Routes.PERMISSIONS);
-
                           },
                           child: ProfileGrayText(
                             title: "İzinlerim",
@@ -110,28 +109,43 @@ class ProfilePage extends GetView<ProfileController> {
                         SizedBox(
                           height: 20.h,
                         ),
-                        ProfileGrayText(
-                          title: "Yardım Ve Rehber Uygulamalar",
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.HELPANDGUIDEAPPS);
+                          },
+                          child: ProfileGrayText(
+                            title: "Yardım Ve Rehber Uygulamalar",
+                          ),
+                        ),
+                        Divider(),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.PROBLEMSUGGESTIONNOTIFICATION);
+                          },
+                          child: ProfileGrayText(
+                            title: "Sorun-Öneri Bildirimi",
+                          ),
+                        ),
+                        Divider(),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.LANGUAGESELECT);
+                          },
+                          child: ProfileGrayText(
+                            title: "Dil Tercihi",
+                          ),
                         ),
                         Divider(),
                         SizedBox(
                           height: 15.h,
                         ),
                         ProfileGrayText(
-                          title:  "Sorun-Öneri Bildirimi",
-                        ),
-                        Divider(),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                         ProfileGrayText(
-                          title:  "Dil Tercihi",
-                        ),
-                        Divider(),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                         ProfileGrayText(
                           title: "Hakkında",
                         ),
                         Divider(),

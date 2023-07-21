@@ -24,6 +24,9 @@ abstract class Routes {
   static const DELETEACC = _Paths.DELETEACC;
   static const PERMISSIONS = _Paths.PERMISSIONS;
   static const PERMISSIONSVIEW = _Paths.PERMISSIONSVIEW;
+  static const HELPANDGUIDEAPPS = _Paths.HELPANDGUIDEAPPS;
+  static const PROBLEMSUGGESTIONNOTIFICATION = _Paths.PROBLEMSUGGESTIONNOTIFICATION;
+  static const LANGUAGESELECT = _Paths.LANGUAGESELECT;
 }
 
 abstract class _Paths {
@@ -49,4 +52,7 @@ abstract class _Paths {
   static const DELETEACC = '/deleteacc';
   static const PERMISSIONS = '/permissions';
   static const PERMISSIONSVIEW = '/permissionsview';
+  static const HELPANDGUIDEAPPS = '/helpandguideapps';
+  static const PROBLEMSUGGESTIONNOTIFICATION = '/problemsuggestion';
+  static const LANGUAGESELECT = '/languageselect';
 }

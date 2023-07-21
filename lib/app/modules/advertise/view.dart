@@ -240,7 +240,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 40.h,
+        height: 50.h,
         width: 315.w,
         decoration: BoxDecoration(
           color: Colors.white,

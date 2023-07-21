@@ -6,6 +6,8 @@ import 'package:getx_skeleton/app/modules/phone_number/index.dart';
 import 'package:getx_skeleton/app/modules/posting_on_air/index.dart';
 import 'package:getx_skeleton/app/modules/profile/bindings.dart';
 
+import '../help _and_guide_apps/bindings.dart';
+import '../help _and_guide_apps/view.dart';
 import '../modules/account_info/bindings.dart';
 import '../modules/account_info/view.dart';
 import '../modules/change_number/bindings.dart';
@@ -20,6 +22,8 @@ import '../modules/favoriteSubCategory/bindings.dart';
 import '../modules/favoriteSubCategory/view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/language_select/bindings.dart';
+import '../modules/language_select/view.dart';
 import '../modules/messages/bindings.dart';
 import '../modules/messages/view.dart';
 import '../modules/new_phone_number/bindings.dart';
@@ -28,6 +32,8 @@ import '../modules/permission_view/bindings.dart';
 import '../modules/permission_view/view.dart';
 import '../modules/permissions/bindings.dart';
 import '../modules/permissions/view.dart';
+import '../modules/problem_suggestion_notification/bindings.dart';
+import '../modules/problem_suggestion_notification/view.dart';
 import '../modules/profile/view.dart';
 import '../modules/unpublished_advertise/bindings.dart';
 import '../modules/unpublished_advertise/view.dart';
@@ -119,7 +125,8 @@ class AppPages {
       name: _Paths.DELETEACC,
       page: () => DeleteAccPage(),
       binding: DeleteAccBinding(),
-    ), GetPage(
+    ),
+    GetPage(
       name: _Paths.PERMISSIONS,
       page: () => PermissionsPage(),
       binding: PermissionsBinding(),
@@ -128,6 +135,21 @@ class AppPages {
       name: _Paths.PERMISSIONSVIEW,
       page: () => PermissionViewPage(),
       binding: PermissionViewBinding(),
+    ),
+    GetPage(
+      name: _Paths.HELPANDGUIDEAPPS,
+      page: () => HelpAndGuideAppsPage(),
+      binding: HelpAndGuideAppsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROBLEMSUGGESTIONNOTIFICATION,
+      page: () => ProblemSuggestionNotificationPage(),
+      binding: ProblemSuggestionNotificationBinding(),
+    ),
+    GetPage(
+      name: _Paths.LANGUAGESELECT,
+      page: () => LanguageSelectPage(),
+      binding: LanguageSelectBinding(),
     ),
     // GetPage(
     //   name: _Paths.CHANGEPHONENUMBERWITHPHONENUMBER,

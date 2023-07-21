@@ -33,6 +33,7 @@ dependencies:
 
   flutter: 
     sdk: flutter
+  file_picker: ^5.3.2
 
 dev_dependencies:
   mockito:

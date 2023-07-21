@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/help%20_and_guide_apps/index.dart';
 import 'package:getx_skeleton/app/modules/account_info/controller.dart';
 import 'package:getx_skeleton/app/modules/advertise/controller.dart';
 import 'package:getx_skeleton/app/modules/advertise/index.dart';
@@ -22,7 +23,9 @@ import '../../account_info/view.dart';
 import '../../change_number/controller.dart';
 import '../../change_password/controller.dart';
 import '../../delete_acc/controller.dart';
+import '../../language_select/controller.dart';
 import '../../permission_view/controller.dart';
+import '../../problem_suggestion_notification/controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -43,6 +46,9 @@ class HomeView extends GetView<HomeController> {
     Get.lazyPut(() => DeleteAccController());
     Get.lazyPut(() => PermissionsController());
     Get.lazyPut(() => PermissionViewController());
+    Get.lazyPut(() => HelpAndGuideAppsController());
+    Get.lazyPut(() => ProblemSuggestionNotificationController());
+    Get.lazyPut(() => LanguageSelectController());
 
     return SafeArea(
         child: Scaffold(
