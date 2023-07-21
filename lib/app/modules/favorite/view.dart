@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../config/theme/my_fonts.dart';
+import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
 import '../constwidget/CardImageWıdget.dart';
 import '../favoriteSubCategory/view.dart';
@@ -26,7 +27,8 @@ class FavoritePage extends GetView<FavoriteController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-          backgroundColor: Color(0xffF2F2F2),
+            backgroundColor: ColorManager.base20,
+
           body: SafeArea(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

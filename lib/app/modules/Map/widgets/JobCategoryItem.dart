@@ -8,6 +8,7 @@ class JobCategoryItem extends StatelessWidget {
   final String title;
   final String subtitle;
   final Color color;
+  final Color textColor;
 
   const JobCategoryItem({
     Key? key,
@@ -15,6 +16,7 @@ class JobCategoryItem extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.color,
+    required this.textColor,
   }) : super(key: key);
 
   @override
@@ -41,13 +43,13 @@ class JobCategoryItem extends StatelessWidget {
                 SizedBox(height: 15.h),
                 Text(
                   title,
-                  style: textTheme.titleLarge,
+                  style: textTheme.titleLarge!.copyWith(color: textColor),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 15.h),
                 Text(
                   subtitle,
-                  style: textTheme.titleMedium,
+                  style: textTheme.titleMedium!.copyWith(color: textColor),
                   textAlign: TextAlign.center,
                 ),
               ],

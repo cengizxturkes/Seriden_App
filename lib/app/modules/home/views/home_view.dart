@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/components/color_manager.dart';
 import 'package:getx_skeleton/app/help%20_and_guide_apps/index.dart';
 import 'package:getx_skeleton/app/modules/account_info/controller.dart';
 import 'package:getx_skeleton/app/modules/advertise/controller.dart';
@@ -17,6 +18,7 @@ import 'package:getx_skeleton/app/modules/profile/index.dart';
 import 'package:getx_skeleton/config/theme/my_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../../../components/custom_bottom_nav_bar.dart';
 import '../../../components/my_widgets_animator.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
 import '../../account_info/view.dart';
@@ -53,7 +55,7 @@ class HomeView extends GetView<HomeController> {
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: BottomNavbar(),
-      backgroundColor: Color(0xffBEBEBE),
+      backgroundColor: ColorManager.base20,
       // child: BottomNavigationBar(
       //   currentIndex: controller.currentIndex.value,
       //   onTap: (int index) {
@@ -180,11 +182,36 @@ class HomeView extends GetView<HomeController> {
                           Color(0xffFFABAB),
                           Color(0xffED2B2A),
                         ];
+                        List<Color> textcolor = [
+                          Color(0xff343434),
+                          Color(0xffFFFFFF),
+                          Color(0xffFFFFFF),
+                          Color(0xff343434),
+                          Color(0xff343434),
+                          Color(0xffFFFFFF),
+                          Color(0xffFFFFFF),
+                          Color(0xff343434),
+                          Color(0xff343434),
+                          Color(0xffFFFFFF),
+                        ];
+                        List<String> icon = [
+                          "assets/images/category/is-ilanlari.png",
+                          "assets/images/category/emlak.png",
+                          "assets/images/category/satilik.png",
+                          "assets/images/category/ozel-ders.png",
+                          "assets/images/category/car.png",
+                          "assets/images/category/car.png",
+                          "assets/images/category/tools.png",
+                          "assets/images/category/duyuru.png",
+                          "assets/images/category/partner.png",
+                          "assets/images/category/satilik.png"
+                        ];
                         return JobCategoryItem(
-                          icon: "assets/images/category/is-ilanlari.png",
+                          icon: icon[index],
                           title: title[index],
                           subtitle: subtitle[index],
                           color: color[index],
+                          textColor: textcolor[index],
                         );
                       },
                       scrollDirection: Axis.vertical,
@@ -350,11 +377,24 @@ class HomePageView extends StatelessWidget {
                         Color(0xffFFABAB),
                         Color(0xffED2B2A),
                       ];
+                      List<Color> colortext = [
+                        Color(0xff343434),
+                        Color(0xffFFFFFF),
+                        Color(0xffFFFFFF),
+                        Color(0xff343434),
+                        Color(0xff343434),
+                        Color(0xffFFFFFF),
+                        Color(0xffFFFFFF),
+                        Color(0xff343434),
+                        Color(0xff343434),
+                        Color(0xffFFFFFF),
+                      ];
                       return JobCategoryItem(
                         icon: "assets/images/category/is-ilanlari.png",
                         title: title[index],
                         subtitle: subtitle[index],
                         color: color[index],
+                        textColor: colortext[index],
                       );
                     },
                     scrollDirection: Axis.vertical,
@@ -442,7 +482,8 @@ class AppBarConst extends StatelessWidget {
 }
 
 class BottomNavbar extends StatelessWidget {
-  const BottomNavbar({
+  CustomBottomNavBarController controller = Get.find();
+  BottomNavbar({
     key,
   });
 
@@ -465,45 +506,67 @@ class BottomNavbar extends StatelessWidget {
               left: 6.h,
               right: 6.h,
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Get.to(HomeView());
-                  },
-                  icon: Image.asset(
-                      "assets/images/tabbar/majesticons_home-line-aktif.png"),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Get.to(AdvertisePage());
-                  },
-                  icon: Image.asset(
-                      "assets/images/tabbar/icons8_advertising.png"),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Get.to(FavoritePage());
-                  },
-                  icon: Image.asset(
-                      "assets/images/tabbar/material-symbols_favorite-outline.png"),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Get.to(MessagesPage());
-                  },
-                  icon: Image.asset("assets/images/tabbar/ci_chat.png"),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Get.to(ProfilePage());
-                  },
-                  icon: Image.asset(
-                      "assets/images/tabbar/iconamoon_profile-fill.png"),
-                ),
-              ],
+            child: Obx(
+              () => Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      controller.setSelectedIndex(0);
+                      Get.to(HomeView());
+                    },
+                    icon: Image.asset(
+                      "assets/images/tabbar/majesticons_home-line.png",
+                      color:
+                          controller.isSelected(0) ? Colors.blue : Colors.grey,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      controller.setSelectedIndex(1);
+                      Get.to(AdvertisePage());
+                    },
+                    icon: Image.asset(
+                        "assets/images/tabbar/icons8_advertising.png",
+                        color: controller.isSelected(1)
+                            ? Colors.blue
+                            : Colors.grey),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      controller.setSelectedIndex(2);
+                      Get.to(FavoritePage());
+                    },
+                    icon: Image.asset(
+                        "assets/images/tabbar/material-symbols_favorite-outline.png",
+                        color: controller.isSelected(2)
+                            ? Colors.blue
+                            : Colors.grey),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      controller.setSelectedIndex(3);
+                      Get.to(MessagesPage());
+                    },
+                    icon: Image.asset("assets/images/tabbar/ci_chat.png",
+                        color: controller.isSelected(3)
+                            ? Colors.blue
+                            : Colors.grey),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      controller.setSelectedIndex(4);
+                      Get.to(ProfilePage());
+                    },
+                    icon: Image.asset(
+                        "assets/images/tabbar/iconamoon_profile-fill.png",
+                        color: controller.isSelected(4)
+                            ? Colors.blue
+                            : Colors.grey),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

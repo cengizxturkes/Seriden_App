@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../config/theme/my_fonts.dart';
+import '../../components/color_manager.dart';
 import '../constwidget/CardImageWıdget.dart';
 import '../constwidget/header_text_profile.dart';
 import '../home/views/home_view.dart';
@@ -23,7 +24,8 @@ class UnpublishedAdvertisePage extends GetView<UnpublishedAdvertiseController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-          backgroundColor: Color(0xffF2F2F2),
+             backgroundColor: ColorManager.base20,
+
           body: SafeArea(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

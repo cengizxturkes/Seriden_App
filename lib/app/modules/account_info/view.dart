@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/modules/constwidget/profile_gray_text.dart';
 
+import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
@@ -22,7 +23,8 @@ class AccountInfoPage extends GetView<AccountInfoController> {
     return GetBuilder<AccountInfoController>(
       builder: (_) {
         return Scaffold(
-          backgroundColor: Color(0xffF2F2F2),
+              backgroundColor: ColorManager.base20,
+
           bottomNavigationBar: BottomNavbar(),
           body: SafeArea(
             child: SingleChildScrollView(

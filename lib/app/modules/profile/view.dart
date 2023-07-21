@@ -5,6 +5,7 @@ import 'package:getx_skeleton/app/modules/posting_on_air/index.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 import '../../../config/theme/my_fonts.dart';
+import '../../components/color_manager.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../constwidget/profile_gray_text.dart';
 import '../home/views/home_view.dart';
@@ -25,7 +26,8 @@ class ProfilePage extends GetView<ProfileController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-          backgroundColor: Color(0xffF2F2F2),
+             backgroundColor: ColorManager.base20,
+
           body: SafeArea(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),

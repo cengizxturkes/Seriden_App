@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/utils/awesome_notifications_helper.dart';
 
+import 'app/components/custom_bottom_nav_bar.dart';
 import 'app/data/local/my_hive.dart';
 import 'app/data/local/my_shared_pref.dart';
 import 'app/data/models/user_model.dart';
@@ -31,7 +32,7 @@ Future<void> main() async {
 
   // initialize local notifications service
   await AwesomeNotificationsHelper.init();
-
+  Get.put(CustomBottomNavBarController());
   runApp(
     ScreenUtilInit(
       // todo add your (Xd / Figma) artboard size

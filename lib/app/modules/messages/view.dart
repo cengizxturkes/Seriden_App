@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx_skeleton/app/modules/home/controllers/home_controller.dart';
 
 import '../../../config/theme/my_fonts.dart';
+import '../../components/color_manager.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
@@ -45,7 +46,8 @@ class MessagesPage extends GetView<MessagesController> {
           'Gülşah Kaya',
         ];
         return Scaffold(
-          backgroundColor: Color(0xffF2F2F2),
+             backgroundColor: ColorManager.base20,
+
           bottomNavigationBar: BottomNavbar(),
           body: SafeArea(
               child: Column(

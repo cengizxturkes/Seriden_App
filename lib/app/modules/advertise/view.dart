@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/config/theme/my_fonts.dart';
 
+import '../../components/color_manager.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
@@ -80,7 +81,8 @@ class AdvertisePage extends GetView<AdvertiseController> {
         return SafeArea(
           child: Scaffold(
             bottomNavigationBar: BottomNavbar(),
-            backgroundColor: Color(0xffF2F2F2),
+                 backgroundColor: ColorManager.base20,
+
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

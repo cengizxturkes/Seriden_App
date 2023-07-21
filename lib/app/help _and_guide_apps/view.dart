@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../components/color_manager.dart';
 import '../modules/advertise/view.dart';
 import '../modules/constwidget/blue_text_profile.dart';
 import '../modules/constwidget/profile_gray_text.dart';
@@ -31,7 +32,8 @@ class HelpAndGuideAppsPage extends GetView<HelpAndGuideAppsController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-          backgroundColor: Color(0xffF2F2F2),
+                backgroundColor: ColorManager.base20,
+
           body: SafeArea(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),

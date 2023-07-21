@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/config/theme/my_fonts.dart';
 
+import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
@@ -30,7 +31,8 @@ class PermissionsPage extends GetView<PermissionsController> {
     return GetBuilder<PermissionsController>(
       builder: (_) {
         return Scaffold(
-          backgroundColor: Color(0xffF2F2F2),
+              backgroundColor: ColorManager.base20,
+
           bottomNavigationBar: BottomNavbar(),
           body: SafeArea(
             child: SingleChildScrollView(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../components/color_manager.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
@@ -20,7 +21,8 @@ class ChangePasswordPage extends GetView<ChangePasswordController> {
     return GetBuilder<ChangePasswordController>(
       builder: (_) {
         return Scaffold(
-          backgroundColor: Color(0xffF2F2F2),
+               backgroundColor: ColorManager.base20,
+
           bottomNavigationBar: BottomNavbar(),
           body: SafeArea(
             child: SingleChildScrollView(
