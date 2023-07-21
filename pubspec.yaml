@@ -61,6 +61,7 @@ flutter:
     - assets/vectors/
     - assets/fonts/
     - assets/images/favorite/
+    - assets/images/message/
     
 
   fonts:
@@ -85,7 +86,11 @@ flutter:
         - asset: assets/fonts/Gilroy-Black.ttf
           weight: 300
         - asset: assets/fonts/Gilroy-Bold.ttf
-          weight: 500
+          weight: 500  
+    - family: Gilroy-Regular       
+      fonts:
+        - asset: assets/fonts/Gilroy-Regular.ttf
+          weight: 300
         
 
 

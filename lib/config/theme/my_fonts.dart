@@ -80,19 +80,18 @@ const textTheme = TextTheme(
     ),
     headlineSmall:
         TextStyle(fontSize: 32, fontWeight: FontWeight.w700, height: 42 / 32),
-    titleLarge:
-       TextStyle(
-                  fontSize: 20,
-                  color: Color(0xff343434),
-                  fontFamily: "Gilroy",
-                  fontWeight: FontWeight.w500,
-                ),
+    titleLarge: TextStyle(
+      fontSize: 20,
+      color: Color(0xff0075FF),
+      fontFamily: "Gilroy",
+      fontWeight: FontWeight.w300,
+    ),
     titleMedium: TextStyle(
-                  fontSize: 15,
-                  color: Color(0xff343434),
-                  fontFamily: "Gilroy",
-                  fontWeight: FontWeight.w500,
-                ),
+      fontSize: 15,
+      color: Color(0xff0075FF),
+      fontFamily: "Gilroy-Regular",
+      fontWeight: FontWeight.w500,
+    ),
     bodyLarge: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 18,
@@ -104,17 +103,20 @@ const textTheme = TextTheme(
         color: Colors.white,
         fontFamily: "Gilroy",
         fontWeight: FontWeight.w500),
-    bodySmall:
-        TextStyle(
-        fontWeight: FontWeight.w300,
+    bodySmall: TextStyle(
+        fontWeight: FontWeight.w100,
         fontSize: 14,
         height: 46 / 40,
+        fontFamily: "Gilroy",
         color: Colors.black),
     labelLarge:
         TextStyle(fontWeight: FontWeight.w400, fontSize: 24, height: 32 / 24),
     labelMedium:
         TextStyle(fontWeight: FontWeight.w400, fontSize: 16, height: 24 / 16),
-    labelSmall:
-        TextStyle(fontWeight: FontWeight.w400, fontSize: 12, height: 12 / 8),
+    labelSmall: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      height: 12 / 8,
+    ),
     titleSmall:
         TextStyle(fontWeight: FontWeight.w700, fontSize: 12, height: 12 / 10));

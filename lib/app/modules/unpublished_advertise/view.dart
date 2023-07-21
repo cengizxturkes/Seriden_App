@@ -3,15 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../config/theme/my_fonts.dart';
-import '../../routes/app_pages.dart';
 import '../constwidget/CardImageWıdget.dart';
-import '../favoriteSubCategory/view.dart';
+import '../constwidget/header_text_profile.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
 
-class FavoritePage extends GetView<FavoriteController> {
-  const FavoritePage({Key? key}) : super(key: key);
+class UnpublishedAdvertisePage extends GetView<UnpublishedAdvertiseController> {
+  const UnpublishedAdvertisePage({Key? key}) : super(key: key);
 
   // 主视图
   Widget _buildView() {
@@ -20,9 +19,7 @@ class FavoritePage extends GetView<FavoriteController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => FavoritesubcategoryPage());
-
-    return GetBuilder<FavoriteController>(
+    return GetBuilder<UnpublishedAdvertiseController>(
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
@@ -35,16 +32,19 @@ class FavoritePage extends GetView<FavoriteController> {
               SizedBox(
                 height: 20.h,
               ),
+              HeaderTextProfile(
+                title: "Yayında Olmayan İlanlarım",
+              ),
               Padding(
-                padding: EdgeInsets.only(left: 30.w),
-                child: Text("Favori İlanlarım", style: textTheme.bodySmall),
+                padding: EdgeInsets.only(left: 30.w, right: 30.w),
+                child: Divider(),
               ),
               SizedBox(
                 height: 20.h,
               ),
               CardImageWidget(
                 image: 'assets/images/favorite/ozel-ders-listem.png',
-                title: "Özel Ders İlanlarım1",
+                title: "Yayında Olmayan İlan",
               )
             ],
           )),

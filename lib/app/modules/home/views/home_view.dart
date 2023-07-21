@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/modules/account_info/controller.dart';
 import 'package:getx_skeleton/app/modules/advertise/controller.dart';
 import 'package:getx_skeleton/app/modules/advertise/index.dart';
 import 'package:getx_skeleton/app/modules/favorite/index.dart';
 import 'package:getx_skeleton/app/modules/home/nav.dart';
+import 'package:getx_skeleton/app/modules/messages/index.dart';
+import 'package:getx_skeleton/app/modules/new_phone_number/index.dart';
+import 'package:getx_skeleton/app/modules/personal_information/index.dart';
+import 'package:getx_skeleton/app/modules/phone_number/controller.dart';
+import 'package:getx_skeleton/app/modules/profile/index.dart';
 import 'package:getx_skeleton/config/theme/my_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../components/my_widgets_animator.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
+import '../../account_info/view.dart';
+import '../../change_number/controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -19,7 +27,15 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut(() => AdvertiseController());
+    Get.lazyPut(() => MessagesController());
     Get.lazyPut(() => FavoriteController());
+    Get.lazyPut(() => ProfileController());
+    Get.lazyPut(() => AccountInfoController());
+    Get.lazyPut(() => PersonalInformationController());
+    Get.lazyPut(() => PhoneNumberController());
+    Get.lazyPut(() => ChangeNumberController());
+    Get.lazyPut(() => NewPhoneNumberController());
+
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: BottomNavbar(),
@@ -425,9 +441,7 @@ class BottomNavbar extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(color: Colors.black54, blurRadius: 10)
-              ]),
+            boxShadow: [BoxShadow(color: Colors.black54, blurRadius: 10)]),
         child: BottomAppBar(
           color: Colors.white,
           height: 79.h,
@@ -464,13 +478,13 @@ class BottomNavbar extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    Get.to(AdvertisePage());
+                    Get.to(MessagesPage());
                   },
                   icon: Image.asset("assets/images/tabbar/ci_chat.png"),
                 ),
                 IconButton(
                   onPressed: () {
-                    Get.to(AdvertisePage());
+                    Get.to(ProfilePage());
                   },
                   icon: Image.asset(
                       "assets/images/tabbar/iconamoon_profile-fill.png"),
