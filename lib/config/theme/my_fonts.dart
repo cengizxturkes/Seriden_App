@@ -115,7 +115,7 @@ const textTheme = TextTheme(
         TextStyle(fontWeight: FontWeight.w400, fontSize: 16, height: 24 / 16),
     labelSmall: TextStyle(
       fontWeight: FontWeight.w400,
-      fontSize: 12,
+      fontSize: 14,
       height: 12 / 8,
     ),
     titleSmall:

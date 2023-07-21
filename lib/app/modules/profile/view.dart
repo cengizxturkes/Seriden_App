@@ -88,8 +88,14 @@ class ProfilePage extends GetView<ProfileController> {
                         SizedBox(
                           height: 15.h,
                         ),
-                        ProfileGrayText(
-                          title: "İzinlerim",
+                        GestureDetector(
+                          onTap: (){
+                            Get.toNamed(Routes.PERMISSIONS);
+
+                          },
+                          child: ProfileGrayText(
+                            title: "İzinlerim",
+                          ),
                         ),
                         SizedBox(
                           height: 15.h,

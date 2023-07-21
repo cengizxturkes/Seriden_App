@@ -99,6 +99,9 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
                       height: 20.h,
                     ),
                     GestureDetector(
+                      onTap: (){
+                        Get.back();
+                      },
                       child: Container(
                           height: 40.h,
                           width: 315.w,

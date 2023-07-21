@@ -102,7 +102,15 @@ class ChangeNumberPage extends GetView<ChangeNumberController> {
                         var selectedMethod =
                             methods[controller.selectedMethodIndex.value];
                         if (selectedMethod.methodType == 0) {
-                          Get.toNamed(Routes.CHANGEPHONENUMBERWITHEMAIL);
+                          Get.toNamed(Routes.CHANGEPHONENUMBERWITHEMAIL,arguments: selectedMethod.methodType);
+                        }
+                        else if(selectedMethod.methodType==1){
+                          Get.toNamed(Routes.CHANGEPHONENUMBERWITHEMAIL,arguments: selectedMethod.methodType);
+
+                        }
+                         else if(selectedMethod.methodType==2){
+                          Get.toNamed(Routes.CHANGEPHONENUMBERWITHEMAIL,arguments: selectedMethod.methodType);
+
                         }
                       },
                       child: Container(
@@ -181,34 +189,7 @@ class _EpostaWidgetState extends State<EpostaWidget> {
           trailing: Icon(Icons.navigate_next),
         ),
       ),
-      // child: Row(children: [
-      //   SizedBox(width: 5.w),
-      //   Icon(
-      //     Icons.radio_button_off,
-      //     color: Color(0xffBEBEBE),
-      //   ),
-      //   Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Padding(
-      //         padding: EdgeInsets.only(left: 20),
-      //         child: BlackTextProfileBold(
-      //           title: "E-Posta",
-      //         ),
-      //       ),
-      //       BlackTextProfileCenter(
-      //         title:
-      //             "seridenayse@gmail.com e-posta \nadresime şifre sıfırlama bağlantısı gönder.",
-      //       ),
-      //     ],
-      //   ),
-      //   Container(
-      //       height: 24.h,
-      //       width: 24.w,
-      //       child: Icon(
-      //         Icons.navigate_next,
-      //       )),
-      // ]),
+    
     );
   }
 }

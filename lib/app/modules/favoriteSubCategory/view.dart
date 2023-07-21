@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/modules/constwidget/blue_text_profile.dart';
 
 import '../../../config/theme/my_fonts.dart';
 import '../advertise/view.dart';
@@ -179,65 +180,66 @@ class FavoriteSubCategoryCard extends StatelessWidget {
             child: IconButton(
               icon: Icon(Icons.more_vert_sharp),
               onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return new AlertDialog(
-                      content: new Container(
-                        width: 315.w,
-                        height: 250.h,
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                new CloseButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            ),
-                            Container(
-                                height: 30.h,
-                                child: new Text(
-                                  'Mesaj gönder',
-                                  style: textTheme.labelSmall,
-                                )),
-                            Divider(),
-                            Container(
-                                height: 30.h,
-                                child: new Text(
-                                  'Not Ekle',
-                                  style: textTheme.labelSmall,
-                                )),
-                            Divider(),
-                            Container(
-                                height: 30.h,
-                                child: new Text(
-                                  'Favorilerden Çıkar',
-                                  style: textTheme.labelSmall,
-                                )),
-                            Divider(),
-                            Container(
-                                height: 30.h,
-                                child: new Text(
-                                  'Bu kategorideki diğer ilanlara göz at',
-                                  style: textTheme.labelSmall,
-                                )),
-                            Divider(),
-                          ],
-                        ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                    );
-                  },
-                );
+                 showDialog(
+                   context: context,
+                   builder: (BuildContext context) {
+                     return new AlertDialog(
+                       content: new Container(
+                         width: 315.w,
+                         height: 250.h,
+                         child: new Column(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: <Widget>[
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.end,
+                               crossAxisAlignment: CrossAxisAlignment.end,
+                               children: [
+                                 new CloseButton(
+                                   onPressed: () {
+                                     Navigator.of(context).pop();
+                                   },
+                                 ),
+                               ],
+                             ),
+                             Container(
+                                 height: 30.h,
+                                 child: new Text(
+                                   'Mesaj gönder',
+                                   style: textTheme.labelSmall,
+                                 )),
+                             Divider(),
+                             Container(
+                                 height: 30.h,
+                                 child: new Text(
+                                   'Not Ekle',
+                                   style: textTheme.labelSmall,
+                                 )),
+                             Divider(),
+                             Container(
+                                 height: 30.h,
+                                 child: new Text(
+                                   'Favorilerden Çıkar',
+                                   style: textTheme.labelSmall,
+                                 )),
+                             Divider(),
+                             Container(
+                                 height: 30.h,
+                                 child: new Text(
+                                   'Bu kategorideki diğer ilanlara göz at',
+                                   style: textTheme.labelSmall,
+                                 )),
+                             Divider(),
+                           ],
+                         ),
+                       ),
+                       shape: RoundedRectangleBorder(
+                         borderRadius: BorderRadius.circular(15.0),
+                       ),
+                     );
+                   },
+                 );
+              
               },
             ),
           ),

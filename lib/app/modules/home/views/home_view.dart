@@ -9,6 +9,7 @@ import 'package:getx_skeleton/app/modules/favorite/index.dart';
 import 'package:getx_skeleton/app/modules/home/nav.dart';
 import 'package:getx_skeleton/app/modules/messages/index.dart';
 import 'package:getx_skeleton/app/modules/new_phone_number/index.dart';
+import 'package:getx_skeleton/app/modules/permissions/index.dart';
 import 'package:getx_skeleton/app/modules/personal_information/index.dart';
 import 'package:getx_skeleton/app/modules/phone_number/controller.dart';
 import 'package:getx_skeleton/app/modules/profile/index.dart';
@@ -19,6 +20,9 @@ import '../../../components/my_widgets_animator.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
 import '../../account_info/view.dart';
 import '../../change_number/controller.dart';
+import '../../change_password/controller.dart';
+import '../../delete_acc/controller.dart';
+import '../../permission_view/controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -35,6 +39,10 @@ class HomeView extends GetView<HomeController> {
     Get.lazyPut(() => PhoneNumberController());
     Get.lazyPut(() => ChangeNumberController());
     Get.lazyPut(() => NewPhoneNumberController());
+    Get.lazyPut(() => ChangePasswordController());
+    Get.lazyPut(() => DeleteAccController());
+    Get.lazyPut(() => PermissionsController());
+    Get.lazyPut(() => PermissionViewController());
 
     return SafeArea(
         child: Scaffold(

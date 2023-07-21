@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../config/theme/my_fonts.dart';
 import '../../routes/app_pages.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
@@ -68,7 +69,48 @@ class NewPhoneNumberPage extends GetView<NewPhoneNumberController> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        if (controller.phonenumbercontroller != "") {}
+                         showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return new AlertDialog(
+                      content: new Container(
+                        width: 315.w,
+                        height: 250.h,
+                        child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                new CloseButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            ),
+                            Center(
+                              child: Image.asset(
+                                  "assets/images/icon-park-solid_success.png"),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Center(
+                              child: BlackTextProfile(
+                                  title: "Numaranız başarıyla değiştirildi."),
+                            )
+                          ],
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                    );
+                  },
+                );
                       },
                       child: Container(
                           height: 40.h,

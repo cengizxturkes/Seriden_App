@@ -61,12 +61,17 @@ class AccountInfoPage extends GetView<AccountInfoController> {
                       SizedBox(
                         height: 15.h,
                       ),
-                      ProfileGrayText(title: "Şifre Değişikliği"),
+                      GestureDetector(onTap: (){
+                        Get.toNamed(Routes.CHANGEPASSWORD);
+                      },child: ProfileGrayText(title: "Şifre Değişikliği")),
                       Divider(),
                       SizedBox(
                         height: 15.h,
                       ),
-                      ProfileGrayText(title: "Hesap İptali"),
+                      GestureDetector(onTap: (){
+                        Get.toNamed(Routes.DELETEACC);
+
+                      },child: ProfileGrayText(title: "Hesap İptali")),
                       Divider(),
                       SizedBox(
                         height: 15.h,

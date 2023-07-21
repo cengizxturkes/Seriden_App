@@ -17,7 +17,13 @@ abstract class Routes {
   static const CHANGEPHONENUMBER = _Paths.CHANGEPHONENUMBER;
   static const CHANGEPHONENUMBERWITHEMAIL = _Paths.CHANGEPHONENUMBERWITHEMAIL;
   static const NEWPHONENUMBER = _Paths.NEWPHONENUMBER;
-  static const CHANGEPHONENUMBERWITHPHONENUMBER = _Paths.CHANGEPHONENUMBERWITHPHONENUMBER;
+  static const CHANGEPHONENUMBERWITHPHONENUMBER =
+      _Paths.CHANGEPHONENUMBERWITHPHONENUMBER;
+  static const NEWNUMBER = _Paths.NEWNUMBER;
+  static const CHANGEPASSWORD = _Paths.CHANGEPASSWORD;
+  static const DELETEACC = _Paths.DELETEACC;
+  static const PERMISSIONS = _Paths.PERMISSIONS;
+  static const PERMISSIONSVIEW = _Paths.PERMISSIONSVIEW;
 }
 
 abstract class _Paths {
@@ -36,5 +42,11 @@ abstract class _Paths {
   static const CHANGEPHONENUMBER = '/changephonenumber';
   static const CHANGEPHONENUMBERWITHEMAIL = '/changephonenumberwithemail';
   static const NEWPHONENUMBER = '/newphonenumber';
-  static const CHANGEPHONENUMBERWITHPHONENUMBER = '/changephonenumberwithphonenumber';
+  static const CHANGEPHONENUMBERWITHPHONENUMBER =
+      '/changephonenumberwithphonenumber';
+  static const NEWNUMBER = '/newnumber';
+  static const CHANGEPASSWORD = '/changepassword';
+  static const DELETEACC = '/deleteacc';
+  static const PERMISSIONS = '/permissions';
+  static const PERMISSIONSVIEW = '/permissionsview';
 }

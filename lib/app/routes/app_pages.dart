@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/modules/advertise/index.dart';
+import 'package:getx_skeleton/app/modules/delete_acc/index.dart';
 import 'package:getx_skeleton/app/modules/personal_information/index.dart';
 import 'package:getx_skeleton/app/modules/phone_number/index.dart';
 import 'package:getx_skeleton/app/modules/posting_on_air/index.dart';
@@ -9,6 +10,10 @@ import '../modules/account_info/bindings.dart';
 import '../modules/account_info/view.dart';
 import '../modules/change_number/bindings.dart';
 import '../modules/change_number/view.dart';
+import '../modules/change_number_with_email_page/bindings.dart';
+import '../modules/change_number_with_email_page/view.dart';
+import '../modules/change_password/bindings.dart';
+import '../modules/change_password/view.dart';
 import '../modules/favorite/bindings.dart';
 import '../modules/favorite/view.dart';
 import '../modules/favoriteSubCategory/bindings.dart';
@@ -19,6 +24,10 @@ import '../modules/messages/bindings.dart';
 import '../modules/messages/view.dart';
 import '../modules/new_phone_number/bindings.dart';
 import '../modules/new_phone_number/view.dart';
+import '../modules/permission_view/bindings.dart';
+import '../modules/permission_view/view.dart';
+import '../modules/permissions/bindings.dart';
+import '../modules/permissions/view.dart';
 import '../modules/profile/view.dart';
 import '../modules/unpublished_advertise/bindings.dart';
 import '../modules/unpublished_advertise/view.dart';
@@ -91,15 +100,34 @@ class AppPages {
       page: () => ChangeNumberPage(),
       binding: ChangeNumberBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.CHANGEPHONENUMBERWITHEMAIL,
-    //   page: () => ChangePhonenumberWithEmailPage(),
-    //   binding: ChangePhonenumberWithEmailBinding(),
-    // ),
+    GetPage(
+      name: _Paths.CHANGEPHONENUMBERWITHEMAIL,
+      page: () => ChangeNumberWithEmailPagePage(),
+      binding: ChangeNumberWithEmailPageBinding(),
+    ),
     GetPage(
       name: _Paths.NEWPHONENUMBER,
       page: () => NewPhoneNumberPage(),
       binding: NewPhoneNumberBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEPASSWORD,
+      page: () => ChangePasswordPage(),
+      binding: ChangePasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELETEACC,
+      page: () => DeleteAccPage(),
+      binding: DeleteAccBinding(),
+    ), GetPage(
+      name: _Paths.PERMISSIONS,
+      page: () => PermissionsPage(),
+      binding: PermissionsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PERMISSIONSVIEW,
+      page: () => PermissionViewPage(),
+      binding: PermissionViewBinding(),
     ),
     // GetPage(
     //   name: _Paths.CHANGEPHONENUMBERWITHPHONENUMBER,
