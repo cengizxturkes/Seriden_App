@@ -8,8 +8,12 @@ import 'package:getx_skeleton/app/modules/profile/bindings.dart';
 
 import '../help _and_guide_apps/bindings.dart';
 import '../help _and_guide_apps/view.dart';
+import '../modules/about/bindings.dart';
+import '../modules/about/view.dart';
 import '../modules/account_info/bindings.dart';
 import '../modules/account_info/view.dart';
+import '../modules/advertise_first/bindings.dart';
+import '../modules/advertise_first/view.dart';
 import '../modules/change_number/bindings.dart';
 import '../modules/change_number/view.dart';
 import '../modules/change_number_with_email_page/bindings.dart';
@@ -150,6 +154,15 @@ class AppPages {
       name: _Paths.LANGUAGESELECT,
       page: () => LanguageSelectPage(),
       binding: LanguageSelectBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT,
+      page: () => AboutPage(),
+      binding: AboutBinding(),
+    ),  GetPage(
+      name: _Paths.ADVERTISEFIRSTPAGE,
+      page: () => AdvertiseFirstPage(),
+      binding: AdvertiseFirstBinding(),
     ),
     // GetPage(
     //   name: _Paths.CHANGEPHONENUMBERWITHPHONENUMBER,

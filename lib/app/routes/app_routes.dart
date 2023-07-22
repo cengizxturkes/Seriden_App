@@ -27,6 +27,8 @@ abstract class Routes {
   static const HELPANDGUIDEAPPS = _Paths.HELPANDGUIDEAPPS;
   static const PROBLEMSUGGESTIONNOTIFICATION = _Paths.PROBLEMSUGGESTIONNOTIFICATION;
   static const LANGUAGESELECT = _Paths.LANGUAGESELECT;
+  static const ABOUT = _Paths.ABOUT;
+  static const ADVERTISEFIRSTPAGE = _Paths.ADVERTISEFIRSTPAGE;
 }
 
 abstract class _Paths {
@@ -55,4 +57,6 @@ abstract class _Paths {
   static const HELPANDGUIDEAPPS = '/helpandguideapps';
   static const PROBLEMSUGGESTIONNOTIFICATION = '/problemsuggestion';
   static const LANGUAGESELECT = '/languageselect';
+  static const ABOUT = '/about';
+  static const ADVERTISEFIRSTPAGE = '/advertisefirst';
 }

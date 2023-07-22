@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/components/color_manager.dart';
 import 'package:getx_skeleton/app/help%20_and_guide_apps/index.dart';
+import 'package:getx_skeleton/app/modules/about/index.dart';
 import 'package:getx_skeleton/app/modules/account_info/controller.dart';
 import 'package:getx_skeleton/app/modules/advertise/controller.dart';
 import 'package:getx_skeleton/app/modules/advertise/index.dart';
+import 'package:getx_skeleton/app/modules/advertise_first/index.dart';
 import 'package:getx_skeleton/app/modules/favorite/index.dart';
 import 'package:getx_skeleton/app/modules/home/nav.dart';
 import 'package:getx_skeleton/app/modules/messages/index.dart';
@@ -51,6 +53,8 @@ class HomeView extends GetView<HomeController> {
     Get.lazyPut(() => HelpAndGuideAppsController());
     Get.lazyPut(() => ProblemSuggestionNotificationController());
     Get.lazyPut(() => LanguageSelectController());
+    Get.lazyPut(() => AboutController());
+    Get.lazyPut(() => AdvertiseFirstController());
 
     return SafeArea(
         child: Scaffold(

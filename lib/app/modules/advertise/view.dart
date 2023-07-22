@@ -20,69 +20,69 @@ class AdvertisePage extends GetView<AdvertiseController> {
   Widget build(BuildContext context) {
     return GetBuilder<AdvertiseController>(
       builder: (_) {
-        final List<String> jobCategories = [
-          'Asistan - Sekreter',
-          'Bilgisayar - Yazılım',
-          'Eczacı',
-          'Eğitim - Öğretmen',
-          'Ek İş - Ek Gelir',
-          'Freelance İşler',
-          'Grafiker - Tasarımcı',
-          'Güvenlik Görevlisi',
-          'Kurye - Taşımacı',
-          'Mimar - Mühendis',
-          'Muhasebeci',
-          'Part Time İşler',
-          'Pazarlama - Satış',
-          'Restaurant - Cafe - Servis Elemanı',
-          'Satış Elemanı - Tezgahtar',
-          'Şoför',
-          'Tanıtım Elemanı - Host - Hostes',
-          'Tekstil - Konfeksiyon',
-          'Temizlik Elemanı',
-        ];
+        // final List<String> jobCategories = [
+        //   'Asistan - Sekreter',
+        //   'Bilgisayar - Yazılım',
+        //   'Eczacı',
+        //   'Eğitim - Öğretmen',
+        //   'Ek İş - Ek Gelir',
+        //   'Freelance İşler',
+        //   'Grafiker - Tasarımcı',
+        //   'Güvenlik Görevlisi',
+        //   'Kurye - Taşımacı',
+        //   'Mimar - Mühendis',
+        //   'Muhasebeci',
+        //   'Part Time İşler',
+        //   'Pazarlama - Satış',
+        //   'Restaurant - Cafe - Servis Elemanı',
+        //   'Satış Elemanı - Tezgahtar',
+        //   'Şoför',
+        //   'Tanıtım Elemanı - Host - Hostes',
+        //   'Tekstil - Konfeksiyon',
+        //   'Temizlik Elemanı',
+        // ];
 
-        final List<String> serviceCategories = [
-          'Avukat, Hukuki Danışma',
-          'Bakıcı Hizmetleri',
-          'Bilgisayar ve IT Hizmetleri',
-          'Çeviri - Tercüme',
-          'Etkinlik - Organizasyon',
-          'Ev, Ofis Temizliği',
-          'Evde Sağlık Hizmetleri',
-          'Fotoğraf, Film, Prodüksiyon',
-          'Masör, Masaj Hizmeti',
-          'Müzisyen - Sanatçı',
-          'Nakliye Hizmetleri',
-          'Psikolojik Danışmanlık',
-          'Tasarım Hizmetleri',
-          'Taşımacılık',
-          'Toplu Yemek, Catering Hizmetleri',
-          'Diğer Hizmet Verenler',
-        ];
-        final List<String> second = [
-          'Telefon',
-          'Bilgisayar',
-          "Mouse",
-          "Klavye",
-          "Giyim",
-        ];
-        final List<String> item = [
-          'İtem1',
-          'İtem2',
-          "İtem3",
-          "İtem4",
-          "İtem5",
-          "İtem6",
-          "İtem7",
-          "İtem8",
-          "İtem9"
-        ];
+        // final List<String> serviceCategories = [
+        //   'Avukat, Hukuki Danışma',
+        //   'Bakıcı Hizmetleri',
+        //   'Bilgisayar ve IT Hizmetleri',
+        //   'Çeviri - Tercüme',
+        //   'Etkinlik - Organizasyon',
+        //   'Ev, Ofis Temizliği',
+        //   'Evde Sağlık Hizmetleri',
+        //   'Fotoğraf, Film, Prodüksiyon',
+        //   'Masör, Masaj Hizmeti',
+        //   'Müzisyen - Sanatçı',
+        //   'Nakliye Hizmetleri',
+        //   'Psikolojik Danışmanlık',
+        //   'Tasarım Hizmetleri',
+        //   'Taşımacılık',
+        //   'Toplu Yemek, Catering Hizmetleri',
+        //   'Diğer Hizmet Verenler',
+        // ];
+        // final List<String> second = [
+        //   'Telefon',
+        //   'Bilgisayar',
+        //   "Mouse",
+        //   "Klavye",
+        //   "Giyim",
+        // ];
+        // final List<String> item = [
+        //   'İtem1',
+        //   'İtem2',
+        //   "İtem3",
+        //   "İtem4",
+        //   "İtem5",
+        //   "İtem6",
+        //   "İtem7",
+        //   "İtem8",
+        //   "İtem9"
+        // ];
+
         return SafeArea(
           child: Scaffold(
             bottomNavigationBar: BottomNavbar(),
-                 backgroundColor: ColorManager.base20,
-
+            backgroundColor: ColorManager.base20,
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -106,99 +106,29 @@ class AdvertisePage extends GetView<AdvertiseController> {
                   child: Text("Kategori Seçimi", style: textTheme.bodySmall),
                 ),
                 Expanded(
-                  child: ListView(
-                    children: [
-                      Padding(
+                  child: ListView.builder(
+                    itemCount: controller.state.categories.length,
+                    itemBuilder: ((context, index) {
+                      var category = controller.state.categories[index];
+                      return Padding(
                         padding: EdgeInsets.only(left: 20.w),
                         child: ExpansionTile(
                           controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('İş İlanları'),
-                          children: jobCategories
-                              .map((job) => ListTile(
-                                    title: Text(job),
-                                    trailing: Icon(Icons.navigate_next),
+                          title: Text(category.title),
+                          children: category.subItems
+                              .map((subCategory) => GestureDetector(
+                                    onTap: () {
+                                      controller.onSelectCategory(subCategory);
+                                    },
+                                    child: ListTile(
+                                      title: Text(subCategory.title),
+                                      trailing: Icon(Icons.navigate_next),
+                                    ),
                                   ))
                               .toList(),
                         ),
-                      ),
-                      ConstDiveder(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('Hizmet Verenler'),
-                          children: serviceCategories
-                              .map((service) => ListTile(title: Text(service)))
-                              .toList(),
-                        ),
-                      ),
-                      ConstDiveder(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('Satılık 2.El'),
-                          children: second
-                              .map((second) => ListTile(title: Text(second)))
-                              .toList(),
-                        ),
-                      ),
-                      ConstDiveder(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('Ozel Ders'),
-                          children: item
-                              .map((item) => ListTile(title: Text(item)))
-                              .toList(),
-                        ),
-                      ),
-                      ConstDiveder(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('Hayvanlar Alemi'),
-                          children: item
-                              .map((item) => ListTile(title: Text(item)))
-                              .toList(),
-                        ),
-                      ),
-                      ConstDiveder(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('Ortak Arayanlar'),
-                          children: item
-                              .map((item) => ListTile(title: Text(item)))
-                              .toList(),
-                        ),
-                      ),
-                      ConstDiveder(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('Arkadaşlık İlanı'),
-                          children: item
-                              .map((item) => ListTile(title: Text(item)))
-                              .toList(),
-                        ),
-                      ),
-                      ConstDiveder(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text('Duyurular'),
-                          children: item
-                              .map((item) => ListTile(title: Text(item)))
-                              .toList(),
-                        ),
-                      ),
-                    ],
+                      );
+                    }),
                   ),
                 )
               ],

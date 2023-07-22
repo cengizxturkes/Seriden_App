@@ -26,8 +26,7 @@ class ProfilePage extends GetView<ProfileController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-             backgroundColor: ColorManager.base20,
-
+          backgroundColor: ColorManager.base20,
           body: SafeArea(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -147,8 +146,13 @@ class ProfilePage extends GetView<ProfileController> {
                         SizedBox(
                           height: 15.h,
                         ),
-                        ProfileGrayText(
-                          title: "Hakkında",
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.ABOUT);
+                          },
+                          child: ProfileGrayText(
+                            title: "Hakkında",
+                          ),
                         ),
                         Divider(),
                         SizedBox(

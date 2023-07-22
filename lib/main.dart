@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/services/advertise_service.dart';
 import 'package:getx_skeleton/utils/awesome_notifications_helper.dart';
 
 import 'app/components/custom_bottom_nav_bar.dart';
@@ -33,6 +34,7 @@ Future<void> main() async {
   // initialize local notifications service
   await AwesomeNotificationsHelper.init();
   Get.put(CustomBottomNavBarController());
+  Get.put(AdvertiseService());
   runApp(
     ScreenUtilInit(
       // todo add your (Xd / Figma) artboard size
@@ -44,7 +46,7 @@ Future<void> main() async {
       builder: (context, widget) {
         return GetMaterialApp(
           // todo add your app name
-          title: "Servis Hane",
+          title: "Seriden",
           useInheritedMediaQuery: true,
           debugShowCheckedModeBanner: false,
           builder: (context, widget) {
