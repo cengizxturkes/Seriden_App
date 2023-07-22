@@ -23,9 +23,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../components/custom_bottom_nav_bar.dart';
 import '../../../components/my_widgets_animator.dart';
+import '../../../services/advertise_service.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
 import '../../account_info/view.dart';
 import '../../advertise_second/controller.dart';
+import '../../advetise_last/controller.dart';
 import '../../change_number/controller.dart';
 import '../../change_password/controller.dart';
 import '../../delete_acc/controller.dart';
@@ -59,6 +61,8 @@ class HomeView extends GetView<HomeController> {
     Get.lazyPut(() => AdvertiseFirstController());
     Get.lazyPut(() => AdvertiseSecondController());
     Get.lazyPut(() => PaymentController());
+    Get.lazyPut(() => AdvetiseLastController());
+    Get.lazyPut(() => NewAdvertiseModel());
 
     return SafeArea(
         child: Scaffold(
@@ -179,16 +183,16 @@ class HomeView extends GetView<HomeController> {
                           "Bay Arkadaş Bayan Arkadaş"
                         ];
                         List<Color> color = [
-                          Color(0xff84DFFF),
-                          Color(0xff516BEB),
-                          Color(0xffF86F03),
-                          Color(0xffFFC900),
-                          Color(0xffC3EDC0),
-                          Color(0xff7A9D54),
-                          Color(0xff6554AF),
-                          Color(0xffB696FF),
-                          Color(0xffFFABAB),
-                          Color(0xffED2B2A),
+                          Color(0xff304296),
+                          Color(0xff0E2954),
+                          Color(0xff393053),
+                          Color(0xff4C0033),
+                          Color(0xff5F6070),
+                          Color(0xff2E4F4F),
+                          Color(0xff2C5222),
+                          Color(0xff52471E),
+                          Color(0xff816BB4),
+                          Color(0xff961414),
                         ];
                         List<Color> textcolor = [
                           Color(0xff343434),
@@ -219,7 +223,7 @@ class HomeView extends GetView<HomeController> {
                           title: title[index],
                           subtitle: subtitle[index],
                           color: color[index],
-                          textColor: textcolor[index],
+                          textColor: Color(0xffFFFFFF),
                         );
                       },
                       scrollDirection: Axis.vertical,

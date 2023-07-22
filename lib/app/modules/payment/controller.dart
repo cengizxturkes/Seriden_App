@@ -4,6 +4,8 @@ import 'index.dart';
 
 class PaymentController extends GetxController {
   PaymentController();
+  final RxBool selectedMethod = false.obs;
+
 
   final state = PaymentState();
 

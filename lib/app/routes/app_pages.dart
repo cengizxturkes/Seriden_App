@@ -17,6 +17,8 @@ import '../modules/advertise_first/bindings.dart';
 import '../modules/advertise_first/view.dart';
 import '../modules/advertise_third/bindings.dart';
 import '../modules/advertise_third/view.dart';
+import '../modules/advetise_last/bindings.dart';
+import '../modules/advetise_last/view.dart';
 import '../modules/change_number/bindings.dart';
 import '../modules/change_number/view.dart';
 import '../modules/change_number_with_email_page/bindings.dart';
@@ -184,6 +186,10 @@ class AppPages {
       name: _Paths.PAYMENTPAGE,
       page: () => PaymentPage(),
       binding: PaymentBinding(),
+    ),  GetPage(
+      name: _Paths.ADVERTISELAST,
+      page: () => AdvetiseLastPage(),
+      binding: AdvetiseLastBinding(),
     ),
     // GetPage(
     //   name: _Paths.CHANGEPHONENUMBERWITHPHONENUMBER,

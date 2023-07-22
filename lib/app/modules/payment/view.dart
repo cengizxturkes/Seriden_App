@@ -19,6 +19,13 @@ class PaymentPage extends GetView<PaymentController> {
     return const HelloWidget();
   }
 
+  List<String> initisl = [
+    "Kart Numarası",
+    "Kart Üzerindeki İsim Soyisim",
+    "Son Kullanma Tarihi",
+    "CVV/CVC"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PaymentController>(
@@ -38,18 +45,31 @@ class PaymentPage extends GetView<PaymentController> {
                     SizedBox(
                       height: 30.h,
                     ),
+                    createTextBox("Ödeme Bilgileri",
+                        advertiseService.CardNumber, initisl[0]),
                     createTextBox(
-                        "Ödeme Bilgileri", advertiseService.CardNumber),
-                    createTextBox("", advertiseService.CardNameSurname),
-                    createTextBox("", advertiseService.LastUseTime),
-                    createTextBox("", advertiseService.CvCs),
+                        "", advertiseService.CardNameSurname, initisl[1]),
+                    createTextBox("", advertiseService.LastUseTime, initisl[2]),
+                    createTextBox("", advertiseService.CvCs, initisl[3]),
                     SizedBox(
                       height: 20.h,
+                    ),
+                    ThreeDWidget(
+                        title: "3D Secure ile Ödemek İstiyorum",
+                        isselected: controller.selectedMethod.value,
+                        onClick: () {
+                          controller.selectedMethod.value =
+                              !controller.selectedMethod.value;
+                          controller.selectedMethod.update((val) {});
+                          controller.update();
+                        }),
+                    SizedBox(
+                      height: 50..h,
                     ),
                     GestureDetector(
                       onTap: () {
                         Get.toNamed(
-                          Routes.PAYMENTPAGE,
+                          Routes.ADVERTISELAST,
                         );
                       },
                       child: Container(
@@ -80,11 +100,49 @@ class PaymentPage extends GetView<PaymentController> {
   }
 }
 
-Widget createTextBox(String title, Function(String value) textChange) {
+class ThreeDWidget extends StatefulWidget {
+  final String title;
+  bool isselected = false;
+  Function onClick;
+  ThreeDWidget({
+    Key? key,
+    required this.title,
+    required this.isselected,
+    required this.onClick,
+  }) : super(key: key);
+
+  @override
+  State<ThreeDWidget> createState() => _ThreeDWidgetState();
+}
+
+class _ThreeDWidgetState extends State<ThreeDWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        GestureDetector(
+            onTap: () {
+              widget.onClick();
+            },
+            child: !widget.isselected
+                ? Icon(Icons.radio_button_off)
+                : Icon(Icons.radio_button_on)),
+        SizedBox(
+          width: 20.w,
+        ),
+        BlackTextProfile(title: widget.title)
+      ],
+    );
+  }
+}
+
+Widget createTextBox(
+    String title, Function(String value) textChange, String inital) {
   var controller = TextEditingController();
   controller.addListener(() {
     textChange(controller.text);
   });
+  controller.text=inital;
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -94,8 +152,8 @@ Widget createTextBox(String title, Function(String value) textChange) {
       SizedBox(height: 5.h),
       TextFormField(
         controller: controller,
-        obscureText: true,
-        initialValue: "Kart Numarası",
+        //initialValue: inital,
+        style: TextStyle(color: Colors.grey),
       ),
     ],
   );

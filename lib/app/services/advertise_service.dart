@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../data/models/category.dart';
 
 class AdvertiseService {
@@ -27,6 +29,9 @@ class AdvertiseService {
   setPrice(String value) {
     newAdvertiseModel.price = double.tryParse(value) ?? 0;
   }
+  image(List<File?> value){
+    newAdvertiseModel.imageList=value;
+  }
 
   setName(String value) {
     newAdvertiseModel.name = value;
@@ -49,7 +54,7 @@ class AdvertiseService {
   }
 
   CvCs(String value) {
-    newAdvertiseModel.CvCs = value as int;
+    newAdvertiseModel.CvCs = int.tryParse(value) ?? 0;
   }
 }
 
@@ -64,4 +69,5 @@ class NewAdvertiseModel {
   String CardNameSurname = "";
   String LastUseTime = "";
   int CvCs = 0;
+  List<File?> imageList=[];
 }

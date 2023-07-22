@@ -35,6 +35,7 @@ dependencies:
     sdk: flutter
   file_picker: 
   image_picker: 
+  flutter_image_slider: ^0.0.2
 
 dev_dependencies:
   mockito:

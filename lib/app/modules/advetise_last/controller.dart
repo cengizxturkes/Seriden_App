@@ -2,11 +2,10 @@ import 'package:get/get.dart';
 
 import 'index.dart';
 
-class AdvertiseThirdController extends GetxController {
-  AdvertiseThirdController();
-  final RxInt selectedMethodIndex= 0.obs;
+class AdvetiseLastController extends GetxController {
+  AdvetiseLastController();
 
-  final state = AdvertiseThirdState();
+  final state = AdvetiseLastState();
 
   // tap
   void handleTap(int index) {

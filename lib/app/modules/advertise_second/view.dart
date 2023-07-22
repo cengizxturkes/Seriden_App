@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
+import '../../services/advertise_service.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../constwidget/profile_gray_text.dart';
 import '../home/views/home_view.dart';
@@ -15,7 +16,8 @@ import 'index.dart';
 import 'widgets/widgets.dart';
 
 class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
-  const AdvertiseSecondPage({Key? key}) : super(key: key);
+   AdvertiseSecondPage({Key? key}) : super(key: key);
+  AdvertiseService advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {
@@ -50,7 +52,7 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                             var image = await helper.pickImage();
                             controller.image =
                                 image.map((e) => File(e.path)).toList();
-
+                                advertiseService.image(controller.image);
                             controller.update();
                           },
                           child: BlueTextProfile(
