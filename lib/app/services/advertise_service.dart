@@ -1,4 +1,3 @@
-
 import '../data/models/category.dart';
 
 class AdvertiseService {
@@ -28,6 +27,30 @@ class AdvertiseService {
   setPrice(String value) {
     newAdvertiseModel.price = double.tryParse(value) ?? 0;
   }
+
+  setName(String value) {
+    newAdvertiseModel.name = value;
+  }
+
+  setNumber(String value) {
+    newAdvertiseModel.number = value;
+  }
+
+  CardNumber(String value) {
+    newAdvertiseModel.cardNumber = value;
+  }
+
+  CardNameSurname(String value) {
+    newAdvertiseModel.CardNameSurname = value;
+  }
+
+  LastUseTime(String value) {
+    newAdvertiseModel.LastUseTime = value;
+  }
+
+  CvCs(String value) {
+    newAdvertiseModel.CvCs = value as int;
+  }
 }
 
 class NewAdvertiseModel {
@@ -35,4 +58,10 @@ class NewAdvertiseModel {
   String title = "";
   String description = "";
   double price = 0;
+  String name = "";
+  String number = "";
+  String cardNumber = "";
+  String CardNameSurname = "";
+  String LastUseTime = "";
+  int CvCs = 0;
 }

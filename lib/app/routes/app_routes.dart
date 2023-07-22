@@ -29,6 +29,9 @@ abstract class Routes {
   static const LANGUAGESELECT = _Paths.LANGUAGESELECT;
   static const ABOUT = _Paths.ABOUT;
   static const ADVERTISEFIRSTPAGE = _Paths.ADVERTISEFIRSTPAGE;
+  static const ADVERTISESECONDPAGE = _Paths.ADVERTISESECONDPAGE;
+  static const ADVERTISETHIRDPAGE = _Paths.ADVERTISETHIRDPAGE;
+  static const PAYMENTPAGE = _Paths.PAYMENTPAGE;
 }
 
 abstract class _Paths {
@@ -59,4 +62,7 @@ abstract class _Paths {
   static const LANGUAGESELECT = '/languageselect';
   static const ABOUT = '/about';
   static const ADVERTISEFIRSTPAGE = '/advertisefirst';
+  static const ADVERTISESECONDPAGE = '/advertisesecond';
+  static const ADVERTISETHIRDPAGE = '/advertisethird';
+  static const PAYMENTPAGE = '/paymentpage';
 }

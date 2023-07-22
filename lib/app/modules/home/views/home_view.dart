@@ -13,6 +13,7 @@ import 'package:getx_skeleton/app/modules/favorite/index.dart';
 import 'package:getx_skeleton/app/modules/home/nav.dart';
 import 'package:getx_skeleton/app/modules/messages/index.dart';
 import 'package:getx_skeleton/app/modules/new_phone_number/index.dart';
+import 'package:getx_skeleton/app/modules/payment/index.dart';
 import 'package:getx_skeleton/app/modules/permissions/index.dart';
 import 'package:getx_skeleton/app/modules/personal_information/index.dart';
 import 'package:getx_skeleton/app/modules/phone_number/controller.dart';
@@ -24,6 +25,7 @@ import '../../../components/custom_bottom_nav_bar.dart';
 import '../../../components/my_widgets_animator.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
 import '../../account_info/view.dart';
+import '../../advertise_second/controller.dart';
 import '../../change_number/controller.dart';
 import '../../change_password/controller.dart';
 import '../../delete_acc/controller.dart';
@@ -55,6 +57,8 @@ class HomeView extends GetView<HomeController> {
     Get.lazyPut(() => LanguageSelectController());
     Get.lazyPut(() => AboutController());
     Get.lazyPut(() => AdvertiseFirstController());
+    Get.lazyPut(() => AdvertiseSecondController());
+    Get.lazyPut(() => PaymentController());
 
     return SafeArea(
         child: Scaffold(

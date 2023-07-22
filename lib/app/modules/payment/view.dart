@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:getx_skeleton/app/services/advertise_service.dart';
 
 import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
-import '../advertise_second/view.dart';
+import '../../services/advertise_service.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
 
-class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
-  AdvertiseFirstPage({Key? key}) : super(key: key);
+class PaymentPage extends GetView<PaymentController> {
+  PaymentPage({Key? key}) : super(key: key);
   AdvertiseService advertiseService = Get.find();
 
   // 主视图
@@ -22,7 +21,7 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AdvertiseFirstController>(
+    return GetBuilder<PaymentController>(
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
@@ -39,15 +38,18 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
                     SizedBox(
                       height: 30.h,
                     ),
-                    createTextBox("İlan başlığı", advertiseService.setTitle),
-                    createTextBox("Açıklama", advertiseService.setDescription),
-                    createTextBox("Fiyat", advertiseService.setPrice),
-                    createTextBox("Cinsiyet", advertiseService.setPrice),
-                    createTextBox("Konum", advertiseService.setPrice),
+                    createTextBox(
+                        "Ödeme Bilgileri", advertiseService.CardNumber),
+                    createTextBox("", advertiseService.CardNameSurname),
+                    createTextBox("", advertiseService.LastUseTime),
+                    createTextBox("", advertiseService.CvCs),
+                    SizedBox(
+                      height: 20.h,
+                    ),
                     GestureDetector(
                       onTap: () {
                         Get.toNamed(
-                          Routes.ADVERTISESECONDPAGE,
+                          Routes.PAYMENTPAGE,
                         );
                       },
                       child: Container(
@@ -58,7 +60,7 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
                               color: Color(0xff0075FF)),
                           child: Center(
                             child: Text(
-                              "DEVAM ET 1/4",
+                              "DEVAM ET 4/4",
                               style: TextStyle(
                                 fontSize: 15.h,
                                 color: Colors.white,
@@ -76,59 +78,25 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
       },
     );
   }
-
-  Widget createTextBox(String title, Function(String value) textChange) {
-    var controller = TextEditingController();
-    controller.addListener(() {
-      textChange(controller.text);
-    });
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BlueTextProfile(
-          title: title,
-        ),
-        SizedBox(height: 5.h),
-        TextFormField(
-          controller: controller,
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-      ],
-    );
-  }
 }
 
-class AdvetiseTextWidget extends StatelessWidget {
-  final String title;
-  final Function(String value) textChange;
-  const AdvetiseTextWidget({
-    Key? key,
-    required this.title,
-    required this.textChange,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var controller = TextEditingController();
-    controller.addListener(() {
-      textChange(controller.text);
-    });
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BlueTextProfile(
-          title: title,
-        ),
-        SizedBox(height: 5.h),
-        TextFormField(
-          controller: controller,
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-      ],
-    );
-  }
+Widget createTextBox(String title, Function(String value) textChange) {
+  var controller = TextEditingController();
+  controller.addListener(() {
+    textChange(controller.text);
+  });
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      BlueTextProfile(
+        title: title,
+      ),
+      SizedBox(height: 5.h),
+      TextFormField(
+        controller: controller,
+        obscureText: true,
+        initialValue: "Kart Numarası",
+      ),
+    ],
+  );
 }
