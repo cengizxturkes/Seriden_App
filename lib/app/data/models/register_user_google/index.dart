@@ -1,0 +1,6 @@
+library register_user_google;
+
+export './state.dart';
+export './controller.dart';
+export './bindings.dart';
+export './view.dart';

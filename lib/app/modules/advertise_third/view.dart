@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
-import '../../services/advertise_service.dart';
+import '../../repositories/advertise_repository.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
@@ -12,7 +12,7 @@ import 'widgets/widgets.dart';
 
 class AdvertiseThirdPage extends GetView<AdvertiseThirdController> {
   AdvertiseThirdPage({Key? key}) : super(key: key);
-  AdvertiseService advertiseService = Get.find();
+  AdvertiseRepository advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {

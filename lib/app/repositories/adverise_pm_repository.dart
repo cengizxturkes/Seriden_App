@@ -6,12 +6,9 @@ import '../services/advertise_service_pm.dart';
 
 class AdvertiseRepositoryPm {
   AdvertiseServicePm service = Get.find();
-  // Future<List<AdvertisePostModel>> postAdvertise() async {
+  // Future<AdvertisePostModel> postAdvertise() async {
   //   var response = await service.postAdvertise();
 
-  //   // postu veritabanına kaydet
-  //   PostRepository repository = PostRepository();
-  //   repository.savePost(response.data[0]);
-
-  //   return response.data;
+  //   return response;
+  // }
 }

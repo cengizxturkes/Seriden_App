@@ -9,14 +9,14 @@ import 'package:getx_skeleton/app/modules/constwidget/profile_gray_text.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 import '../../components/color_manager.dart';
-import '../../services/advertise_service.dart';
+import '../../repositories/advertise_repository.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
 
 class AdvetiseLastPage extends GetView<AdvetiseLastController> {
   AdvetiseLastPage({Key? key}) : super(key: key);
-  AdvertiseService advertiseService = Get.find();
+  AdvertiseRepository advertiseService = Get.find();
   NewAdvertiseModel advertisemodel = Get.find();
 
   // 主视图
@@ -123,7 +123,6 @@ class AdvetiseLastPage extends GetView<AdvetiseLastController> {
                     ),
                     GestureDetector(
                       onTap: () {
-
                         Get.toNamed(Routes.HOME);
                       },
                       child: Container(

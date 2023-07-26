@@ -23,7 +23,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../components/custom_bottom_nav_bar.dart';
 import '../../../components/my_widgets_animator.dart';
-import '../../../services/advertise_service.dart';
+import '../../../repositories/advertise_repository.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
 import '../../account_info/view.dart';
 import '../../advertise_second/controller.dart';

@@ -1,11 +1,17 @@
 import 'dart:io';
 
+import 'package:get/get.dart';
+
+import '../data/models/advertise_post_model/advertise_post_model.dart';
 import '../data/models/category.dart';
 import '../data/models/category/category_sub_responce.dart';
+import 'adverise_pm_repository.dart';
+import '../services/advertise_service_pm.dart';
 
-class AdvertiseService {
+class AdvertiseRepository {
   NewAdvertiseModel newAdvertiseModel = NewAdvertiseModel();
-
+  AdvertiseRepositoryPm advertiseRepositoryPm = AdvertiseRepositoryPm();
+  AdvertiseServicePm advertiseServicePm = Get.find();
   void setCategory(Subcategory categoryModel) {
     newAdvertiseModel.categoryModel = categoryModel;
   }
@@ -19,8 +25,15 @@ class AdvertiseService {
   }
 
   Future<bool> save() async {
-    //TODO: servise gönder -> POST işlemi
-    return true;
+    var deneme = AdvertisePostModel(
+      title: newAdvertiseModel.title,
+      description: newAdvertiseModel.description,
+      price: newAdvertiseModel.price.toInt(),
+      userId: 1,
+      subCatId: 1,
+    );
+    var response = await advertiseServicePm.postAdvertise(deneme);
+    return response.status == 1;
   }
 
   setDescription(String value) {

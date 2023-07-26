@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/register_user_google/index.dart';
 import 'package:getx_skeleton/app/modules/advertise/index.dart';
 import 'package:getx_skeleton/app/modules/advertise_second/index.dart';
 import 'package:getx_skeleton/app/modules/delete_acc/index.dart';
@@ -7,6 +8,10 @@ import 'package:getx_skeleton/app/modules/phone_number/index.dart';
 import 'package:getx_skeleton/app/modules/posting_on_air/index.dart';
 import 'package:getx_skeleton/app/modules/profile/bindings.dart';
 
+import '../data/models/register_phone_number/bindings.dart';
+import '../data/models/register_phone_number/view.dart';
+import '../data/models/sign_up/bindings.dart';
+import '../data/models/sign_up/view.dart';
 import '../help _and_guide_apps/bindings.dart';
 import '../help _and_guide_apps/view.dart';
 import '../modules/about/bindings.dart';
@@ -54,7 +59,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.SIGNUP;
 
   static final routes = [
     GetPage(
@@ -182,14 +187,30 @@ class AppPages {
       page: () => AdvertiseThirdPage(),
       binding: AdvertiseThirdBinding(),
     ),
-     GetPage(
+    GetPage(
       name: _Paths.PAYMENTPAGE,
       page: () => PaymentPage(),
       binding: PaymentBinding(),
-    ),  GetPage(
+    ),
+    GetPage(
       name: _Paths.ADVERTISELAST,
       page: () => AdvetiseLastPage(),
       binding: AdvetiseLastBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => SignUpPage(),
+      binding: SignUpBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTERPHONENUMBER,
+      page: () => RegisterPhoneNumberPage(),
+      binding: RegisterPhoneNumberBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTERUSERGOOGLE,
+      page: () => RegisterUserGooglePage(),
+      binding: RegisterUserGoogleBinding(),
     ),
     // GetPage(
     //   name: _Paths.CHANGEPHONENUMBERWITHPHONENUMBER,

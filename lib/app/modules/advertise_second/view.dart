@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
-import '../../services/advertise_service.dart';
+import '../../repositories/advertise_repository.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../constwidget/profile_gray_text.dart';
 import '../home/views/home_view.dart';
@@ -17,7 +17,7 @@ import 'widgets/widgets.dart';
 
 class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
   AdvertiseSecondPage({Key? key}) : super(key: key);
-  AdvertiseService advertiseService = Get.find();
+  AdvertiseRepository advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {

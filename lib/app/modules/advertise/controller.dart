@@ -8,7 +8,7 @@ import 'package:logger/logger.dart';
 
 import '../../data/models/category.dart';
 import '../../repositories/category_sub_items_repository.dart';
-import '../../services/advertise_service.dart';
+import '../../repositories/advertise_repository.dart';
 import 'index.dart';
 
 class AdvertiseController extends GetxController
@@ -16,7 +16,7 @@ class AdvertiseController extends GetxController
   AdvertiseController();
 
   final state = AdvertiseState();
-  AdvertiseService advertiseService = Get.find();
+  AdvertiseRepository advertiseService = Get.find();
   // tap
   void handleTap(int index) {
     Get.snackbar(
@@ -53,7 +53,7 @@ class AdvertiseController extends GetxController
   void onSelectCategory(Subcategory category) {
     Logger().i(category.name);
     advertiseService.setCategory(category);
-    Get.toNamed(Routes.ADVERTISEFIRSTPAGE, arguments: category);
+    Get.toNamed(Routes.ADVERTISEFIRSTPAGE);
 
     //TODO: open next page
   }

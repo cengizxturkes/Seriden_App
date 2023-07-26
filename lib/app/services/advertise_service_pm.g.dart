@@ -21,13 +21,14 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
   String? baseUrl;
 
   @override
-  Future<AdvertisePostModel> postAdvertise() async {
+  Future<AdvertiseResponseModel> postAdvertise(AdvertisePostModel model) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<AdvertisePostModel>(Options(
+    final _data = <String, dynamic>{};
+    _data.addAll(model.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AdvertiseResponseModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -43,7 +44,7 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AdvertisePostModel.fromJson(_result.data!);
+    final value = AdvertiseResponseModel.fromJson(_result.data!);
     return value;
   }
 

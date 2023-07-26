@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:getx_skeleton/app/services/advertise_service.dart';
+import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
 import 'package:getx_skeleton/utils/awesome_notifications_helper.dart';
 
 import 'app/components/custom_bottom_nav_bar.dart';

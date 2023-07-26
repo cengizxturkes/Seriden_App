@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:getx_skeleton/app/services/advertise_service.dart';
+import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
 
 import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
@@ -13,7 +13,7 @@ import 'widgets/widgets.dart';
 
 class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
   AdvertiseFirstPage({Key? key}) : super(key: key);
-  AdvertiseService advertiseService = Get.find();
+  AdvertiseRepository advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {
@@ -39,11 +39,16 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
                     SizedBox(
                       height: 30.h,
                     ),
-                    createTextBox("İlan başlığı", advertiseService.setTitle),
-                    createTextBox("Açıklama", advertiseService.setDescription),
-                    createTextBox("Fiyat", advertiseService.setPrice),
-                    createTextBox("Cinsiyet", advertiseService.setPrice),
-                    createTextBox("Konum", advertiseService.setPrice),
+                    createTextBox("İlan başlığı", advertiseService.setTitle,
+                        advertiseService.newAdvertiseModel.title),
+                    createTextBox("Açıklama", advertiseService.setDescription,
+                        advertiseService.newAdvertiseModel.description),
+                    createTextBox("Fiyat", advertiseService.setPrice,
+                        advertiseService.newAdvertiseModel.price.toString()),
+                    createTextBox("Cinsiyet", advertiseService.setPrice,
+                        advertiseService.newAdvertiseModel.title),
+                    createTextBox("Konum", advertiseService.setPrice,
+                        advertiseService.newAdvertiseModel.title),
                     GestureDetector(
                       onTap: () {
                         Get.toNamed(
@@ -77,8 +82,9 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
     );
   }
 
-  Widget createTextBox(String title, Function(String value) textChange) {
-    var controller = TextEditingController();
+  Widget createTextBox(
+      String title, Function(String value) textChange, String value) {
+    var controller = TextEditingController(text: value);
     controller.addListener(() {
       textChange(controller.text);
     });

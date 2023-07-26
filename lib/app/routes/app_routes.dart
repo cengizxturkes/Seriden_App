@@ -25,7 +25,8 @@ abstract class Routes {
   static const PERMISSIONS = _Paths.PERMISSIONS;
   static const PERMISSIONSVIEW = _Paths.PERMISSIONSVIEW;
   static const HELPANDGUIDEAPPS = _Paths.HELPANDGUIDEAPPS;
-  static const PROBLEMSUGGESTIONNOTIFICATION = _Paths.PROBLEMSUGGESTIONNOTIFICATION;
+  static const PROBLEMSUGGESTIONNOTIFICATION =
+      _Paths.PROBLEMSUGGESTIONNOTIFICATION;
   static const LANGUAGESELECT = _Paths.LANGUAGESELECT;
   static const ABOUT = _Paths.ABOUT;
   static const ADVERTISEFIRSTPAGE = _Paths.ADVERTISEFIRSTPAGE;
@@ -33,6 +34,9 @@ abstract class Routes {
   static const ADVERTISETHIRDPAGE = _Paths.ADVERTISETHIRDPAGE;
   static const PAYMENTPAGE = _Paths.PAYMENTPAGE;
   static const ADVERTISELAST = _Paths.ADVERTISELAST;
+  static const SIGNUP = _Paths.SIGNUP;
+  static const REGISTERPHONENUMBER = _Paths.SIGNUP;
+  static const REGISTERUSERGOOGLE = _Paths.REGISTERUSERGOOGLE;
 }
 
 abstract class _Paths {
@@ -67,4 +71,7 @@ abstract class _Paths {
   static const ADVERTISETHIRDPAGE = '/advertisethird';
   static const PAYMENTPAGE = '/paymentpage';
   static const ADVERTISELAST = '/advertiselast';
+  static const SIGNUP = '/signup';
+  static const REGISTERPHONENUMBER = '/registerphonenumber';
+  static const REGISTERUSERGOOGLE = '/registergoogle';
 }
