@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/components/custom_future_builder.dart';
 import 'package:getx_skeleton/config/theme/my_fonts.dart';
 
 import '../../components/color_manager.dart';
+import '../../data/models/category/category_sub_responce.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
@@ -106,31 +108,41 @@ class AdvertisePage extends GetView<AdvertiseController> {
                   child: Text("Kategori Seçimi", style: textTheme.bodySmall),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: controller.state.categories.length,
-                    itemBuilder: ((context, index) {
-                      var category = controller.state.categories[index];
-                      return Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: ExpansionTile(
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text(category.title),
-                          children: category.subItems
-                              .map((subCategory) => GestureDetector(
-                                    onTap: () {
-                                      controller.onSelectCategory(subCategory);
-                                    },
-                                    child: ListTile(
-                                      title: Text(subCategory.title),
-                                      trailing: Icon(Icons.navigate_next),
-                                    ),
-                                  ))
-                              .toList(),
-                        ),
-                      );
-                    }),
-                  ),
-                )
+                    child: CustomFutureBuilder<List<Category>>(
+                  future: controller.getWithSubCategories(),
+                  onError: (msg) => Text(msg),
+                  onSuccess: (data) {
+                    return ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: ((context, index) {
+                        var category = data[index];
+                        print(category);
+                        return Padding(
+                          padding: EdgeInsets.only(left: 20.w),
+                          child: ExpansionTile(
+                            controlAffinity: ListTileControlAffinity.leading,
+                            title: Text(category.name),
+                            children: category.subcategories
+                                .map((subCategory) => GestureDetector(
+                                      onTap: () {
+                                        controller
+                                            .onSelectCategory(subCategory);
+                                      },
+                                      child: ListTile(
+                                        title: Text(subCategory.name),
+                                        trailing: Icon(Icons.navigate_next),
+                                      ),
+                                    ))
+                                .toList(),
+                          ),
+                        );
+                      }),
+                    );
+                  },
+                  onDataEmpty: () {
+                    return Center(child: Text("Kategori bulunamadı"));
+                  },
+                ))
               ],
             ),
           ),

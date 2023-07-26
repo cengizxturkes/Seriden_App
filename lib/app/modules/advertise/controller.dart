@@ -1,13 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/category/category_response.dart';
+import 'package:getx_skeleton/app/data/models/category/category_sub_responce.dart';
+import 'package:getx_skeleton/app/repositories/category_repository.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 import 'package:logger/logger.dart';
 
 import '../../data/models/category.dart';
+import '../../repositories/category_sub_items_repository.dart';
 import '../../services/advertise_service.dart';
 import 'index.dart';
 
-class AdvertiseController extends GetxController {
+class AdvertiseController extends GetxController
+    with CategorySubItemsRepository {
   AdvertiseController();
 
   final state = AdvertiseState();
@@ -45,8 +50,8 @@ class AdvertiseController extends GetxController {
     super.onInit();
   }
 
-  void onSelectCategory(CategoryModel category) {
-    Logger().i(category.title);
+  void onSelectCategory(Subcategory category) {
+    Logger().i(category.name);
     advertiseService.setCategory(category);
     Get.toNamed(Routes.ADVERTISEFIRSTPAGE, arguments: category);
 

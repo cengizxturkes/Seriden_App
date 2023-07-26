@@ -3,9 +3,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:logger/logger.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../../config/translations/strings_enum.dart';
+import '../../../config/translations/strings_enum.dart';
 import '../components/custom_snackbar.dart';
 import 'api_exceptions.dart';
 
@@ -18,89 +19,50 @@ enum RequestType {
 
 class BaseClient {
   static final Dio _dio = Dio()
-  ..interceptors.add(PrettyDioLogger(
-    requestHeader: true,
-    requestBody: true,
-    responseBody: true,
-    responseHeader: false,
-    error: true,
-    compact: true,
-    maxWidth: 90,
-  ));
+    ..options = BaseOptions(
+      headers: {"asd": "asd"},
+    )
+    ..interceptors.add(PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: 90,
+    ))
+    ..interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          // Add a custom header to the request
+          //TODO: Get token from storage
+          // var user = await MySharedPref.getLoginUser();
+          options.headers['Authorization'] = "Bearer 13123";
+          options.headers['Accept'] = "application/json";
+          options.headers['Content-Type'] = "application/json";
+          Logger().i(
+            'REQUEST ║ ${options.method.toUpperCase()}\n'
+            'url: ${options.path}\n'
+            'Headers: ${options.headers}\n'
+            'Body: ${options.data?.toString() ?? ''}\n',
+          );
+          return handler.next(options);
+        },
+        onError: (e, handler) {
+          Logger().e(e);
+          handler.next(e);
+        },
+        onResponse: (response, handler) {
+          Logger().i(response.data);
+          handler.next(response);
+        },
+      ),
+    );
 
   /// dio getter (used for testing)
   static get dio => _dio;
 
   /// perform safe api request
-  static safeApiCall(
-    String url,
-    RequestType requestType, {
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? queryParameters,
-    required Function(Response response) onSuccess,
-    Function(ApiException)? onError,
-    Function(int value, int progress)? onReceiveProgress,
-    Function(int total, int progress)?
-        onSendProgress, // while sending (uploading) progress
-    Function? onLoading,
-    dynamic data,
-  }) async {
-    try {
-      // 1) indicate loading state
-      await onLoading?.call();
-      // 2) try to perform http request
-      late Response response;
-      if (requestType == RequestType.get) {
-        response = await _dio.get(
-          url,
-          onReceiveProgress: onReceiveProgress,
-          queryParameters: queryParameters,
-          options: Options(
-            headers: headers,
-          ),
-        );
-      } else if (requestType == RequestType.post) {
-        response = await _dio.post(
-          url,
-          data: data,
-          onReceiveProgress: onReceiveProgress,
-          onSendProgress: onSendProgress,
-          queryParameters: queryParameters,
-          options: Options(headers: headers),
-        );
-      } else if (requestType == RequestType.put) {
-        response = await _dio.put(
-          url,
-          data: data,
-          onReceiveProgress: onReceiveProgress,
-          onSendProgress: onSendProgress,
-          queryParameters: queryParameters,
-          options: Options(headers: headers),
-        );
-      } else {
-        response = await _dio.delete(
-          url,
-          data: data,
-          queryParameters: queryParameters,
-          options: Options(headers: headers),
-        );
-      }
-      // 3) return response (api done successfully)
-      await onSuccess(response);
-    } on DioError catch (error) {
-      // dio error (api reach the server but not performed successfully
-      _handleDioError(error: error, url: url, onError: onError);
-    } on SocketException {
-      // No internet connection
-      _handleSocketException(url: url, onError: onError);
-    } on TimeoutException {
-      // Api call went out of time
-      _handleTimeoutException(url: url, onError: onError);
-    } catch (error) {
-      // unexpected error for example (parsing json error)
-      _handleUnexpectedException(url: url, onError: onError, error: error);
-    }
-  }
 
   /// download file
   static download(
@@ -113,25 +75,24 @@ class BaseClient {
       await _dio.download(
         url,
         savePath,
-        options: Options(receiveTimeout: 999999, sendTimeout: 999999),
+        options: Options(
+            receiveTimeout: 999999.milliseconds,
+            sendTimeout: 999999.milliseconds),
         onReceiveProgress: onReceiveProgress,
       );
       onSuccess();
     } catch (error) {
-      var exception = ApiException(url: url, message: error.toString());
+      var exception = ApiException(message: error.toString());
       onError?.call(exception) ?? _handleError(error.toString());
     }
   }
 
   /// handle unexpected error
   static _handleUnexpectedException(
-      {Function(ApiException)? onError,
-      required String url,
-      required Object error}) {
+      {Function(ApiException)? onError, required Object error}) {
     if (onError != null) {
       onError(ApiException(
         message: error.toString(),
-        url: url,
       ));
     } else {
       _handleError(error.toString());
@@ -139,12 +100,10 @@ class BaseClient {
   }
 
   /// handle timeout exception
-  static _handleTimeoutException(
-      {Function(ApiException)? onError, required String url}) {
+  static _handleTimeoutException({Function(ApiException)? onError}) {
     if (onError != null) {
       onError(ApiException(
         message: Strings.serverNotResponding.tr,
-        url: url,
       ));
     } else {
       _handleError(Strings.serverNotResponding.tr);
@@ -152,12 +111,10 @@ class BaseClient {
   }
 
   /// handle timeout exception
-  static _handleSocketException(
-      {Function(ApiException)? onError, required String url}) {
+  static _handleSocketException({Function(ApiException)? onError}) {
     if (onError != null) {
       onError(ApiException(
         message: Strings.noInternetConnection.tr,
-        url: url,
       ));
     } else {
       _handleError(Strings.noInternetConnection.tr);
@@ -166,15 +123,12 @@ class BaseClient {
 
   /// handle Dio error
   static _handleDioError(
-      {required DioError error,
-      Function(ApiException)? onError,
-      required String url}) {
+      {required DioError error, Function(ApiException)? onError}) {
     // 404 error
     if (error.response?.statusCode == 404) {
       if (onError != null) {
         return onError(ApiException(
           message: Strings.urlNotFound.tr,
-          url: url,
           statusCode: 404,
         ));
       } else {
@@ -183,11 +137,10 @@ class BaseClient {
     }
 
     // no internet connection
-    if (error.message.toLowerCase().contains('socket')) {
+    if (error.message?.toLowerCase()?.contains('socket') ?? false) {
       if (onError != null) {
         return onError(ApiException(
           message: Strings.noInternetConnection.tr,
-          url: url,
         ));
       } else {
         return _handleError(Strings.noInternetConnection.tr);
@@ -198,7 +151,6 @@ class BaseClient {
     if (error.response?.statusCode == 500) {
       var exception = ApiException(
         message: Strings.serverError.tr,
-        url: url,
         statusCode: 500,
       );
 
@@ -210,8 +162,7 @@ class BaseClient {
     }
 
     var exception = ApiException(
-        url: url,
-        message: error.message,
+        message: error.message ?? '',
         response: error.response,
         statusCode: error.response?.statusCode);
     if (onError != null) {
@@ -226,11 +177,13 @@ class BaseClient {
   /// from api it will show the reason (the dio message)
   static handleApiError(ApiException apiException) {
     String msg = apiException.toString();
+    Logger().w(msg);
     CustomSnackBar.showCustomErrorToast(message: msg);
   }
 
   /// handle errors without response (500, out of time, no internet,..etc)
   static _handleError(String msg) {
-    CustomSnackBar.showCustomErrorToast(message: msg);
+    Logger().w(msg);
+    //CustomSnackBar.showCustomErrorToast(message: msg);
   }
 }

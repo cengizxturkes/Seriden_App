@@ -11,6 +11,7 @@ import 'app/data/local/my_shared_pref.dart';
 import 'app/data/models/user_model.dart';
 import 'app/modules/home/views/home_view.dart';
 import 'app/routes/app_pages.dart';
+import 'app/services/api_service_init.dart';
 import 'config/theme/my_theme.dart';
 import 'config/translations/localization_service.dart';
 import 'utils/fcm_helper.dart';
@@ -34,7 +35,7 @@ Future<void> main() async {
   // initialize local notifications service
   await AwesomeNotificationsHelper.init();
   Get.put(CustomBottomNavBarController());
-  Get.put(AdvertiseService());
+  ApiServiceInit.init();
   runApp(
     ScreenUtilInit(
       // todo add your (Xd / Figma) artboard size

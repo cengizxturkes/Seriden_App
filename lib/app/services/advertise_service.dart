@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import '../data/models/category.dart';
+import '../data/models/category/category_sub_responce.dart';
 
 class AdvertiseService {
   NewAdvertiseModel newAdvertiseModel = NewAdvertiseModel();
 
-  void setCategory(CategoryModel categoryModel) {
+  void setCategory(Subcategory categoryModel) {
     newAdvertiseModel.categoryModel = categoryModel;
   }
 
@@ -29,8 +30,9 @@ class AdvertiseService {
   setPrice(String value) {
     newAdvertiseModel.price = double.tryParse(value) ?? 0;
   }
-  image(List<File?> value){
-    newAdvertiseModel.imageList=value;
+
+  image(List<File?> value) {
+    newAdvertiseModel.imageList = value;
   }
 
   setName(String value) {
@@ -59,7 +61,7 @@ class AdvertiseService {
 }
 
 class NewAdvertiseModel {
-  CategoryModel? categoryModel;
+  Subcategory? categoryModel;
   String title = "";
   String description = "";
   double price = 0;
@@ -69,5 +71,5 @@ class NewAdvertiseModel {
   String CardNameSurname = "";
   String LastUseTime = "";
   int CvCs = 0;
-  List<File?> imageList=[];
+  List<File?> imageList = [];
 }

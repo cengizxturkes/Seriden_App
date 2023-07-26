@@ -16,7 +16,7 @@ import 'index.dart';
 import 'widgets/widgets.dart';
 
 class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
-   AdvertiseSecondPage({Key? key}) : super(key: key);
+  AdvertiseSecondPage({Key? key}) : super(key: key);
   AdvertiseService advertiseService = Get.find();
 
   // 主视图
@@ -52,7 +52,7 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                             var image = await helper.pickImage();
                             controller.image =
                                 image.map((e) => File(e.path)).toList();
-                                advertiseService.image(controller.image);
+                            advertiseService.image(controller.image);
                             controller.update();
                           },
                           child: BlueTextProfile(
