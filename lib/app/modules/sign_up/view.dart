@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:getx_skeleton/app/data/models/sign_up/widgets/LoginButtonWidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../components/color_manager.dart';
-import '../../../modules/home/views/home_view.dart';
-import '../../../routes/app_pages.dart';
+import '../../components/color_manager.dart';
+import '../../routes/app_pages.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
 
@@ -59,9 +57,6 @@ class SignUpPage extends GetView<SignUpController> {
                           Get.toNamed(Routes.REGISTERUSERGOOGLE);
                         } else if (controller.selectedMethodIndex == 1) {
                           Get.toNamed(Routes.REGISTERPHONENUMBER);
-                          // } else if (controller.selectedMethodIndex == 2) {
-                          //   Get.toNamed(Routes.EMAILSIGNUP);
-                          // }
                         }
                       },
                       child: LoginButtonWidget(

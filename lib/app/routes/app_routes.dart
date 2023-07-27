@@ -35,8 +35,9 @@ abstract class Routes {
   static const PAYMENTPAGE = _Paths.PAYMENTPAGE;
   static const ADVERTISELAST = _Paths.ADVERTISELAST;
   static const SIGNUP = _Paths.SIGNUP;
-  static const REGISTERPHONENUMBER = _Paths.SIGNUP;
+  static const REGISTERPHONENUMBER = _Paths.REGISTERPHONENUMBER;
   static const REGISTERUSERGOOGLE = _Paths.REGISTERUSERGOOGLE;
+  static const CREATEACCWITHPHONENUMBER = _Paths.CREATEACCWITHPHONENUMBER;
 }
 
 abstract class _Paths {
@@ -74,4 +75,5 @@ abstract class _Paths {
   static const SIGNUP = '/signup';
   static const REGISTERPHONENUMBER = '/registerphonenumber';
   static const REGISTERUSERGOOGLE = '/registergoogle';
+  static const CREATEACCWITHPHONENUMBER = '/createaccwithphonenumber';
 }

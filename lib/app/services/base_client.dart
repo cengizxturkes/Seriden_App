@@ -60,7 +60,9 @@ class BaseClient {
     );
 
   /// dio getter (used for testing)
-  static get dio => _dio;
+  static get dio {
+    return _dio;
+  }
 
   /// perform safe api request
 
