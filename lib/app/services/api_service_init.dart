@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:getx_skeleton/app/services/advertise_service_pm.dart';
 import 'package:getx_skeleton/app/services/category_service.dart';
 import 'package:getx_skeleton/app/services/category_sub_items_service.dart';
+import 'package:getx_skeleton/app/services/login_service.dart';
 import 'package:getx_skeleton/app/services/register_service.dart';
 
 import '../repositories/advertise_repository.dart';
@@ -20,6 +21,7 @@ class ApiServiceInit {
 
     await Get.putAsync<RegisterService>(
         () async => RegisterService(BaseClient.dio));
+    await Get.putAsync<LoginService>(() async => LoginService(BaseClient.dio));
     Get.put(AdvertiseRepository());
     Get.put(RegirterPhoneNumberRepository());
   }

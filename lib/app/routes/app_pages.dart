@@ -35,6 +35,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/language_select/bindings.dart';
 import '../modules/language_select/view.dart';
+import '../modules/login_email/bindings.dart';
+import '../modules/login_email/view.dart';
 import '../modules/messages/bindings.dart';
 import '../modules/messages/view.dart';
 import '../modules/new_phone_number/bindings.dart';
@@ -219,6 +221,11 @@ class AppPages {
       name: _Paths.CREATEACCWITHPHONENUMBER,
       page: () => CreateAccWithPhoneNumberPage(),
       binding: CreateAccWithPhoneNumberBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGINWITHEMAIL,
+      page: () => LoginEmailPage(),
+      binding: LoginEmailBinding(),
     ),
     // GetPage(
     //   name: _Paths.CHANGEPHONENUMBERWITHPHONENUMBER,

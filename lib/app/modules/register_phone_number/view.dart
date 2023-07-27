@@ -94,7 +94,9 @@ class RegisterPhoneNumberPage extends GetView<RegisterPhoneNumberController> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.LOGINWITHEMAIL);
+                      },
                       child: Text(
                         "Giriş Yap",
                         style: TextStyle(
