@@ -13,6 +13,6 @@ abstract class AdvertiseServicePm {
   @POST("/addAdvert.php")
   Future<AdvertiseResponseModel> postAdvertise(
       @Body() AdvertisePostModel model);
-  @GET("/getMyAdv_active.php")
+  @GET("/getMyAdv_active.php?id=1")
   Future<MyAdveriseResponse> getMyAdv();
 }

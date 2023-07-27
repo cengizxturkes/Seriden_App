@@ -62,7 +62,7 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
     )
             .compose(
               _dio.options,
-              '/getMyAdv_active.php',
+              '/getMyAdv_active.php?id=1',
               queryParameters: queryParameters,
               data: _data,
             )
