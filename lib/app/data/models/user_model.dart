@@ -8,6 +8,9 @@ import 'package:hive/hive.dart';
 // FILENAME not class name and also all in lower case
 part 'user_model.g.dart';
 
+//bu model gibi olmalı
+//bunu kopyalayıp mı çogaltıcam
+//
 @HiveType(typeId: 1) // id must be unique
 class UserModel {
   @HiveField(0)
@@ -22,10 +25,11 @@ class UserModel {
   // so you u can store this object in local db (hive)
   UserModel();
 
-  UserModel.fromData({required this.age, required this.phoneNumber,required this.username});
+  UserModel.fromData(
+      {required this.age, required this.phoneNumber, required this.username});
 
   @override
-  String toString(){
+  String toString() {
     return 'Username => ${username}\nAge => ${age}\nPhone number => ${phoneNumber}';
   }
 }

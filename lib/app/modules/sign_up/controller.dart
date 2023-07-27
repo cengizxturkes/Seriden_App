@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/login_response/login_response.dart';
+import 'package:getx_skeleton/app/routes/app_pages.dart';
 
+import '../../data/local/my_hive.dart';
 import 'index.dart';
 
 class SignUpController extends GetxController {
@@ -7,6 +10,16 @@ class SignUpController extends GetxController {
 
   final state = SignUpState();
   final RxInt selectedMethodIndex = 0.obs;
+  Login? user;
+
+  void getUser() async {
+    var result = await MyHive.getCurrentUser();
+    user = result;
+    if (user != null) {
+      Get.toNamed(Routes.HOME);
+    }
+    update();
+  }
 
   // tap
   void handleTap(int index) {

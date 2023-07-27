@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:getx_skeleton/app/data/local/my_hive.dart';
+import 'package:getx_skeleton/app/data/models/login_response/login_response.dart';
 
 import '../data/models/login_model/login_model.dart';
 import '../services/login_service.dart';
@@ -23,6 +25,9 @@ class LoginEmailRepository {
     );
     var response = await service.loginwithemail(deneme);
     print("kullanıcı" + loginModel.email + "Giriş Yapıldı");
+    if (response.status == 1) {
+      MyHive.saveUserToHive(response.data);
+    }
 
     return response.status == 1;
   }

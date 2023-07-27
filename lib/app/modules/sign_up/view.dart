@@ -28,6 +28,7 @@ class SignUpPage extends GetView<SignUpController> {
   Widget build(BuildContext context) {
     return GetBuilder<SignUpController>(
       builder: (_) {
+        controller.getUser();
         return Scaffold(
           backgroundColor: ColorManager.base20,
           body: SafeArea(

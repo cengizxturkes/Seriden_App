@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:getx_skeleton/app/modules/advertise/index.dart';
 import 'package:getx_skeleton/app/modules/advertise_second/index.dart';
 import 'package:getx_skeleton/app/modules/delete_acc/index.dart';
@@ -7,6 +8,7 @@ import 'package:getx_skeleton/app/modules/phone_number/index.dart';
 import 'package:getx_skeleton/app/modules/posting_on_air/index.dart';
 import 'package:getx_skeleton/app/modules/profile/bindings.dart';
 
+import '../data/local/my_hive.dart';
 import '../help _and_guide_apps/bindings.dart';
 import '../help _and_guide_apps/view.dart';
 import '../modules/Create_acc_with_phone_number/bindings.dart';
@@ -63,6 +65,7 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
+  var user = MyHive.getCurrentUser();
 
   static const INITIAL = Routes.SIGNUP;
 

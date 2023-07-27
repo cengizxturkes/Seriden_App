@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/login_response/login_response.dart';
 import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
 import 'package:getx_skeleton/utils/awesome_notifications_helper.dart';
 
@@ -34,7 +35,7 @@ Future<void> main() async {
 
   // initialize local db (hive) and register our custom adapters
   await MyHive.init(registerAdapters: (hive) {
-    hive.registerAdapter(UserModelAdapter());
+    hive.registerAdapter(LoginAdapter());
     //myHive.registerAdapter(OtherAdapter());
   });
 

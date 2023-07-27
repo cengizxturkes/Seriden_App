@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,10 +46,10 @@ class LoginEmailPage extends GetView<LoginEmailController> {
                     height: 30.h,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Get.toNamed(Routes.HOME);
-
-                      loginPhoneNumberRepository.save();
+                    onTap: () async {
+                      if (await loginPhoneNumberRepository.save()) {
+                        Get.toNamed(Routes.HOME);
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
