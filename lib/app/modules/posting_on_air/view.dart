@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/modules/posting_on_air/widgets/cardImagewidget.dart';
 
 import '../../../config/theme/my_fonts.dart';
 import '../../components/color_manager.dart';
+import '../../components/custom_future_builder.dart';
+import '../../data/models/my_advertise/my_advertise_response.dart';
 import '../../routes/app_pages.dart';
-import '../constwidget/CardImageWıdget.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
@@ -25,7 +27,6 @@ class PostingOnAirPage extends GetView<PostingOnAirController> {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
           backgroundColor: ColorManager.base20,
-
           body: SafeArea(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,10 +47,27 @@ class PostingOnAirPage extends GetView<PostingOnAirController> {
               SizedBox(
                 height: 20.h,
               ),
-              CardImageWidget(
-                image: 'assets/images/favorite/ozel-ders-listem.png',
-                title: "yayında ilan",
-              )
+              Expanded(
+                  child: CustomFutureBuilder<List<MyAdverise>>(
+                future: controller.getMyAdv(),
+                onError: (msg) => Text(msg),
+                onSuccess: (data) {
+                  return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: ((context, index) {
+                      var myAdv = data[index];
+                      print(myAdv);
+                      return CardImageWidget(
+                        title: myAdv.title,
+                        image: "assets/images/favorite/ozel-ders-listem.png",
+                      );
+                    }),
+                  );
+                },
+                onDataEmpty: () {
+                  return Center(child: Text("Kategori bulunamadı"));
+                },
+              )),
             ],
           )),
         );

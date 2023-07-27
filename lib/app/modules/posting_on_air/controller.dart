@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
+import '../../repositories/my_adv_repository.dart';
 import 'index.dart';
 
-class PostingOnAirController extends GetxController {
+class PostingOnAirController extends GetxController with MyAdveriseRepository {
   PostingOnAirController();
 
   final state = PostingOnAirState();
