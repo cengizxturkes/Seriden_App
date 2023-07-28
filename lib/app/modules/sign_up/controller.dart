@@ -33,6 +33,7 @@ class SignUpController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getUser();
   }
 
   /// 在 onInit() 之后调用 1 帧。这是进入的理想场所

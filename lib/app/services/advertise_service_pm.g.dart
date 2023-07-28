@@ -49,9 +49,9 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
   }
 
   @override
-  Future<MyAdveriseResponse> getMyAdv() async {
+  Future<MyAdveriseResponse> getMyAdv(String id) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': id};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -62,7 +62,7 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
     )
             .compose(
               _dio.options,
-              '/getMyAdv_active.php?id=1',
+              '/getMyAdv_active.php',
               queryParameters: queryParameters,
               data: _data,
             )

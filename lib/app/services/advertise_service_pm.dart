@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:retrofit/http.dart';
 
 import '../data/models/advertise_post_model/advertise_post_model.dart';
 import '../data/models/advertise_post_model/advertise_response_model.dart';
+import '../data/models/login_response/login_response.dart';
 import '../data/models/my_advertise/my_advertise_response.dart';
 part 'advertise_service_pm.g.dart';
 
@@ -13,6 +17,7 @@ abstract class AdvertiseServicePm {
   @POST("/addAdvert.php")
   Future<AdvertiseResponseModel> postAdvertise(
       @Body() AdvertisePostModel model);
-  @GET("/getMyAdv_active.php?id=1")
-  Future<MyAdveriseResponse> getMyAdv();
+
+  @GET("/getMyAdv_active.php")
+  Future<MyAdveriseResponse> getMyAdv(@Query("id") String id);
 }

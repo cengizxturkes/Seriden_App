@@ -39,7 +39,9 @@ class BaseClient {
           // Add a custom header to the request
           //TODO: Get token from storage
           // var user = await MySharedPref.getLoginUser();
-          options.headers['Authorization'] = "Bearer 13123";
+          var login = await MyHive.getCurrentUser();
+
+          options.headers['Authorization'] = login?.token ?? "Bearer 13123eeq";
           options.headers['Accept'] = "application/json";
           options.headers['Content-Type'] = "application/json";
           Logger().i(

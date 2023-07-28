@@ -65,7 +65,6 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-  var user = MyHive.getCurrentUser();
 
   static const INITIAL = Routes.SIGNUP;
 
