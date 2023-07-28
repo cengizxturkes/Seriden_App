@@ -15,7 +15,7 @@ class SignUpController extends GetxController {
   void getUser() async {
     var result = await MyHive.getCurrentUser();
     user = result;
-    if (user != null) {
+    if (user == null) {
       Get.toNamed(Routes.HOME);
     }
     update();

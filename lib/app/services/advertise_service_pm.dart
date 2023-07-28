@@ -17,7 +17,8 @@ abstract class AdvertiseServicePm {
   @POST("/addAdvert.php")
   Future<AdvertiseResponseModel> postAdvertise(
       @Body() AdvertisePostModel model);
-
-  @GET("/getMyAdv_active.php")
-  Future<MyAdveriseResponse> getMyAdv(@Query("id") String id);
+  @GET("/getMyAdv_active.php?id=1")
+  Future<MyAdveriseResponse> getMyAdv();
+  @GET("/getAdvertsBySub.php")
+  Future<MyAdveriseResponse> getAdvByCategory(@Query("id") int id);
 }
