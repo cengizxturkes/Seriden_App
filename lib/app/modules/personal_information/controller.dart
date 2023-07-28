@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class PersonalInformationController extends GetxController {
+class PersonalInformationController extends GetxController with UserRepository {
   PersonalInformationController();
 
   final state = PersonalInformationState();
+  TextEditingController usercontroller = TextEditingController();
 
   // tap
   void handleTap(int index) {

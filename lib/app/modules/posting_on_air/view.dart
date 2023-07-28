@@ -55,10 +55,10 @@ class PostingOnAirPage extends GetView<PostingOnAirController> {
                   return ListView.builder(
                     itemCount: data.length,
                     itemBuilder: ((context, index) {
-                      var myAdv = data[index];
-                      print(myAdv);
+                      var myAdvPass = data[index];
+                      print(myAdvPass);
                       return CardImageWidget(
-                        title: myAdv.title,
+                        title: myAdvPass.title,
                         image: "assets/images/favorite/ozel-ders-listem.png",
                       );
                     }),

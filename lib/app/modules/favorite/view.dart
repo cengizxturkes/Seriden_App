@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/favorite/favorite_response.dart';
 
 import '../../../config/theme/my_fonts.dart';
 import '../../components/color_manager.dart';
+import '../../components/custom_future_builder.dart';
 import '../../routes/app_pages.dart';
 import '../constwidget/CardImageWıdget.dart';
 import '../favoriteSubCategory/view.dart';
@@ -27,8 +29,7 @@ class FavoritePage extends GetView<FavoriteController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-            backgroundColor: ColorManager.base20,
-
+          backgroundColor: ColorManager.base20,
           body: SafeArea(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,10 +45,28 @@ class FavoritePage extends GetView<FavoriteController> {
               SizedBox(
                 height: 20.h,
               ),
-              CardImageWidget(
-                image: 'assets/images/favorite/ozel-ders-listem.png',
-                title: "Özel Ders İlanlarım1",
-              )
+              Flexible(
+                  child: CustomFutureBuilder<List<Favorite>>(
+                future: controller.getFavorities(),
+                onError: (msg) => Text(msg),
+                onSuccess: (data) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: data.length,
+                    itemBuilder: ((context, index) {
+                      var myAdv = data[index];
+                      print(myAdv);
+                      return CardImageWidget(
+                        title: myAdv.title,
+                        image: "assets/images/favorite/ozel-ders-listem.png",
+                      );
+                    }),
+                  );
+                },
+                onDataEmpty: () {
+                  return Center(child: Text("Kategori bulunamadı"));
+                },
+              )),
             ],
           )),
         );

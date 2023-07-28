@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/user/user_response.dart';
 
 import '../../components/color_manager.dart';
+import '../../components/custom_future_builder.dart';
 import '../../routes/app_pages.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
@@ -23,8 +25,7 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-             backgroundColor: ColorManager.base20,
-
+          backgroundColor: ColorManager.base20,
           body: SafeArea(
               child: SingleChildScrollView(
             child: Column(children: [
@@ -33,6 +34,7 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
                 padding: EdgeInsets.only(left: 30.w, right: 30.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
                       height: 20.h,
@@ -59,11 +61,30 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
                     SizedBox(
                       height: 20.h,
                     ),
-                    Center(
-                      child: BlueTextProfilePhone(
-                        title: "05363941545",
-                      ),
-                    ),
+                    SizedBox(
+                        height: 50.h,
+                        child: CustomFutureBuilder<User>(
+                          future: controller.getUser(),
+                          onError: (msg) => Text(msg),
+                          onSuccess: (data) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: 1,
+                              itemBuilder: ((context, index) {
+                                var myAdv = data;
+                                print(myAdv);
+                                return Center(
+                                  child: BlueTextProfilePhone(
+                                    title: data.phone,
+                                  ),
+                                );
+                              }),
+                            );
+                          },
+                          onDataEmpty: () {
+                            return Center(child: Text("Kategori bulunamadı"));
+                          },
+                        )),
                     SizedBox(height: 20.h),
                     Center(
                       child: BlackTextProfileCenter(
@@ -84,7 +105,7 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
                           child: Center(
                             child: GestureDetector(
                               onTap: () {
-                                  Get.toNamed(Routes.CHANGEPHONENUMBER);
+                                Get.toNamed(Routes.CHANGEPHONENUMBER);
                               },
                               child: Text(
                                 "DEĞİŞTİR",
@@ -101,7 +122,7 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
                       height: 20.h,
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.back();
                       },
                       child: Container(

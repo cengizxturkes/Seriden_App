@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:getx_skeleton/app/modules/posting_on_air/index.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
@@ -158,24 +159,30 @@ class ProfilePage extends GetView<ProfileController> {
                         SizedBox(
                           height: 20.h,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 120, right: 60),
-                          child: Row(
-                            children: [
-                              Text("ÇIKIŞ YAP",
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontFamily: "Gilroy",
-                                    fontSize: 15,
-                                  )),
-                              SizedBox(
-                                width: 15.w,
-                              ),
-                              Icon(
-                                Icons.logout,
-                                color: Colors.red,
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            MyHive.deleteCurrentUser();
+                            Get.toNamed(Routes.SIGNUP);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 120, right: 60),
+                            child: Row(
+                              children: [
+                                Text("ÇIKIŞ YAP",
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontFamily: "Gilroy",
+                                      fontSize: 15,
+                                    )),
+                                SizedBox(
+                                  width: 15.w,
+                                ),
+                                Icon(
+                                  Icons.logout,
+                                  color: Colors.red,
+                                )
+                              ],
+                            ),
                           ),
                         )
                       ],

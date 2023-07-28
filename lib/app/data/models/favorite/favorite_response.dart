@@ -41,12 +41,18 @@ class Favorite {
   String userId;
   @JsonKey(name: "created_at")
   String createdAt;
+  @JsonKey(name: "title")
+  String title;
+  @JsonKey(name: "description")
+  String description;
 
   Favorite({
     required this.id,
     required this.adId,
     required this.userId,
     required this.createdAt,
+    required this.title,
+    required this.description,
   });
 
   factory Favorite.fromJson(Map<String, dynamic> json) =>

@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
+import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class PhoneNumberController extends GetxController {
+class PhoneNumberController extends GetxController with UserRepository {
   PhoneNumberController();
 
   final state = PhoneNumberState();

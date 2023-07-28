@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
+import '../../repositories/favorite_repository.dart';
 import 'index.dart';
 
-class FavoriteController extends GetxController {
+class FavoriteController extends GetxController with FavoriteRepository {
   FavoriteController();
 
   final state = FavoriteState();

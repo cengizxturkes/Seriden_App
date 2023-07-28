@@ -3,13 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../components/color_manager.dart';
+import '../../components/custom_future_builder.dart';
+import '../../data/models/user/user_response.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
 
 class PersonalInformationPage extends GetView<PersonalInformationController> {
-  const PersonalInformationPage({Key? key}) : super(key: key);
+  PersonalInformationPage({Key? key}) : super(key: key);
 
   // 主视图
   Widget _buildView() {
@@ -22,8 +24,7 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
-               backgroundColor: ColorManager.base20,
-
+          backgroundColor: ColorManager.base20,
           body: SafeArea(
               child: SingleChildScrollView(
             child: Column(children: [
@@ -63,9 +64,29 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    TextField(
-                      controller: TextEditingController(text: 'Kullanıcı Adı'),
-                    ),
+                    SizedBox(
+                        height: 50.h,
+                        child: CustomFutureBuilder<User>(
+                          future: controller.getUser(),
+                          onError: (msg) => Text(msg),
+                          onSuccess: (data) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: 1,
+                              itemBuilder: ((context, index) {
+                                var myAdv = data;
+                                print(myAdv);
+                                controller.usercontroller.text = myAdv.name;
+                                return TextField(
+                                  controller: controller.usercontroller,
+                                );
+                              }),
+                            );
+                          },
+                          onDataEmpty: () {
+                            return Center(child: Text("Kategori bulunamadı"));
+                          },
+                        )),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -103,9 +124,9 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                       height: 20.h,
                     ),
                     GestureDetector(
-                       onTap: (){
-                          Get.back();
-                        },
+                      onTap: () {
+                        Get.back();
+                      },
                       child: Container(
                           height: 40.h,
                           width: 315.w,

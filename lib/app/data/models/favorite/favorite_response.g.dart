@@ -27,6 +27,8 @@ Favorite _$FavoriteFromJson(Map<String, dynamic> json) => Favorite(
       adId: json['ad_id'] as String,
       userId: json['user_id'] as String,
       createdAt: json['created_at'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
     );
 
 Map<String, dynamic> _$FavoriteToJson(Favorite instance) => <String, dynamic>{
@@ -34,4 +36,6 @@ Map<String, dynamic> _$FavoriteToJson(Favorite instance) => <String, dynamic>{
       'ad_id': instance.adId,
       'user_id': instance.userId,
       'created_at': instance.createdAt,
+      'title': instance.title,
+      'description': instance.description,
     };

@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
+import '../../repositories/password_repository.dart';
 import 'index.dart';
 
-class ChangePasswordController extends GetxController {
+class ChangePasswordController extends GetxController with PasswordRepository {
   ChangePasswordController();
 
   final state = ChangePasswordState();
