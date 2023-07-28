@@ -6,14 +6,14 @@ typedef OnDataEmpty = Widget Function();
 
 class CustomFutureBuilder<T> extends StatelessWidget {
   Future<T> future;
-  OnError onError;
-  OnDataEmpty onDataEmpty;
+  OnError? onError;
+  OnDataEmpty? onDataEmpty;
   OnSuccess<T> onSuccess;
   CustomFutureBuilder(
       {required this.future,
-      required this.onError,
+      this.onError,
       required this.onSuccess,
-      required this.onDataEmpty});
+      this.onDataEmpty});
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,15 @@ class CustomFutureBuilder<T> extends StatelessWidget {
             );
           }
           if (data.data == null) {
-            return onError("data not found");
+            if (onError != null) {
+              return onError!("data not found");
+            }
+            return Container(
+              child: Text("data not found"),
+            );
           }
 
-          return onSuccess(data.data!);
+          return onSuccess(data.data as T);
         });
   }
 }

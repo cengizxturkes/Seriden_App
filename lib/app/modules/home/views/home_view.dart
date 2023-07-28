@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/components/color_manager.dart';
+import 'package:getx_skeleton/app/components/custom_future_builder.dart';
 import 'package:getx_skeleton/app/help%20_and_guide_apps/index.dart';
 import 'package:getx_skeleton/app/modules/about/index.dart';
 import 'package:getx_skeleton/app/modules/account_info/controller.dart';
@@ -23,6 +24,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../components/custom_bottom_nav_bar.dart';
 import '../../../components/my_widgets_animator.dart';
+import '../../../data/models/category/category_sub_responce.dart';
 import '../../../repositories/advertise_repository.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
 import '../../account_info/view.dart';
@@ -147,132 +149,68 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                     SizedBox(height: 15.h),
-                    GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 189.h / 189.h,
-                        mainAxisSpacing: 15.w,
-                        crossAxisSpacing: 0.h,
-                      ),
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        List<String> title = [
-                          "İş İlanları",
-                          "Emlak",
-                          "Satılık - 2. El",
-                          "Özel Ders",
-                          "Hayvanlar Alemi",
-                          "Otomobil Vasıta",
-                          "Usta Çağır",
-                          "Duyurular",
-                          "Ortak Arayanlar",
-                          "Arkadaşlık İlan"
-                        ];
-                        List<String> subtitle = [
-                          "Asistan - Sekreter Bilgisayar - Yazılım Eczacı",
-                          "Satılık/ Kiralık Daire Satılık/Kiralık İş Yeri Satılık/Kiralık Arsa",
-                          "Antika Eşyalar",
-                          "Bilgisayar Dersleri Direksiyon Dersi İngilizce Dersi",
-                          "Hayvan Sahiplendirme Kayıp Hayvan İlanları Hayvancılık İlanları",
-                          "İkinci El Otomobil Kamyon - Kamyonet Otobüs",
-                          "Asansör Servisi Bilgisayar ve Elektronik  Servisleri - Elektrikçi",
-                          "Etkinlikler Özel Mesajlar Kayıp - Aranıyor",
-                          "Satılık Şirket Barter İlanları Satış Ortaklığı ",
-                          "Bay Arkadaş Bayan Arkadaş"
-                        ];
-                        List<Color> color = [
-                          Color(0xff304296),
-                          Color(0xff0E2954),
-                          Color(0xff393053),
-                          Color(0xff4C0033),
-                          Color(0xff5F6070),
-                          Color(0xff2E4F4F),
-                          Color(0xff2C5222),
-                          Color(0xff52471E),
-                          Color(0xff816BB4),
-                          Color(0xff961414),
-                        ];
-                        List<Color> textcolor = [
-                          Color(0xff343434),
-                          Color(0xffFFFFFF),
-                          Color(0xffFFFFFF),
-                          Color(0xff343434),
-                          Color(0xff343434),
-                          Color(0xffFFFFFF),
-                          Color(0xffFFFFFF),
-                          Color(0xff343434),
-                          Color(0xff343434),
-                          Color(0xffFFFFFF),
-                        ];
-                        List<String> icon = [
-                          "assets/images/category/is-ilanlari.png",
-                          "assets/images/category/emlak.png",
-                          "assets/images/category/satilik.png",
-                          "assets/images/category/ozel-ders.png",
-                          "assets/images/category/car.png",
-                          "assets/images/category/car.png",
-                          "assets/images/category/tools.png",
-                          "assets/images/category/duyuru.png",
-                          "assets/images/category/partner.png",
-                          "assets/images/category/satilik.png"
-                        ];
-                        return JobCategoryItem(
-                          icon: icon[index],
-                          title: title[index],
-                          subtitle: subtitle[index],
-                          color: color[index],
-                          textColor: Color(0xffFFFFFF),
+                    CustomFutureBuilder<List<Category>>(
+                      future: controller.getWithSubCategories(),
+                      onSuccess: (items) {
+                        return GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 189.h / 189.h,
+                            mainAxisSpacing: 15.w,
+                            crossAxisSpacing: 0.h,
+                          ),
+                          shrinkWrap: true,
+                          itemCount: items.length,
+                          itemBuilder: (context, index) {
+                            List<Color> color = [
+                              Color(0xff304296),
+                              Color(0xff0E2954),
+                              Color(0xff393053),
+                              Color(0xff4C0033),
+                              Color(0xff5F6070),
+                              Color(0xff2E4F4F),
+                              Color(0xff2C5222),
+                              Color(0xff52471E),
+                              Color(0xff816BB4),
+                              Color(0xff961414),
+                            ];
+                            List<Color> textcolor = [
+                              Color(0xff343434),
+                              Color(0xffFFFFFF),
+                              Color(0xffFFFFFF),
+                              Color(0xff343434),
+                              Color(0xff343434),
+                              Color(0xffFFFFFF),
+                              Color(0xffFFFFFF),
+                              Color(0xff343434),
+                              Color(0xff343434),
+                              Color(0xffFFFFFF),
+                            ];
+                            List<String> icon = [
+                              "assets/images/category/is-ilanlari.png",
+                              "assets/images/category/emlak.png",
+                              "assets/images/category/satilik.png",
+                              "assets/images/category/ozel-ders.png",
+                              "assets/images/category/car.png",
+                              "assets/images/category/car.png",
+                              "assets/images/category/tools.png",
+                              "assets/images/category/duyuru.png",
+                              "assets/images/category/partner.png",
+                              "assets/images/category/satilik.png"
+                            ];
+                            return JobCategoryItem(
+                              icon: icon[index],
+                              category: items[index],
+                              color: color[index],
+                              textColor: Color(0xffFFFFFF),
+                            );
+                          },
+                          scrollDirection: Axis.vertical,
                         );
                       },
-                      scrollDirection: Axis.vertical,
                     )
-
-                    // Column(
-                    //   children: [
-                    //     Container(
-                    //       width: 165.w,
-                    //       height: 189.h,
-                    //       decoration: BoxDecoration(
-                    //         color: Color(0xff84DFFF),
-                    //         borderRadius: BorderRadius.circular(20),
-                    //       ),
-                    //       child: Column(
-                    //         children: [
-                    //           SizedBox(
-                    //             height: 15.h,
-                    //           ),
-                    //           Image.asset(
-                    //             "assets/images/category/is-ilanlari.png",
-                    //             height: 50.h,
-                    //             width: 50.w,
-                    //           ),
-                    //           SizedBox(
-                    //             height: 15.h,
-                    //           ),
-                    //           Text("İş İlanları",
-                    //               style: TextStyle(
-                    //                   fontSize: 18.sp,
-                    //                   color: Color(0xff343434),
-                    //                   fontFamily: "Gilroy",
-                    //                   fontWeight: FontWeight.w500),
-                    //               textAlign: TextAlign.center),
-                    //           SizedBox(height: 15.h),
-                    //           Text(
-                    //             "Asistan - Sekreter Bilgisayar - Yazılım Eczacı",
-                    //             style: TextStyle(
-                    //                 fontSize: 18.sp,
-                    //                 color: Color(0xff343434),
-                    //                 fontFamily: "Gilroy",
-                    //                 fontWeight: FontWeight.w500),
-                    //             textAlign: TextAlign.center,
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ],
-                    // )
                   ],
                 ),
               ],
@@ -281,188 +219,6 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
     ));
-  }
-}
-
-class HomePageView extends StatelessWidget {
-  const HomePageView({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppBarConst(),
-        Expanded(
-          child: ListView(
-            physics: BouncingScrollPhysics(),
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: 100.h,
-                    width: 345.w,
-                    margin: EdgeInsets.only(top: 30.h),
-                    decoration: BoxDecoration(
-                      color: Color(0xff4B4F52),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 20, top: 10),
-                              child: Container(
-                                height: 44.h,
-                                width: 199.w,
-                                child: Wrap(children: [
-                                  Text(
-                                      "Şimdi ilan ver Scooter kazanma şansını yakala",
-                                      style: textTheme.bodyLarge),
-                                ]),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20, top: 10),
-                              child: Text("*Detaylı bilgi için tıklayın",
-                                  style: textTheme.bodyMedium),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          width: 104.w,
-                          height: 99.h,
-                          child:
-                              Image.asset("assets/images/scooter-cekilis.png"),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
-                  GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 189.h / 189.h,
-                      mainAxisSpacing: 15.w,
-                      crossAxisSpacing: 0.h,
-                    ),
-                    shrinkWrap: true,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      List<String> title = [
-                        "İş İlanları",
-                        "Emlak",
-                        "Satılık - 2. El",
-                        "Özel Ders",
-                        "Hayvanlar Alemi",
-                        "Otomobil Vasıta",
-                        "Usta Çağır",
-                        "Duyurular",
-                        "Ortak Arayanlar",
-                        "Arkadaşlık İlan"
-                      ];
-                      List<String> subtitle = [
-                        "Asistan - Sekreter Bilgisayar - Yazılım Eczacı",
-                        "Satılık/ Kiralık Daire Satılık/Kiralık İş Yeri Satılık/Kiralık Arsa",
-                        "Antika Eşyalar",
-                        "Bilgisayar Dersleri Direksiyon Dersi İngilizce Dersi",
-                        "Hayvan Sahiplendirme Kayıp Hayvan İlanları Hayvancılık İlanları",
-                        "İkinci El Otomobil Kamyon - Kamyonet Otobüs",
-                        "Asansör Servisi Bilgisayar ve Elektronik  Servisleri - Elektrikçi",
-                        "Etkinlikler Özel Mesajlar Kayıp - Aranıyor",
-                        "Satılık Şirket Barter İlanları Satış Ortaklığı ",
-                        "Bay Arkadaş Bayan Arkadaş"
-                      ];
-                      List<Color> color = [
-                        Color(0xff84DFFF),
-                        Color(0xff516BEB),
-                        Color(0xffF86F03),
-                        Color(0xffFFC900),
-                        Color(0xffC3EDC0),
-                        Color(0xff7A9D54),
-                        Color(0xff6554AF),
-                        Color(0xffB696FF),
-                        Color(0xffFFABAB),
-                        Color(0xffED2B2A),
-                      ];
-                      List<Color> colortext = [
-                        Color(0xff343434),
-                        Color(0xffFFFFFF),
-                        Color(0xffFFFFFF),
-                        Color(0xff343434),
-                        Color(0xff343434),
-                        Color(0xffFFFFFF),
-                        Color(0xffFFFFFF),
-                        Color(0xff343434),
-                        Color(0xff343434),
-                        Color(0xffFFFFFF),
-                      ];
-                      return JobCategoryItem(
-                        icon: "assets/images/category/is-ilanlari.png",
-                        title: title[index],
-                        subtitle: subtitle[index],
-                        color: color[index],
-                        textColor: colortext[index],
-                      );
-                    },
-                    scrollDirection: Axis.vertical,
-                  )
-
-                  // Column(
-                  //   children: [
-                  //     Container(
-                  //       width: 165.w,
-                  //       height: 189.h,
-                  //       decoration: BoxDecoration(
-                  //         color: Color(0xff84DFFF),
-                  //         borderRadius: BorderRadius.circular(20),
-                  //       ),
-                  //       child: Column(
-                  //         children: [
-                  //           SizedBox(
-                  //             height: 15.h,
-                  //           ),
-                  //           Image.asset(
-                  //             "assets/images/category/is-ilanlari.png",
-                  //             height: 50.h,
-                  //             width: 50.w,
-                  //           ),
-                  //           SizedBox(
-                  //             height: 15.h,
-                  //           ),
-                  //           Text("İş İlanları",
-                  //               style: TextStyle(
-                  //                   fontSize: 18.sp,
-                  //                   color: Color(0xff343434),
-                  //                   fontFamily: "Gilroy",
-                  //                   fontWeight: FontWeight.w500),
-                  //               textAlign: TextAlign.center),
-                  //           SizedBox(height: 15.h),
-                  //           Text(
-                  //             "Asistan - Sekreter Bilgisayar - Yazılım Eczacı",
-                  //             style: TextStyle(
-                  //                 fontSize: 18.sp,
-                  //                 color: Color(0xff343434),
-                  //                 fontFamily: "Gilroy",
-                  //                 fontWeight: FontWeight.w500),
-                  //             textAlign: TextAlign.center,
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ],
-                  // )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
   }
 }
 

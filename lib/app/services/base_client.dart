@@ -11,6 +11,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../../config/translations/strings_enum.dart';
 import '../components/custom_snackbar.dart';
 import 'api_exceptions.dart';
+import '../data/local/my_shared_pref.dart';
 
 enum RequestType {
   get,
@@ -38,8 +39,8 @@ class BaseClient {
         onRequest: (options, handler) async {
           // Add a custom header to the request
           //TODO: Get token from storage
-          // var user = await MySharedPref.getLoginUser();
-          options.headers['Authorization'] = "Bearer 13123";
+          var user = await MyHive.getCurrentUser();
+          options.headers['Authorization'] = user?.token;
           options.headers['Accept'] = "application/json";
           options.headers['Content-Type'] = "application/json";
           Logger().i(

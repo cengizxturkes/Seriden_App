@@ -19,7 +19,7 @@ dependencies:
   pretty_dio_logger: # for dio api logging and debugging
 
   hive:  # local database (SQFlite replacement)
-  hive_flutter: # make it easy to use hive (no need fo r path provider)
+  hive_flutter: # make it easy to use hive  (no need fo r path provider)
   shared_preferences: # shared preferences persistence key value store
 
   firebase_core:  # to initialize firebase services
