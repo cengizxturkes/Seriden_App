@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/modules/home/controllers/home_controller.dart';
+import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 import '../../../config/theme/my_fonts.dart';
 import '../../components/color_manager.dart';
+import '../../components/custom_future_builder.dart';
+import '../../data/models/message/message_response.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
+
+class MessageArgumentModels {
+  Message message;
+  Future<List<Message>> listmessage1;
+  MessageArgumentModels(this.message, this.listmessage1);
+}
 
 class MessagesPage extends GetView<MessagesController> {
   const MessagesPage({Key? key}) : super(key: key);
@@ -46,8 +55,7 @@ class MessagesPage extends GetView<MessagesController> {
           'Gülşah Kaya',
         ];
         return Scaffold(
-             backgroundColor: ColorManager.base20,
-
+          backgroundColor: ColorManager.base20,
           bottomNavigationBar: BottomNavbar(),
           body: SafeArea(
               child: Column(
@@ -63,28 +71,43 @@ class MessagesPage extends GetView<MessagesController> {
               ),
               SizedBox(height: 20.h),
               Expanded(
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    int profile = index + 1;
+                  child: CustomFutureBuilder<List<Message>>(
+                future: controller.getMessage(),
+                onError: (msg) => Text(msg),
+                onSuccess: (data) {
+                  return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: ((context, index) {
+                      var message = data[index];
+                      print(message);
+                      return GestureDetector(
+                        onTap: () {
+                          var message1 =
+                              controller.getMessageDetail(message.id);
 
-                    return Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30, bottom: 10),
-                      child: CardWidget(
-                        imageUrl: "assets/images/message/profile" +
-                            profile.toString() +
-                            ".png",
-                        name: nameSurnameList[index],
-                        job: jobList[index].length > 15
-                            ? jobList[index].substring(0, 15)
-                            : jobList[index] + '...',
-                        isOnline: true,
-                        messagetime: DateTime.now(),
-                      ),
-                    );
-                  },
-                ),
-              )
+                          Get.toNamed(Routes.MESSAGESCREEN,
+                              arguments:
+                                  MessageArgumentModels(message, message1));
+                        },
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(left: 30, right: 30, bottom: 10),
+                          child: CardWidget(
+                            imageUrl: "assets/images/message/profile1.png",
+                            name: message.nameSurname,
+                            job: message.title,
+                            isOnline: true,
+                            messagetime: message.createdAt.toString(),
+                          ),
+                        ),
+                      );
+                    }),
+                  );
+                },
+                onDataEmpty: () {
+                  return Center(child: Text("Mesaj bulunamadı"));
+                },
+              )),
             ],
           )),
         );
@@ -98,7 +121,7 @@ class CardWidget extends StatelessWidget {
   final String name;
   final String job;
   final bool isOnline;
-  final DateTime messagetime;
+  final String messagetime;
 
   CardWidget({
     required this.imageUrl,
@@ -152,7 +175,7 @@ class CardWidget extends StatelessWidget {
                   height: 15.h,
                 ),
                 Text(
-                  "19.07.2023 15:00",
+                  messagetime,
                   style: TextStyle(color: Colors.grey),
                 ),
               ],

@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class MessagesController extends GetxController with UserRepository {
-  MessagesController();
+class MessageScreenController extends GetxController with UserRepository {
+  MessageScreenController();
 
-  final state = MessagesState();
+  final state = MessageScreenState();
 
   // tap
   void handleTap(int index) {

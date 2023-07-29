@@ -3,6 +3,7 @@ import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:getx_skeleton/app/modules/advertise/index.dart';
 import 'package:getx_skeleton/app/modules/advertise_second/index.dart';
 import 'package:getx_skeleton/app/modules/delete_acc/index.dart';
+import 'package:getx_skeleton/app/modules/message_screen/index.dart';
 import 'package:getx_skeleton/app/modules/personal_information/index.dart';
 import 'package:getx_skeleton/app/modules/phone_number/index.dart';
 import 'package:getx_skeleton/app/modules/posting_on_air/index.dart';
@@ -19,6 +20,10 @@ import '../modules/account_info/bindings.dart';
 import '../modules/account_info/view.dart';
 import '../modules/advertise_first/bindings.dart';
 import '../modules/advertise_first/view.dart';
+import '../modules/advertise_list/bindings.dart';
+import '../modules/advertise_list/view.dart';
+import '../modules/advertise_list_sub/bindings.dart';
+import '../modules/advertise_list_sub/view.dart';
 import '../modules/advertise_third/bindings.dart';
 import '../modules/advertise_third/view.dart';
 import '../modules/advetise_last/bindings.dart';
@@ -228,6 +233,21 @@ class AppPages {
         name: _Paths.LOGINWITHEMAIL,
         page: () => LoginEmailPage(),
         binding: LoginEmailBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.ADVERTISELIST,
+        page: () => AdvertiseListPage(),
+        binding: AdvertiseListBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.ADVERTISELISTSUB,
+        page: () => AdvertiseListSubPage(),
+        binding: AdvertiseListSubBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.MESSAGESCREEN,
+        page: () => MessageScreenPage(),
+        binding: MessageScreenBinding(),
         transition: Transition.noTransition),
     // GetPage(
     //   name: _Paths.CHANGEPHONENUMBERWITHPHONENUMBER,

@@ -24,7 +24,9 @@ class JobCategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(Routes.ADVERTISELIST, arguments: category);
+      },
       child: Column(
         children: [
           Expanded(

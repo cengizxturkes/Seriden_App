@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final loginResponse = loginResponseFromJson(jsonString);
-
 import 'package:meta/meta.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -46,17 +42,17 @@ class Login {
   @JsonKey(name: "id")
   String id;
   @HiveField(3)
-  @JsonKey(name: "name")
-  String name;
+  @JsonKey(name: "name_surname")
+  String nameSurname;
   @HiveField(5)
-  @JsonKey(name: "surname")
-  String surname;
-  @HiveField(7)
   @JsonKey(name: "email")
   String email;
-  @HiveField(9)
+  @HiveField(7)
   @JsonKey(name: "phone")
   String phone;
+  @HiveField(9)
+  @JsonKey(name: "photo")
+  String photo;
   @HiveField(11)
   @JsonKey(name: "password")
   String password;
@@ -72,10 +68,10 @@ class Login {
 
   Login({
     required this.id,
-    required this.name,
-    required this.surname,
+    required this.nameSurname,
     required this.email,
     required this.phone,
+    required this.photo,
     required this.password,
     required this.token,
     required this.createdAt,

@@ -39,6 +39,9 @@ abstract class Routes {
   static const REGISTERUSERGOOGLE = _Paths.REGISTERUSERGOOGLE;
   static const CREATEACCWITHPHONENUMBER = _Paths.CREATEACCWITHPHONENUMBER;
   static const LOGINWITHEMAIL = _Paths.LOGINWITHEMAIL;
+  static const ADVERTISELIST = _Paths.ADVERTISELIST;
+  static const ADVERTISELISTSUB = _Paths.ADVERTISELISTSUB;
+  static const MESSAGESCREEN = _Paths.MESSAGESCREEN;
 }
 
 abstract class _Paths {
@@ -78,4 +81,7 @@ abstract class _Paths {
   static const REGISTERUSERGOOGLE = '/registergoogle';
   static const CREATEACCWITHPHONENUMBER = '/createaccwithphonenumber';
   static const LOGINWITHEMAIL = '/loginwithemail';
+  static const ADVERTISELIST = '/advertiselist';
+  static const ADVERTISELISTSUB = '/advertiselistsub';
+  static const MESSAGESCREEN = '/messagescreen';
 }
