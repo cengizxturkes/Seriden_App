@@ -54,8 +54,10 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: AdvertiseFirstController.props.length,
                           itemBuilder: ((context, index) {
-                            var advprop = AdvertiseFirstController.props[index];
-                            return createTextBox(advprop);
+                            return CreateTextBox(
+                              controllerx: controller.textcontroller,
+                              prop: controller.data[index],
+                            );
                           }),
                         );
                       }),
@@ -102,10 +104,24 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
       },
     );
   }
+}
 
-  Widget createTextBox(SubcategoryProp prop) {
+class CreateTextBox extends StatelessWidget {
+  SubcategoryProp prop;
+  AdvertiseRepository advertiseService = Get.find();
+
+  CreateTextBox({
+    required this.prop,
+    Key? key,
+    required this.controllerx,
+  }) : super(key: key);
+
+  final TextEditingController controllerx;
+
+  @override
+  Widget build(BuildContext context) {
     AdvModel valueModel = advertiseService.getPropValue(prop);
-    var controllerx = TextEditingController(text: "");
+    var controllerx = TextEditingController();
     controllerx.addListener(() {
       valueModel.description = controllerx.text;
     });

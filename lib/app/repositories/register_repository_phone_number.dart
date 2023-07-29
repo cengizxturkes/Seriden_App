@@ -13,8 +13,12 @@ class RegirterPhoneNumberRepository {
     newRegisterPhoneModel.phone_number = phone;
   }
 
+  void mail(String mail) {
+    newRegisterPhoneModel.mail = mail;
+  }
+
   void addnameSurname(String name) {
-    newRegisterPhoneModel.phone_number = name;
+    newRegisterPhoneModel.name = name;
   }
 
   void addPass(String password) {
@@ -23,12 +27,10 @@ class RegirterPhoneNumberRepository {
 
   Future<bool> save() async {
     var deneme = RegisterPostModel(
-      mail: 'turkes2214@gmail.com',
-      name: newRegisterPhoneModel.name,
+      mail: newRegisterPhoneModel.mail,
+      nameSurname: newRegisterPhoneModel.name,
       password: newRegisterPhoneModel.pass,
       phone: newRegisterPhoneModel.phone_number,
-      surname: newRegisterPhoneModel.name,
-      token: "",
     );
     var response = await service.register(deneme);
     return response.status == 1;
@@ -39,4 +41,5 @@ class NewRegisterPhoneModel {
   String phone_number = "";
   String name = "";
   String pass = "";
+  String mail = "";
 }

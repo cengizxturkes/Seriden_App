@@ -17,12 +17,12 @@ class SignUpPage extends GetView<SignUpController> {
   }
 
   List<LoginMethod> method = [
-    LoginMethod(
-        "Google İle Bağlan", "assets/images/flat-color-icons_google.png", 0),
-    LoginMethod("Telefon Numarası ile Üye Ol",
-        "assets/images/fluent-emoji-flat_telephone-receiver (1).png", 1),
     // LoginMethod(
-    //     "E-posta ile Üye Ol", "assets/images/logos_google-gmail.png", 2),
+    //     "Google İle Bağlan", "assets/images/flat-color-icons_google.png", 0),
+    // LoginMethod("Telefon Numarası ile Üye Ol",
+    //     "assets/images/fluent-emoji-flat_telephone-receiver (1).png", 1),
+    LoginMethod(
+        "E-posta ile Üye Ol", "assets/images/logos_google-gmail.png", 2),
   ];
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class SignUpPage extends GetView<SignUpController> {
                   height: 100.h,
                 ),
                 ListView.builder(
-                  itemCount: 3,
+                  itemCount: 1,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -52,12 +52,7 @@ class SignUpPage extends GetView<SignUpController> {
                       onTap: () {
                         controller.selectedMethodIndex.value = index;
                         controller.selectedMethodIndex.update((val) {});
-                        var index2 = controller.selectedMethodIndex;
-                        if (controller.selectedMethodIndex == 0) {
-                          Get.toNamed(Routes.REGISTERUSERGOOGLE);
-                        } else if (controller.selectedMethodIndex == 1) {
-                          Get.toNamed(Routes.REGISTERPHONENUMBER);
-                        }
+                        Get.toNamed(Routes.REGISTERPHONENUMBER);
                       },
                       child: LoginButtonWidget(
                         iconpath: item.iconpath,
@@ -65,7 +60,39 @@ class SignUpPage extends GetView<SignUpController> {
                       ),
                     );
                   },
-                )
+                ),
+                SizedBox(
+                  height: 50.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Zaten Hesabın Var Mı?",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: "Gilroy-Regular",
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.LOGINWITHEMAIL);
+                      },
+                      child: Text(
+                        "Giriş Yap",
+                        style: TextStyle(
+                          color: Color(0xff0075FF),
+                          fontSize: 15,
+                          fontFamily: "Gilroy-Regular",
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ])),
         );
       },

@@ -15,10 +15,10 @@ class SignUpController extends GetxController with UserRepository {
   Login? user;
 
   void getUser1() async {
-    Future<User> response = getUser();
-    updateUser(response as Login);
-    var result = await MyHive.getCurrentUser();
-    user = result;
+    // Future<User> response = getUser();
+    // updateUser(response as Login);
+    // var result = await MyHive.getCurrentUser();
+    // user = result;
     if (user != null) {
       Get.toNamed(Routes.HOME);
     }
@@ -37,7 +37,7 @@ class SignUpController extends GetxController with UserRepository {
   @override
   void onInit() {
     super.onInit();
-    getUser();
+    //getUser();
   }
 
   /// 在 onInit() 之后调用 1 帧。这是进入的理想场所

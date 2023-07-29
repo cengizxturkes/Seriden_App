@@ -8,6 +8,7 @@ import '../data/models/message/message_response.dart';
 import '../data/models/message/send_message_post.dart';
 import '../data/models/password_post_model/password_post_model.dart';
 import '../data/models/password_post_model/password_response.dart';
+import '../data/models/user/acc_delete_response.dart';
 import '../data/models/user/user_response.dart';
 
 part 'user_service.g.dart';
@@ -25,4 +26,6 @@ abstract class UserService {
   Future<MessageDetailResponse> getMessageDetail(@Query("id") String id);
   @GET("/addMessage.php")
   Future<SendMessageResponse> sendMessage(@Body() SendMessagePost model);
+  @POST("/deleteUser.php")
+  Future<AccDeleteResponse> deleteUser(@Query("id") String id);
 }

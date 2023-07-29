@@ -12,26 +12,20 @@ String registerPostModelToJson(RegisterPostModel data) =>
 
 @JsonSerializable()
 class RegisterPostModel {
-  @JsonKey(name: "name")
-  String name;
-  @JsonKey(name: "surname")
-  String surname;
+  @JsonKey(name: "name_surname")
+  String nameSurname;
   @JsonKey(name: "mail")
   String mail;
   @JsonKey(name: "phone")
   String phone;
   @JsonKey(name: "password")
   String password;
-  @JsonKey(name: "token")
-  String token;
 
   RegisterPostModel({
-    required this.name,
-    required this.surname,
+    required this.nameSurname,
     required this.mail,
     required this.phone,
     required this.password,
-    required this.token,
   });
 
   factory RegisterPostModel.fromJson(Map<String, dynamic> json) =>

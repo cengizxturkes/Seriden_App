@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 
+import '../../repositories/register_repository_phone_number.dart';
 import 'index.dart';
 
-class RegisterPhoneNumberController extends GetxController {
+class RegisterPhoneNumberController extends GetxController
+    with RegirterPhoneNumberRepository {
   RegisterPhoneNumberController();
 
   final state = RegisterPhoneNumberState();

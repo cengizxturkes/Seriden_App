@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
 
-import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class DeleteAccController extends GetxController with UserRepository {
-  DeleteAccController();
+class MailRegiserController extends GetxController {
+  MailRegiserController();
 
-  final state = DeleteAccState();
+  final state = MailRegiserState();
 
   // tap
   void handleTap(int index) {
