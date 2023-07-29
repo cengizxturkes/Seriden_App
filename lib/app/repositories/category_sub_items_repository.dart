@@ -7,8 +7,12 @@ import '../services/category_sub_items_service.dart';
 
 class CategorySubItemsRepository {
   CategorySubItemsService service = Get.find();
+
+  RxList<Category> categories = RxList.empty();
   Future<List<Category>> getWithSubCategories() async {
+    if (categories.isNotEmpty) return categories;
     var response = await service.getCategories();
+    categories.addAll(response.data);
     return response.data;
   }
 

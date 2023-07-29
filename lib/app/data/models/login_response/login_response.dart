@@ -52,7 +52,7 @@ class Login {
   String phone;
   @HiveField(9)
   @JsonKey(name: "photo")
-  String photo;
+  String? photo;
   @HiveField(11)
   @JsonKey(name: "password")
   String password;
@@ -71,7 +71,7 @@ class Login {
     required this.nameSurname,
     required this.email,
     required this.phone,
-    required this.photo,
+    this.photo,
     required this.password,
     required this.token,
     required this.createdAt,

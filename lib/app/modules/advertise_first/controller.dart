@@ -31,7 +31,7 @@ class AdvertiseFirstController extends GetxController
 
   Future<void> load(String id) async {
     if (lastId == id) return;
-    if (props.isNotEmpty) return;
+    lastId = id;
     props.clear();
     var response = await getCategoriesProp(id);
     props.addAll(response);

@@ -21,7 +21,8 @@ class AdvertiseListPage extends GetView<AdvertiseListController> {
 
   @override
   Widget build(BuildContext context) {
-    var arguments = Get.arguments as Category;
+    late Category? arguments = controller.selected;
+    controller.selected ??= Get.arguments as Category;
 
     return GetBuilder<AdvertiseListController>(
       builder: (_) {
@@ -54,7 +55,7 @@ class AdvertiseListPage extends GetView<AdvertiseListController> {
                             width: 10.w,
                           ),
                           Text(
-                            arguments.name,
+                            arguments!.name,
                             style: TextStyle(
                               fontSize: 15,
                               color: Color(0xff0075FF),
@@ -71,8 +72,8 @@ class AdvertiseListPage extends GetView<AdvertiseListController> {
                           .map((e) => Container(
                                 margin: EdgeInsets.only(bottom: 20.h),
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.ADVERTISELISTSUB,
+                                  onTap: () async {
+                                    await Get.toNamed(Routes.ADVERTISELISTSUB,
                                         arguments: AdvertiseListSubPageArgument(
                                             arguments, e));
                                   },

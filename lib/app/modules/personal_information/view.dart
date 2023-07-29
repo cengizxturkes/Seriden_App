@@ -52,7 +52,7 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                         radius: (52),
                         backgroundColor: Colors.transparent,
                         backgroundImage: NetworkImage(
-                          user!.photo,
+                          user?.photo ?? "",
                         ),
                       ),
                     ),
