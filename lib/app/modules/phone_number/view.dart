@@ -71,11 +71,11 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
                               shrinkWrap: true,
                               itemCount: 1,
                               itemBuilder: ((context, index) {
-                                var myAdv = data;
-                                print(myAdv);
+                                var phonenumber = data;
+                                print(phonenumber);
                                 return Center(
                                   child: BlueTextProfilePhone(
-                                    title: data.phone,
+                                    title: phonenumber.phone,
                                   ),
                                 );
                               }),

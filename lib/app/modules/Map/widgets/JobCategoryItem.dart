@@ -54,7 +54,10 @@ class JobCategoryItem extends StatelessWidget {
                   ),
                   SizedBox(height: 15.h),
                   Text(
-                    category.subcategories.map((e) => e.name).join(" - "),
+                    category.subcategories
+                        .take(3)
+                        .map((e) => e.name)
+                        .join(" - "),
                     style: textTheme.titleMedium!.copyWith(color: textColor),
                     textAlign: TextAlign.center,
                   ),

@@ -34,14 +34,14 @@ class UserResponse {
 class User {
   @JsonKey(name: "id")
   String id;
-  @JsonKey(name: "name")
-  String name;
-  @JsonKey(name: "surname")
-  String surname;
+  @JsonKey(name: "name_surname")
+  String nameSurname;
   @JsonKey(name: "email")
   String email;
   @JsonKey(name: "phone")
   String phone;
+  @JsonKey(name: "photo")
+  String photo;
   @JsonKey(name: "password")
   String password;
   @JsonKey(name: "token")
@@ -53,10 +53,10 @@ class User {
 
   User({
     required this.id,
-    required this.name,
-    required this.surname,
+    required this.nameSurname,
     required this.email,
     required this.phone,
+    required this.photo,
     required this.password,
     required this.token,
     required this.createdAt,

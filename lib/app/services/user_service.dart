@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:getx_skeleton/app/data/models/message/send_message_response.dart';
 import 'package:retrofit/http.dart';
 
 import '../data/models/login_model/login_model.dart';
+import '../data/models/message/message_detail_response.dart';
 import '../data/models/message/message_response.dart';
+import '../data/models/message/send_message_post.dart';
 import '../data/models/password_post_model/password_post_model.dart';
 import '../data/models/password_post_model/password_response.dart';
 import '../data/models/user/user_response.dart';
@@ -18,6 +21,8 @@ abstract class UserService {
   Future<PasswordResponse> uptadePass(@Body() PasswordPostModel model);
   @POST("/getMessagesByUser.php")
   Future<MessageResponse> getMessage(@Query("id") String id);
-  @GET("/getMessagesByUser.php")
-  Future<MessageResponse> getMessageDetail(@Query("id") String id);
+  @GET("/getMessageDetail.php")
+  Future<MessageDetailResponse> getMessageDetail(@Query("id") String id);
+  @GET("/addMessage.php")
+  Future<SendMessageResponse> sendMessage(@Body() SendMessagePost model);
 }

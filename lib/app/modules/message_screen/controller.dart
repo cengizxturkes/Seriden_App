@@ -1,12 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../repositories/message_repository.dart';
 import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class MessageScreenController extends GetxController with UserRepository {
+class MessageScreenController extends GetxController
+    with UserRepository, MessageRepository {
   MessageScreenController();
 
   final state = MessageScreenState();
+  TextEditingController messageController = TextEditingController();
 
   // tap
   void handleTap(int index) {

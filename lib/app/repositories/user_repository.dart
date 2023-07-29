@@ -3,11 +3,13 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:getx_skeleton/app/services/user_service.dart';
 
 import '../data/local/my_hive.dart';
+import '../data/models/message/message_detail_response.dart';
 import '../data/models/message/message_response.dart';
 import '../data/models/user/user_response.dart';
 
 class UserRepository {
   UserService service = Get.find();
+  List<MessagDetail> messages = [];
   Future<User> getUser() async {
     var login = await MyHive.getCurrentUser();
 
@@ -22,10 +24,9 @@ class UserRepository {
     return response.data;
   }
 
-  Future<List<Message>> getMessageDetail(String messageid) async {
-    var login = await MyHive.getCurrentUser();
-
+  Future<List<MessagDetail>> getMessageDetail(String messageid) async {
     var response = await service.getMessageDetail(messageid);
+    messages = response.data;
     return response.data;
   }
 }

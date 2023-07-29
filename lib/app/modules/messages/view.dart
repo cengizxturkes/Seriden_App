@@ -7,6 +7,7 @@ import 'package:getx_skeleton/app/routes/app_pages.dart';
 import '../../../config/theme/my_fonts.dart';
 import '../../components/color_manager.dart';
 import '../../components/custom_future_builder.dart';
+import '../../data/models/message/message_detail_response.dart';
 import '../../data/models/message/message_response.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
@@ -14,8 +15,10 @@ import 'widgets/widgets.dart';
 
 class MessageArgumentModels {
   Message message;
-  Future<List<Message>> listmessage1;
-  MessageArgumentModels(this.message, this.listmessage1);
+
+  MessageArgumentModels(
+    this.message,
+  );
 }
 
 class MessagesPage extends GetView<MessagesController> {
@@ -82,18 +85,13 @@ class MessagesPage extends GetView<MessagesController> {
                       print(message);
                       return GestureDetector(
                         onTap: () {
-                          var message1 =
-                              controller.getMessageDetail(message.id);
-
-                          Get.toNamed(Routes.MESSAGESCREEN,
-                              arguments:
-                                  MessageArgumentModels(message, message1));
+                          Get.toNamed(Routes.MESSAGESCREEN, arguments: message);
                         },
                         child: Padding(
                           padding:
                               EdgeInsets.only(left: 30, right: 30, bottom: 10),
                           child: CardWidget(
-                            imageUrl: "assets/images/message/profile1.png",
+                            imageUrl: message.photo,
                             name: message.nameSurname,
                             job: message.title,
                             isOnline: true,
@@ -147,20 +145,29 @@ class CardWidget extends StatelessWidget {
             width: 15.w,
           ),
           CircleAvatar(
-            backgroundImage: AssetImage(imageUrl),
+            backgroundImage: NetworkImage(imageUrl),
             radius: 35,
           ),
           SizedBox(width: 30),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 15.h,
-              ),
-              Expanded(child: Text(name, style: textTheme.labelMedium)),
-              SizedBox(height: 5),
-              Expanded(child: Text(job, style: textTheme.labelSmall)),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 15.h,
+                ),
+                Expanded(child: Text(name, style: textTheme.labelMedium)),
+                SizedBox(height: 5),
+                Expanded(
+                  child: Container(
+                    child: Text(
+                      job.length <= 20 ? job : job.substring(0, 10) + "...",
+                      style: textTheme.labelSmall,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           SizedBox(width: 10),
           Expanded(

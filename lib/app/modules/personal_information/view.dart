@@ -76,7 +76,8 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                               itemBuilder: ((context, index) {
                                 var myAdv = data;
                                 print(myAdv);
-                                controller.usercontroller.text = myAdv.name;
+                                controller.usercontroller.text =
+                                    myAdv.nameSurname;
                                 return TextField(
                                   controller: controller.usercontroller,
                                 );

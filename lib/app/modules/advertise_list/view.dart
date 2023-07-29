@@ -68,22 +68,25 @@ class AdvertiseListPage extends GetView<AdvertiseListController> {
                         height: 30.h,
                       ),
                       ...arguments.subcategories
-                          .map((e) => GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(Routes.ADVERTISELISTSUB,
-                                      arguments: AdvertiseListSubPageArgument(
-                                          arguments, e));
-                                },
-                                child: Container(
-                                  height: 60.h,
-                                  width: 315.w,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.r),
-                                    color: Colors.white,
-                                  ),
-                                  child: ListTile(
-                                    title: Text(e.name),
-                                    trailing: Icon(Icons.navigate_next),
+                          .map((e) => Container(
+                                margin: EdgeInsets.only(bottom: 20.h),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.ADVERTISELISTSUB,
+                                        arguments: AdvertiseListSubPageArgument(
+                                            arguments, e));
+                                  },
+                                  child: Container(
+                                    height: 60.h,
+                                    width: 315.w,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20.r),
+                                      color: Colors.white,
+                                    ),
+                                    child: ListTile(
+                                      title: Text(e.name),
+                                      trailing: Icon(Icons.navigate_next),
+                                    ),
                                   ),
                                 ),
                               ))

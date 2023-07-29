@@ -12,7 +12,7 @@ MessageDetailResponse _$MessageDetailResponseFromJson(
       status: json['status'] as int,
       message: json['message'] as String,
       data: (json['data'] as List<dynamic>)
-          .map((e) => MessageDetail.fromJson(e as Map<String, dynamic>))
+          .map((e) => MessagDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -24,8 +24,7 @@ Map<String, dynamic> _$MessageDetailResponseToJson(
       'data': instance.data,
     };
 
-MessageDetail _$MessageDetailFromJson(Map<String, dynamic> json) =>
-    MessageDetail(
+MessagDetail _$MessagDetailFromJson(Map<String, dynamic> json) => MessagDetail(
       id: json['id'] as String,
       fromUserId: json['from_user_id'] as String,
       toUserId: json['to_user_id'] as String,
@@ -37,7 +36,7 @@ MessageDetail _$MessageDetailFromJson(Map<String, dynamic> json) =>
       photo: json['photo'] as String,
     );
 
-Map<String, dynamic> _$MessageDetailToJson(MessageDetail instance) =>
+Map<String, dynamic> _$MessagDetailToJson(MessagDetail instance) =>
     <String, dynamic>{
       'id': instance.id,
       'from_user_id': instance.fromUserId,

@@ -53,7 +53,7 @@ class AdvertiseController extends GetxController
   void onSelectCategory(Subcategory category) {
     Logger().i(category.name);
     advertiseService.setCategory(category);
-    Get.toNamed(Routes.ADVERTISEFIRSTPAGE);
+    Get.toNamed(Routes.ADVERTISEFIRSTPAGE, arguments: category);
 
     //TODO: open next page
   }

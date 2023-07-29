@@ -17,7 +17,7 @@ class MessageDetailResponse {
   @JsonKey(name: "message")
   String message;
   @JsonKey(name: "data")
-  List<MessageDetail> data;
+  List<MessagDetail> data;
 
   MessageDetailResponse({
     required this.status,
@@ -32,7 +32,7 @@ class MessageDetailResponse {
 }
 
 @JsonSerializable()
-class MessageDetail {
+class MessagDetail {
   @JsonKey(name: "id")
   String id;
   @JsonKey(name: "from_user_id")
@@ -52,7 +52,7 @@ class MessageDetail {
   @JsonKey(name: "photo")
   String photo;
 
-  MessageDetail({
+  MessagDetail({
     required this.id,
     required this.fromUserId,
     required this.toUserId,
@@ -64,8 +64,8 @@ class MessageDetail {
     required this.photo,
   });
 
-  factory MessageDetail.fromJson(Map<String, dynamic> json) =>
-      _$MessageDetailFromJson(json);
+  factory MessagDetail.fromJson(Map<String, dynamic> json) =>
+      _$MessagDetailFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MessageDetailToJson(this);
+  Map<String, dynamic> toJson() => _$MessagDetailToJson(this);
 }

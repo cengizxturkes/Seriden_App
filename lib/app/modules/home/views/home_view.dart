@@ -107,47 +107,47 @@ class HomeView extends GetView<HomeController> {
               children: [
                 Column(
                   children: [
-                    Container(
-                      height: 100.h,
-                      width: 345.w,
-                      margin: EdgeInsets.only(top: 30.h),
-                      decoration: BoxDecoration(
-                        color: Color(0xff4B4F52),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 20, top: 10),
-                                child: Container(
-                                  height: 44.h,
-                                  width: 199.w,
-                                  child: Wrap(children: [
-                                    Text(
-                                        "Şimdi ilan ver Scooter kazanma şansını yakala",
-                                        style: textTheme.bodyLarge),
-                                  ]),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 20, top: 10),
-                                child: Text("*Detaylı bilgi için tıklayın",
-                                    style: textTheme.bodyMedium),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            width: 104.w,
-                            height: 99.h,
-                            child: Image.asset(
-                                "assets/images/scooter-cekilis.png"),
-                          )
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   height: 100.h,
+                    //   width: 345.w,
+                    //   margin: EdgeInsets.only(top: 30.h),
+                    //   decoration: BoxDecoration(
+                    //     color: Color(0xff4B4F52),
+                    //     borderRadius: BorderRadius.circular(20),
+                    //   ),
+                    //   child: Row(
+                    //     children: [
+                    //       Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           Padding(
+                    //             padding: EdgeInsets.only(left: 20, top: 10),
+                    //             child: Container(
+                    //               height: 44.h,
+                    //               width: 199.w,
+                    //               child: Wrap(children: [
+                    //                 Text(
+                    //                     "Şimdi ilan ver Scooter kazanma şansını yakala",
+                    //                     style: textTheme.bodyLarge),
+                    //               ]),
+                    //             ),
+                    //           ),
+                    //           Padding(
+                    //             padding: EdgeInsets.only(left: 20, top: 10),
+                    //             child: Text("*Detaylı bilgi için tıklayın",
+                    //                 style: textTheme.bodyMedium),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Container(
+                    //         width: 104.w,
+                    //         height: 99.h,
+                    //         child: Image.asset(
+                    //             "assets/images/scooter-cekilis.png"),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     SizedBox(height: 15.h),
                     CustomFutureBuilder<List<Category>>(
                       future: controller.getWithSubCategories(),

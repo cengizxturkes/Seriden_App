@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/modules/constwidget/blue_text_profile.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 import '../../components/color_manager.dart';
@@ -77,38 +78,80 @@ class AdvertiseListSubPage extends GetView<AdvertiseListSubController> {
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(
                         height: 30.h,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.ADVERTISELISTSUB,
-                              arguments: "Asistan");
-                        },
-                        child: Container(
-                          height: 74,
-                          width: 315.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.r),
-                            color: Colors.white,
-                          ),
-                          child: ListTile(
-                            title: Text("Asistan-Sekreter"),
-                            trailing: Icon(Icons.navigate_next),
-                            subtitle: Row(
-                              children: [
-                                Icon(Icons.location_city),
-                                Text("İstanbul"),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      BlueTextProfile(title: "Yazılım Uzmanı İlan Bilgileri"),
                       SizedBox(
                         height: 10.h,
+                      ),
+                      Text(
+                          "KOZMETİK FİRMAMIZA YAZILIM GELİŞTİRME UZMANI VE AYNI ZAMANDA SOSYAL MEDYA İLE İLGİLENECEK *** INSTAGRAM GOOGLE REKLAM KAMPANYALARINI YÜRÜTECEK VE AYNI ZAMANDA REKLAM BANNERLARI VİDEOLARI HAZIRLAYACAK MEVCUTTA KODLAMA DİLİNDE PHP BİLEN TERCİHİMİZ OLACAKTIR MAAŞ DOLGUN SİGORTA YEMEK HEPSİ DAHİL CUMARTESİ ÖĞLEN 2 YE KADAR ÇALIŞIYORUZ İLGİLİ ARKADAŞLAR BANA CV LERİNİ İLETEBİLİRLER "),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Divider(),
+                      Row(
+                        children: [
+                          Text(
+                            "İl/İlçe",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200, fontSize: 15.sp),
+                          ),
+                          Spacer(),
+                          BlueTextProfile(title: "Ankara Keçiören"),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                height: 60.h,
+                                width: 140.w,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    color: Color(0xff0075FF)),
+                                child: Center(
+                                  child: Text(
+                                    "ARA",
+                                    style: TextStyle(
+                                      fontSize: 15.h,
+                                      color: Colors.white,
+                                      fontFamily: "Gilroy",
+                                    ),
+                                  ),
+                                )),
+                          ),
+                          SizedBox(
+                            width: 35.w,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                height: 60.h,
+                                width: 140.w,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    color: Color(0xff0075FF)),
+                                child: Center(
+                                  child: Text(
+                                    "MESAJ GÖNDER",
+                                    style: TextStyle(
+                                      fontSize: 15.h,
+                                      color: Colors.white,
+                                      fontFamily: "Gilroy",
+                                    ),
+                                  ),
+                                )),
+                          ),
+                        ],
                       ),
                     ],
                   ),

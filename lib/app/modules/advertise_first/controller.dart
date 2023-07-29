@@ -1,12 +1,17 @@
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/sub_category/sub_category_prop_response.dart';
+import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
 
+import '../../repositories/category_sub_items_repository.dart';
 import 'index.dart';
 
-class AdvertiseFirstController extends GetxController {
+class AdvertiseFirstController extends GetxController
+    with CategorySubItemsRepository {
   AdvertiseFirstController();
 
+  static RxList<SubcategoryProp> props = RxList.empty();
   final state = AdvertiseFirstState();
-
+  static String lastId = "";
   // tap
   void handleTap(int index) {
     Get.snackbar(
@@ -19,6 +24,13 @@ class AdvertiseFirstController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+  }
+
+  Future<void> load(String id) async {
+    if (lastId == id) return;
+    props.clear();
+    var response = await getCategoriesProp(id);
+    props.addAll(response);
   }
 
   /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
@@ -36,6 +48,7 @@ class AdvertiseFirstController extends GetxController {
   /// dispose 释放内存
   @override
   void dispose() {
+    props.clear();
     super.dispose();
   }
 }

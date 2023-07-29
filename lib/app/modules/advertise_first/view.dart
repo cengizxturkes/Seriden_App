@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/category/category_sub_responce.dart';
+import 'package:getx_skeleton/app/data/models/sub_category/sub_category_prop_response.dart';
 import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
 
 import '../../components/color_manager.dart';
+import '../../components/custom_future_builder.dart';
 import '../../routes/app_pages.dart';
 import '../advertise_second/view.dart';
 import '../constwidget/blue_text_profile.dart';
@@ -20,83 +23,101 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
     return const HelloWidget();
   }
 
+  var argument = Get.arguments as Subcategory;
+
   @override
   Widget build(BuildContext context) {
+    controller.load(argument.id);
     return GetBuilder<AdvertiseFirstController>(
       builder: (_) {
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
           backgroundColor: ColorManager.base20,
-          body: SafeArea(
-              child: SingleChildScrollView(
-            child: Column(children: [
-              AppBarConst(),
-              Padding(
-                padding: EdgeInsets.only(left: 30.w, right: 30.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    createTextBox("İlan başlığı", advertiseService.setTitle,
-                        advertiseService.newAdvertiseModel.title),
-                    createTextBox("Açıklama", advertiseService.setDescription,
-                        advertiseService.newAdvertiseModel.description),
-                    createTextBox("Fiyat", advertiseService.setPrice,
-                        advertiseService.newAdvertiseModel.price.toString()),
-                    createTextBox("Cinsiyet", advertiseService.setPrice,
-                        advertiseService.newAdvertiseModel.title),
-                    createTextBox("Konum", advertiseService.setPrice,
-                        advertiseService.newAdvertiseModel.title),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(
-                          Routes.ADVERTISESECONDPAGE,
+          body: SingleChildScrollView(
+            child: ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                AppBarConst(),
+                Padding(
+                  padding: EdgeInsets.only(left: 30.w, right: 30.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Obx(() {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: AdvertiseFirstController.props.length,
+                          itemBuilder: ((context, index) {
+                            var advprop = AdvertiseFirstController.props[index];
+                            return createTextBox(advprop);
+                          }),
                         );
-                      },
-                      child: Container(
-                          height: 40.h,
-                          width: 315.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50.r),
-                              color: Color(0xff0075FF)),
-                          child: Center(
-                            child: Text(
-                              "DEVAM ET 1/4",
-                              style: TextStyle(
-                                fontSize: 15.h,
-                                color: Colors.white,
-                                fontFamily: "Gilroy",
+                      }),
+                      // createTextBox("İlan başlığı", advertiseService.setTitle,
+                      //     advertiseService.newAdvertiseModel.title),
+                      // createTextBox("Açıklama", advertiseService.setDescription,
+                      //     advertiseService.newAdvertiseModel.description),
+                      // createTextBox("Fiyat", advertiseService.setPrice,
+                      //     advertiseService.newAdvertiseModel.price.toString()),
+                      // createTextBox("Cinsiyet", advertiseService.setPrice,
+                      //     advertiseService.newAdvertiseModel.title),
+                      // createTextBox("Konum", advertiseService.setPrice,
+                      //     advertiseService.newAdvertiseModel.title),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(
+                            Routes.ADVERTISESECONDPAGE,
+                          );
+                        },
+                        child: Container(
+                            height: 40.h,
+                            width: 315.w,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50.r),
+                                color: Color(0xff0075FF)),
+                            child: Center(
+                              child: Text(
+                                "DEVAM ET 1/4",
+                                style: TextStyle(
+                                  fontSize: 15.h,
+                                  color: Colors.white,
+                                  fontFamily: "Gilroy",
+                                ),
                               ),
-                            ),
-                          )),
-                    ),
-                  ],
-                ),
-              )
-            ]),
-          )),
+                            )),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
         );
       },
     );
   }
 
-  Widget createTextBox(
-      String title, Function(String value) textChange, String value) {
-    var controller = TextEditingController(text: value);
-    controller.addListener(() {
-      textChange(controller.text);
+  Widget createTextBox(SubcategoryProp prop) {
+    AdvModel valueModel = advertiseService.getPropValue(prop);
+    var controllerx = TextEditingController(text: "");
+    controllerx.addListener(() {
+      valueModel.description = controllerx.text;
     });
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BlueTextProfile(
-          title: title,
+          title: prop.title,
         ),
         SizedBox(height: 5.h),
         TextFormField(
-          controller: controller,
+          controller: controllerx,
         ),
         SizedBox(
           height: 20.h,
