@@ -95,53 +95,53 @@ class PhoneNumberPage extends GetView<PhoneNumberController> {
                     SizedBox(
                       height: 40.h,
                     ),
-                    GestureDetector(
-                      child: Container(
-                          height: 40.h,
-                          width: 315.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50.r),
-                              color: Color(0xff0075FF)),
-                          child: Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                Get.toNamed(Routes.CHANGEPHONENUMBER);
-                              },
-                              child: Text(
-                                "DEĞİŞTİR",
-                                style: TextStyle(
-                                  fontSize: 15.h,
-                                  color: Colors.white,
-                                  fontFamily: "Gilroy",
-                                ),
-                              ),
-                            ),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                          height: 40.h,
-                          width: 315.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50.r),
-                              color: Colors.white),
-                          child: Center(
-                            child: Text(
-                              "VAZGEÇ",
-                              style: TextStyle(
-                                fontSize: 15.h,
-                                color: Color(0xff0075FF),
-                                fontFamily: "Gilroy",
-                              ),
-                            ),
-                          )),
-                    ),
+                    // GestureDetector(
+                    //   child: Container(
+                    //       height: 40.h,
+                    //       width: 315.w,
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(50.r),
+                    //           color: Color(0xff0075FF)),
+                    //       child: Center(
+                    //         child: GestureDetector(
+                    //           onTap: () {
+                    //             Get.toNamed(Routes.CHANGEPHONENUMBER);
+                    //           },
+                    //           child: Text(
+                    //             "DEĞİŞTİR",
+                    //             style: TextStyle(
+                    //               fontSize: 15.h,
+                    //               color: Colors.white,
+                    //               fontFamily: "Gilroy",
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       )),
+                    // ),
+                    // SizedBox(
+                    //   height: 20.h,
+                    // ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     Get.back();
+                    //   },
+                    //   child: Container(
+                    //       height: 40.h,
+                    //       width: 315.w,
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(50.r),
+                    //           color: Colors.white),
+                    //       child: Center(
+                    //         child: Text(
+                    //           "VAZGEÇ",
+                    //           style: TextStyle(
+                    //             fontSize: 15.h,
+                    //             color: Color(0xff0075FF),
+                    //             fontFamily: "Gilroy",
+                    //           ),
+                    //         ),
+                    //       )),
+                    // ),
                   ],
                 ),
               )

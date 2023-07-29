@@ -1,21 +1,25 @@
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/data/models/login_response/login_response.dart';
+import 'package:getx_skeleton/app/data/models/user/user_response.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 import '../../data/local/my_hive.dart';
+import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class SignUpController extends GetxController {
+class SignUpController extends GetxController with UserRepository {
   SignUpController();
 
   final state = SignUpState();
   final RxInt selectedMethodIndex = 0.obs;
   Login? user;
 
-  void getUser() async {
+  void getUser1() async {
+    Future<User> response = getUser();
+    updateUser(response as Login);
     var result = await MyHive.getCurrentUser();
     user = result;
-    if (user == null) {
+    if (user != null) {
       Get.toNamed(Routes.HOME);
     }
     update();

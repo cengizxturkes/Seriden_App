@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/models/user/user_response.dart';
 import '../../repositories/user_repository.dart';
 import 'index.dart';
 
@@ -9,7 +10,7 @@ class PersonalInformationController extends GetxController with UserRepository {
 
   final state = PersonalInformationState();
   TextEditingController usercontroller = TextEditingController();
-
+  final String lastid = "";
   // tap
   void handleTap(int index) {
     Get.snackbar(

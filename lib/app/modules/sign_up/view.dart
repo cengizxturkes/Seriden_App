@@ -21,8 +21,8 @@ class SignUpPage extends GetView<SignUpController> {
         "Google İle Bağlan", "assets/images/flat-color-icons_google.png", 0),
     LoginMethod("Telefon Numarası ile Üye Ol",
         "assets/images/fluent-emoji-flat_telephone-receiver (1).png", 1),
-    LoginMethod(
-        "E-posta ile Üye Ol", "assets/images/logos_google-gmail.png", 2),
+    // LoginMethod(
+    //     "E-posta ile Üye Ol", "assets/images/logos_google-gmail.png", 2),
   ];
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:getx_skeleton/app/data/models/login_response/login_response.dart';
 
 import '../data/models/login_model/login_model.dart';
+import '../data/models/user/user_response.dart';
 import '../services/login_service.dart';
 
 class LoginEmailRepository {

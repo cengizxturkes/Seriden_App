@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/local/my_hive.dart';
 
 import '../../components/color_manager.dart';
 import '../../components/custom_future_builder.dart';
@@ -20,6 +21,8 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
 
   @override
   Widget build(BuildContext context) {
+    var user = MyHive.getCurrentUser();
+    controller.update();
     return GetBuilder<PersonalInformationController>(
       builder: (_) {
         return Scaffold(
@@ -48,8 +51,8 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                       child: CircleAvatar(
                         radius: (52),
                         backgroundColor: Colors.transparent,
-                        backgroundImage: AssetImage(
-                          "assets/images/message/profile2.png",
+                        backgroundImage: NetworkImage(
+                          user!.photo,
                         ),
                       ),
                     ),
@@ -64,41 +67,43 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    SizedBox(
-                        height: 50.h,
-                        child: CustomFutureBuilder<User>(
-                          future: controller.getUser(),
-                          onError: (msg) => Text(msg),
-                          onSuccess: (data) {
-                            return ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: 1,
-                              itemBuilder: ((context, index) {
-                                var myAdv = data;
-                                print(myAdv);
-                                controller.usercontroller.text =
-                                    myAdv.nameSurname;
-                                return TextField(
-                                  controller: controller.usercontroller,
-                                );
-                              }),
-                            );
-                          },
-                          onDataEmpty: () {
-                            return Center(child: Text("Kategori bulunamadı"));
-                          },
-                        )),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    TextField(
-                      controller: TextEditingController(text: 'İsim Soyisim'),
-                    ),
+
+                    // SizedBox(
+                    //     height: 50.h,
+                    //     child: CustomFutureBuilder<User>(
+                    //       future: controller.getUser(),
+                    //       onError: (msg) => Text(msg),
+                    //       onSuccess: (data) {
+                    //         return ListView.builder(
+                    //           shrinkWrap: true,
+                    //           itemCount: 1,
+                    //           itemBuilder: ((context, index) {
+                    //             var myAdv = data;
+                    //             print(myAdv);
+                    //             controller.usercontroller.text =
+                    //                 myAdv.nameSurname;
+                    //             return TextField(
+                    //               controller: controller.usercontroller,
+                    //             );
+                    //           }),
+                    //         );
+                    //       },
+                    //       onDataEmpty: () {
+                    //         return Center(child: Text("Kategori bulunamadı"));
+                    //       },
+                    //     )),
                     SizedBox(
                       height: 10.h,
                     ),
                     TextField(
-                      controller: TextEditingController(text: 'Telefon No'),
+                      controller:
+                          TextEditingController(text: user?.nameSurname),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    TextField(
+                      controller: TextEditingController(text: user?.phone),
                     ),
                     SizedBox(
                       height: 40.h,
@@ -154,4 +159,27 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
       },
     );
   }
+}
+
+Widget createTextBox(
+    String title, Function(String value) textChange, String value) {
+  var controller = TextEditingController(text: value);
+  controller.addListener(() {
+    textChange(controller.text);
+  });
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SizedBox(height: 5.h),
+      TextFormField(
+        decoration: InputDecoration(
+          labelText: title,
+        ),
+        controller: controller,
+      ),
+      SizedBox(
+        height: 20.h,
+      ),
+    ],
+  );
 }
