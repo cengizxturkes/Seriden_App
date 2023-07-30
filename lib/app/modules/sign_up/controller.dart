@@ -15,7 +15,7 @@ class SignUpController extends GetxController with UserRepository {
   Login? user;
 
   void getUser1() async {
-    ///Future<User> response = getUser();
+    // Future<User> response = getUser();
     // updateUser(response as Login);
     // var result = await MyHive.getCurrentUser();
     // user = result;

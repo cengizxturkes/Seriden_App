@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../data/models/category/category_sub_responce.dart';
 import 'index.dart';
 
 class AdvertiseListController extends GetxController {
   AdvertiseListController();
-
+  Category? selected;
   final state = AdvertiseListState();
 
   // tap

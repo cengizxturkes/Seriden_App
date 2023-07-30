@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/data/models/sub_category/sub_category_prop_response.dart';
 import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
@@ -8,7 +9,9 @@ import 'index.dart';
 class AdvertiseFirstController extends GetxController
     with CategorySubItemsRepository {
   AdvertiseFirstController();
-
+  TextEditingController textcontroller = TextEditingController();
+  final ValueNotifier<String> idNotifier = ValueNotifier("");
+  var data = props;
   static RxList<SubcategoryProp> props = RxList.empty();
   final state = AdvertiseFirstState();
   static String lastId = "";
@@ -28,6 +31,7 @@ class AdvertiseFirstController extends GetxController
 
   Future<void> load(String id) async {
     if (lastId == id) return;
+    lastId = id;
     props.clear();
     var response = await getCategoriesProp(id);
     props.addAll(response);
@@ -42,6 +46,7 @@ class AdvertiseFirstController extends GetxController
   /// 在 [onDelete] 方法之前调用。
   @override
   void onClose() {
+    props.clear();
     super.onClose();
   }
 

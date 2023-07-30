@@ -13,6 +13,7 @@ import '../data/models/password_post_model/password_post_model.dart';
 import '../data/models/password_post_model/password_response.dart';
 import '../data/models/update_profile/update_profile_response.dart';
 import '../data/models/update_profile/update_user_model.dart';
+import '../data/models/user/acc_delete_response.dart';
 import '../data/models/user/user_response.dart';
 
 part 'user_service.g.dart';
@@ -30,8 +31,6 @@ abstract class UserService {
   Future<MessageDetailResponse> getMessageDetail(@Query("id") String id);
   @GET("/addMessage.php")
   Future<SendMessageResponse> sendMessage(@Body() SendMessagePost model);
-    @POST("/updateUser.php")
+    @GET("/updateUser.php")
   Future<UpdateProfileResponse> updateUser(@Body() UpdateUserModel model);
-  
- 
 }

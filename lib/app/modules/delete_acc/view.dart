@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/local/my_hive.dart';
 
 import '../../components/color_manager.dart';
 import '../constwidget/blue_text_profile.dart';
@@ -21,8 +22,7 @@ class DeleteAccPage extends GetView<DeleteAccController> {
     return GetBuilder<DeleteAccController>(
       builder: (_) {
         return Scaffold(
-        backgroundColor: ColorManager.base20,
-
+          backgroundColor: ColorManager.base20,
           bottomNavigationBar: BottomNavbar(),
           body: SafeArea(
             child: SingleChildScrollView(
@@ -75,7 +75,11 @@ class DeleteAccPage extends GetView<DeleteAccController> {
                         height: 20.h,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          var user = MyHive.getCurrentUser();
+                          controller.deleteProfile(user!.id);
+                          MyHive.deleteCurrentUser();
+                        },
                         child: Container(
                             height: 40.h,
                             width: 315.w,

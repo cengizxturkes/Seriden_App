@@ -61,7 +61,7 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                         radius: (52),
                         backgroundColor: Colors.transparent,
                         backgroundImage: NetworkImage(
-                          user!.photo,
+                          user?.photo ?? "",
                         ),
                       ),
                     ),
@@ -138,7 +138,7 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                     GestureDetector(
                       onTap: () {
                         controller.uptadedProfile(UpdateUserModel(
-                            id: user.id,
+                            id: user!.id,
                             nameSurname: controller.userName.text,
                             phone: controller.phone.text,
                             photo: controller.userImage,));

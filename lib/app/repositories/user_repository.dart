@@ -9,6 +9,7 @@ import '../data/local/my_hive.dart';
 import '../data/models/login_response/login_response.dart';
 import '../data/models/message/message_detail_response.dart';
 import '../data/models/message/message_response.dart';
+import '../data/models/user/acc_delete_response.dart';
 import '../data/models/user/user_response.dart';
 
 
@@ -53,7 +54,12 @@ class UserRepository {
     return response.message;
   }
 
-  
+  Future<bool> deleteProfile(String id) async {
+    var response = await service.deleteUser(id);
+
+    return response.status == 1;
+  }
+
   Future<bool> updateUser(Login user) async {
     MyHive.saveUserToHive(user);
 

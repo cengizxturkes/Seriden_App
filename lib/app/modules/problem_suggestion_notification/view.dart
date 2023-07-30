@@ -27,7 +27,6 @@ class ProblemSuggestionNotificationPage
         return Scaffold(
           bottomNavigationBar: BottomNavbar(),
           backgroundColor: ColorManager.base20,
-
           body: SafeArea(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -42,9 +41,9 @@ class ProblemSuggestionNotificationPage
                         SizedBox(
                           height: 30.h,
                         ),
-                        BlueTextProfile(
-                          title: "Sorun/Öneri Bildirimi",
-                        ),
+                        // BlueTextProfile(
+                        //   title: "Sorun/Öneri Bildirimi",
+                        // ),
                         SizedBox(
                           height: 10.h,
                         ),

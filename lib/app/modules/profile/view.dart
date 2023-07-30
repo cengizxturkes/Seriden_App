@@ -123,18 +123,18 @@ class ProfilePage extends GetView<ProfileController> {
                         SizedBox(
                           height: 15.h,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.PROBLEMSUGGESTIONNOTIFICATION);
-                          },
-                          child: ProfileGrayText(
-                            title: "Sorun-Öneri Bildirimi",
-                          ),
-                        ),
-                        Divider(),
-                        SizedBox(
-                          height: 15.h,
-                        ),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Get.toNamed(Routes.PROBLEMSUGGESTIONNOTIFICATION);
+                        //   },
+                        //   child: ProfileGrayText(
+                        //     title: "Sorun-Öneri Bildirimi",
+                        //   ),
+                        // ),
+                        // Divider(),
+                        // SizedBox(
+                        //   height: 15.h,
+                        // ),
                         GestureDetector(
                           onTap: () {
                             Get.toNamed(Routes.LANGUAGESELECT);

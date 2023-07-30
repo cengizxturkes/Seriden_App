@@ -7,6 +7,7 @@ import 'package:getx_skeleton/app/routes/app_pages.dart';
 import 'package:logger/logger.dart';
 
 import '../../data/models/category.dart';
+import '../../data/models/sub_category/sub_category_prop_response.dart';
 import '../../repositories/category_sub_items_repository.dart';
 import '../../repositories/advertise_repository.dart';
 import 'index.dart';
@@ -14,7 +15,6 @@ import 'index.dart';
 class AdvertiseController extends GetxController
     with CategorySubItemsRepository {
   AdvertiseController();
-
   final state = AdvertiseState();
   AdvertiseRepository advertiseService = Get.find();
   // tap

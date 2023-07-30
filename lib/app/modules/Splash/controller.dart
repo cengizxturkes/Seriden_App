@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
 
-import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class DeleteAccController extends GetxController with UserRepository {
-  DeleteAccController();
+class SplashController extends GetxController {
+  SplashController();
 
-  final state = DeleteAccState();
+  final state = SplashState();
 
   // tap
   void handleTap(int index) {
