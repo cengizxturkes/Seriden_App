@@ -141,7 +141,7 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                             id: user!.id,
                             nameSurname: controller.userName.text,
                             phone: controller.phone.text,
-                            photo: controller.userImage,));
+                            photo: controller.userImage!.path,));
 
                             controller.update();
                             Navigator.of(context);

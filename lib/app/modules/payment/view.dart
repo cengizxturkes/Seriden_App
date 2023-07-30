@@ -71,7 +71,7 @@ class PaymentPage extends GetView<PaymentController> {
                         Get.toNamed(
                           Routes.ADVERTISELAST,
                         );
-                        advertiseService.save();
+                        //advertiseService.save();
                       },
                       child: Container(
                           height: 40.h,

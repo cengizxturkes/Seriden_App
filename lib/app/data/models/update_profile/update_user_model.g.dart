@@ -11,7 +11,7 @@ UpdateUserModel _$UpdateUserModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       nameSurname: json['name_surname'] as String,
       phone: json['phone'] as String,
-      photo: json['photo'] as File,
+      photo: json['photo'] as String?,
     );
 
 Map<String, dynamic> _$UpdateUserModelToJson(UpdateUserModel instance) =>

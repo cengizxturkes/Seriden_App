@@ -23,7 +23,7 @@ class UpdateUserModel {
     @JsonKey(name:"phone")
     String phone;
     @JsonKey(name:"photo")
-    File? photo;
+    String? photo;
 
     UpdateUserModel({
         required this.id,
@@ -32,7 +32,7 @@ class UpdateUserModel {
         this.photo,
     });
 
-    factory UpdateUserModel.fromJson(Map<String, dynamic> json) => _$UpdateUserModelFromJson(json);
+    factory UpdateUserModel.fromJson(Map<String, dynamic> json,) => _$UpdateUserModelFromJson(json);
 
     Map<String, dynamic> toJson() => _$UpdateUserModelToJson(this);
 }

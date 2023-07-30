@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/advertise_post_model/advertise_post_model.dart';
 import 'package:getx_skeleton/app/modules/advertise_second/image_helper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,6 +24,8 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
   Widget _buildView() {
     return const HelloWidget();
   }
+
+  ImagePicker picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +52,9 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                         ),
                         subtitle: GestureDetector(
                           onTap: () async {
-                            var image = await helper.pickImage();
-                            controller.image =
-                                image.map((e) => File(e.path)).toList();
-                            advertiseService.image(controller.image);
+                            controller.selectedFiles.value =
+                                await picker.pickMultiImage();
+
                             controller.update();
                           },
                           child: BlueTextProfile(
@@ -73,12 +75,12 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                       itemBuilder: (context, index) {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          child: controller.image != null
-                              ? Image.file(
-                                  controller.image[index]!,
-                                  fit: BoxFit.contain,
-                                )
-                              : Text('Resim seçilmedi.'),
+                          // child: controller.image != null
+                          //     ? Image.file(
+                          //         controller.image[index]!,
+                          //         fit: BoxFit.contain,
+                          //       )
+                          //     : Text('Resim seçilmedi.'),
                         );
                       },
                     ),
@@ -87,6 +89,35 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                     ),
                     GestureDetector(
                       onTap: () async {
+                        List<String> list=[];
+
+
+                        for (int index = 0; index < advertiseService.props.length; index++) {
+                          
+
+                          var item=advertiseService.props[index];
+
+                          var id="properties["+index.toString()+"][id] :"+item.cat_id;
+                          var value="properties["+index.toString()+"][value] :"+item.description;
+
+                          list.add(id);
+                          list.add(value);
+
+
+                        }
+
+                        String joinedList = list.join("\n");
+
+                        await advertiseService.addAdvertise({
+                          "title": "title",
+                          "description": "adadadaad",
+                          "price": 3123,
+                          "user_id": 1,
+                          "sub_cat_id": 55,
+                           
+                            
+                        }, controller.selectedFiles);
+
                         Get.toNamed(
                           Routes.ADVERTISETHIRDPAGE,
                         );
@@ -99,7 +130,7 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                               color: Color(0xff0075FF)),
                           child: Center(
                             child: Text(
-                              "DEVAM ET 2/4",
+                              "Paylaş",
                               style: TextStyle(
                                 fontSize: 15.h,
                                 color: Colors.white,

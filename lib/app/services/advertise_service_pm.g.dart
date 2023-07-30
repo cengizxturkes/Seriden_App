@@ -20,6 +20,9 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
 
   String? baseUrl;
 
+
+  
+
   @override
   Future<AdvertiseResponseModel> postAdvertise(AdvertisePostModel model) async {
     const _extra = <String, dynamic>{};

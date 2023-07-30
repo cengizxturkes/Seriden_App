@@ -77,7 +77,7 @@ class DeleteAccPage extends GetView<DeleteAccController> {
                       GestureDetector(
                         onTap: () {
                           var user = MyHive.getCurrentUser();
-                          controller.deleteProfile(user!.id);
+                          //controller.deleteProfile(user!.id);
                           MyHive.deleteCurrentUser();
                         },
                         child: Container(

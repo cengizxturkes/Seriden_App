@@ -11,6 +11,9 @@ class AdvertiseSecondController extends GetxController {
   final state = AdvertiseSecondState();
   List<File?> image = [];
 
+  
+  final selectedFiles = <XFile>[].obs;
+
   // tap
   void handleTap(int index) {
     Get.snackbar(

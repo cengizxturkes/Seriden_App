@@ -54,11 +54,11 @@ class UserRepository {
     return response.message;
   }
 
-  Future<bool> deleteProfile(String id) async {
-    var response = await service.deleteUser(id);
+  // Future<bool> deleteProfile(String id) async {
+  //   var response = await service.deleteUser(id);
 
-    return response.status == 1;
-  }
+  //   return response.status == 1;
+  // }
 
   Future<bool> updateUser(Login user) async {
     MyHive.saveUserToHive(user);

@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart' as d;
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../data/local/my_hive.dart';
 import '../data/models/advertise_post_model/advertise_post_model.dart';
 import '../data/models/category.dart';
 import '../data/models/category/category_sub_responce.dart';
@@ -13,6 +16,48 @@ class AdvertiseRepository {
   NewAdvertiseModel newAdvertiseModel = NewAdvertiseModel();
   AdvertiseRepositoryPm advertiseRepositoryPm = AdvertiseRepositoryPm();
   AdvertiseServicePm advertiseServicePm = Get.find();
+
+
+var API_URL="https://bekatos.com/seriden_api/";
+
+
+ Future<void> addAdvertise(Map<String, dynamic> data, List<XFile> files) async {
+    var sFiles = [];
+    for (int i = 0; i < files.length; i++) {
+      sFiles.add(await d.MultipartFile.fromFile(
+        files[i].path,
+        filename: files[i].name,
+      ));
+    }
+    data["image[]"] = sFiles;
+    d.FormData formdata = d.FormData.fromMap(data);
+
+
+    var login = await MyHive.getCurrentUser();
+
+    d.Dio dio = d.Dio();
+    var response = await dio.post(
+      API_URL + "addAdvert.php",
+      data: formdata,
+      options: d.Options(
+        headers: {
+          "Authorization": login?.token ?? "Bearer 123123",
+          "Accept": "application/json",
+          "Content-Type":"application/json"
+        },
+      ),
+
+      // onSendProgress: (int sent, int total) {
+      //   String percentage = (sent / total * 10000).toStringAsFixed(2);
+      // },
+    );
+
+    if (response.statusCode == 200) {
+      print(response.data);
+    }
+    
+  }
+
 
   List<AdvModel> props = [];
   void setCategory(Subcategory categoryModel) {
@@ -27,18 +72,18 @@ class AdvertiseRepository {
     newAdvertiseModel = NewAdvertiseModel();
   }
 
-  Future<bool> save() async {
-    var deneme = AdvertisePostModel(
-      title: newAdvertiseModel.title,
-      description: newAdvertiseModel.description,
-      price: newAdvertiseModel.price.toInt(),
-      userId: 1,
-      subCatId: 1,
-    );
+  // Future<bool> save() async {
+  //   var deneme = AdvertisePostModel(
+  //     title: newAdvertiseModel.title,
+  //     description: newAdvertiseModel.description,
+  //     price: newAdvertiseModel.price.toInt(),
+  //     userId: 1,
+  //     subCatId: 1,
+  //   );
 
-    var response = await advertiseServicePm.postAdvertise(deneme);
-    return response.status == 1;
-  }
+  //   var response = await advertiseServicePm.postAdvertise(deneme);
+  //   return response.status == 1;
+  // }
 
   setDescription(String value) {
     newAdvertiseModel.description = value;
@@ -86,6 +131,8 @@ class AdvertiseRepository {
         ..description = "";
       props.add(propValue);
     }
+
+
     return propValue;
   }
 }

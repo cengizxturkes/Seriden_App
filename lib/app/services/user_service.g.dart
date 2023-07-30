@@ -158,33 +158,6 @@ class _UserService implements UserService {
   }
 
   @override
-  Future<AccDeleteResponse> deleteUser(String id) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'id': id};
-    final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<AccDeleteResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/deleteUser.php',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = AccDeleteResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<UpdateProfileResponse> updateUser(UpdateUserModel model) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -193,7 +166,7 @@ class _UserService implements UserService {
     _data.addAll(model.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<UpdateProfileResponse>(Options(
-      method: 'POST',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
