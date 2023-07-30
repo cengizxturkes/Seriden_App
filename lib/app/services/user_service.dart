@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:getx_skeleton/app/data/models/message/send_message_response.dart';
+import 'package:getx_skeleton/app/data/models/user_model.dart';
 import 'package:retrofit/http.dart';
 
 import '../data/models/login_model/login_model.dart';
@@ -8,6 +11,8 @@ import '../data/models/message/message_response.dart';
 import '../data/models/message/send_message_post.dart';
 import '../data/models/password_post_model/password_post_model.dart';
 import '../data/models/password_post_model/password_response.dart';
+import '../data/models/update_profile/update_profile_response.dart';
+import '../data/models/update_profile/update_user_model.dart';
 import '../data/models/user/user_response.dart';
 
 part 'user_service.g.dart';
@@ -25,4 +30,8 @@ abstract class UserService {
   Future<MessageDetailResponse> getMessageDetail(@Query("id") String id);
   @GET("/addMessage.php")
   Future<SendMessageResponse> sendMessage(@Body() SendMessagePost model);
+    @POST("/updateUser.php")
+  Future<UpdateProfileResponse> updateUser(@Body() UpdateUserModel model);
+  
+ 
 }

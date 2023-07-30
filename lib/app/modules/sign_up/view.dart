@@ -42,7 +42,7 @@ class SignUpPage extends GetView<SignUpController> {
                   height: 100.h,
                 ),
                 ListView.builder(
-                  itemCount: 3,
+                  itemCount: 2,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {

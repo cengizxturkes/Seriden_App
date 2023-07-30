@@ -1,11 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/data/local/my_hive.dart';
+import 'package:getx_skeleton/app/data/models/update_profile/update_user_model.dart';
+import 'package:getx_skeleton/app/data/models/user_model.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../components/color_manager.dart';
 import '../../components/custom_future_builder.dart';
 import '../../data/models/user/user_response.dart';
+import '../../repositories/user_repository.dart';
+import '../advertise_second/image_helper.dart';
 import '../constwidget/blue_text_profile.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
@@ -22,7 +29,9 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
   @override
   Widget build(BuildContext context) {
     var user = MyHive.getCurrentUser();
-    controller.update();
+
+    ImagePicker imagePicker = ImagePicker();
+
     return GetBuilder<PersonalInformationController>(
       builder: (_) {
         return Scaffold(
@@ -60,8 +69,19 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                       height: 20.h,
                     ),
                     Center(
-                      child: BlueTextProfile(
-                        title: "Profil Fotoğrafı Ekle",
+                      child: GestureDetector(
+                        onTap: () async {
+                          var image = await imagePicker.pickImage(
+                              source: ImageSource.gallery);
+
+                          controller.userImage = File(image!.path);
+
+                          // userService.image(controller.userImage);
+                          controller.update();
+                        },
+                        child: BlueTextProfile(
+                          title: "Profil Fotoğrafı Ekle",
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -96,19 +116,36 @@ class PersonalInformationPage extends GetView<PersonalInformationController> {
                       height: 10.h,
                     ),
                     TextField(
-                      controller:
-                          TextEditingController(text: user?.nameSurname),
+                      controller: controller.userName,
+                      onEditingComplete: controller.onEditingComplete,
+                      onChanged: (value) {
+                        controller.onTextChanged();
+                      },
                     ),
                     SizedBox(
                       height: 10.h,
                     ),
                     TextField(
-                      controller: TextEditingController(text: user?.phone),
+                      controller: controller.phone,
+                      onEditingComplete: controller.onEditingComplete,
+                      onChanged: (value) {
+                        controller.onTextChanged();
+                      },
                     ),
                     SizedBox(
                       height: 40.h,
                     ),
                     GestureDetector(
+                      onTap: () {
+                        controller.uptadedProfile(UpdateUserModel(
+                            id: user.id,
+                            nameSurname: controller.userName.text,
+                            phone: controller.phone.text,
+                            photo: controller.userImage,));
+
+                            controller.update();
+                            Navigator.of(context);
+                      },
                       child: Container(
                           height: 40.h,
                           width: 315.w,

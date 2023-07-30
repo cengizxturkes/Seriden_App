@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:getx_skeleton/app/data/models/update_profile/update_user_model.dart';
 import 'package:getx_skeleton/app/services/user_service.dart';
 
 import '../data/local/my_hive.dart';
@@ -7,6 +10,7 @@ import '../data/models/login_response/login_response.dart';
 import '../data/models/message/message_detail_response.dart';
 import '../data/models/message/message_response.dart';
 import '../data/models/user/user_response.dart';
+
 
 class UserRepository {
   UserService service = Get.find();
@@ -17,6 +21,12 @@ class UserRepository {
     'id': '',
     'image': "",
   });
+
+
+  //  image(File value) {
+  //   UpdateUserModel.photo = value;
+  // }
+
 
   Future<User> getUser() async {
     var login = await MyHive.getCurrentUser();
@@ -38,12 +48,12 @@ class UserRepository {
     return response.data;
   }
 
-  Future<List<MessagDetail>> uptadeProfile(String messageid) async {
-    var response = await service.getMessageDetail(messageid);
-    messages = response.data;
-    return response.data;
+  Future<String> uptadedProfile(UpdateUserModel userModel) async {
+    var response = await service.updateUser(userModel);
+    return response.message;
   }
 
+  
   Future<bool> updateUser(Login user) async {
     MyHive.saveUserToHive(user);
 
