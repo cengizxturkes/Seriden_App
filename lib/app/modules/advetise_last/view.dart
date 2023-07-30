@@ -16,7 +16,6 @@ import 'widgets/widgets.dart';
 
 class AdvetiseLastPage extends GetView<AdvetiseLastController> {
   AdvetiseLastPage({Key? key}) : super(key: key);
-  AdvertiseRepository advertiseService = Get.find();
   NewAdvertiseModel advertisemodel = Get.find();
 
   // 主视图

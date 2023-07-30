@@ -201,7 +201,7 @@ class HomeView extends GetView<HomeController> {
                               "assets/images/category/satilik.png"
                             ];
                             return JobCategoryItem(
-                              icon: icon[index],
+                              icon: "assets/images/category/satilik.png",
                               category: items[index],
                               color: color[index],
                               textColor: Color(0xffFFFFFF),

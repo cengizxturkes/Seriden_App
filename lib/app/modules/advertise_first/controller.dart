@@ -32,6 +32,7 @@ class AdvertiseFirstController extends GetxController
   Future<void> load(String id) async {
     if (lastId == id) return;
     lastId = id;
+    AdvertiseRepositorys.instance.postModel.subCatId = lastId;
     props.clear();
     var response = await getCategoriesProp(id);
     props.addAll(response);

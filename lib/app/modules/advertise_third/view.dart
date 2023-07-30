@@ -12,18 +12,12 @@ import 'widgets/widgets.dart';
 
 class AdvertiseThirdPage extends GetView<AdvertiseThirdController> {
   AdvertiseThirdPage({Key? key}) : super(key: key);
-  AdvertiseRepository advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {
     return const HelloWidget();
   }
 
-  List<CommunicationPreferencesMethod> methods = [
-    CommunicationPreferencesMethod("Telefon Ve Mesaj", 0),
-    CommunicationPreferencesMethod("Telefon", 1),
-    CommunicationPreferencesMethod("Mesaj", 2),
-  ];
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AdvertiseThirdController>(
@@ -44,43 +38,52 @@ class AdvertiseThirdPage extends GetView<AdvertiseThirdController> {
                       height: 30.h,
                     ),
                     createTextBox(
-                        "İletişim Bilgileri", advertiseService.setName),
-                    createTextBox("", advertiseService.setNumber),
+                        "Fiyat",
+                        AdvertiseRepositorys.instance.newAdvertiseModel.price
+                            .toString(),
+                        AdvertiseRepositorys.instance.setPrice),
+                    createTextBox(
+                      "Açıklama",
+                      AdvertiseRepositorys
+                          .instance.newAdvertiseModel.description,
+                      AdvertiseRepositorys.instance.setDescription,
+                    ),
                     SizedBox(
                       height: 20.h,
                     ),
-                    BlueTextProfile(title: "İletişim Tercihleri"),
+                    // BlueTextProfile(title: "İletişim Tercihleri"),
+                    // SizedBox(
+                    //   height: 20.h,
+                    // ),
+                    // ListView.builder(
+                    //   shrinkWrap: true,
+                    //   itemCount: methods.length,
+                    //   itemBuilder: (context, index) {
+                    //     var item = methods[index];
+                    //     return Obx(
+                    //       () => Column(
+                    //         children: [
+                    //           ChooseScreenWidget(
+                    //               title: item.title,
+                    //               isselected: index ==
+                    //                   controller.selectedMethodIndex.value,
+                    //               onClick: () {
+                    //                 controller.selectedMethodIndex.value =
+                    //                     index;
+                    //                 controller.selectedMethodIndex
+                    //                     .update((val) {});
+                    //               }),
+                    //         ],
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                     SizedBox(
-                      height: 20.h,
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: methods.length,
-                      itemBuilder: (context, index) {
-                        var item = methods[index];
-                        return Obx(
-                          () => Column(
-                            children: [
-                              ChooseScreenWidget(
-                                  title: item.title,
-                                  isselected: index ==
-                                      controller.selectedMethodIndex.value,
-                                  onClick: () {
-                                    controller.selectedMethodIndex.value =
-                                        index;
-                                    controller.selectedMethodIndex
-                                        .update((val) {});
-                                  }),
-                            ],
-                          ),
-                        );
-                      },
+                      height: 50.h,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Get.toNamed(
-                          Routes.PAYMENTPAGE,
-                        );
+                      onTap: () async {
+                        await controller.post();
                       },
                       child: Container(
                           height: 40.h,
@@ -147,8 +150,9 @@ class _ChooseScreenWidgetState extends State<ChooseScreenWidget> {
   }
 }
 
-Widget createTextBox(String title, Function(String value) textChange) {
-  var controller = TextEditingController();
+Widget createTextBox(
+    String title, String value, Function(String value) textChange) {
+  var controller = TextEditingController(text: value);
   controller.addListener(() {
     textChange(controller.text);
   });

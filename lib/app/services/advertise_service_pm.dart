@@ -1,5 +1,6 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:retrofit/http.dart';
@@ -16,8 +17,15 @@ abstract class AdvertiseServicePm {
   factory AdvertiseServicePm(Dio dio, {String baseUrl}) = _AdvertiseServicePm;
 
   @POST("/addAdvert.php")
+  @MultiPart()
   Future<AdvertiseResponseModel> postAdvertise(
-      @Body() AdvertisePostModel model);
+      @Part() String description,
+      @Part() String title,
+      @Part() int price,
+      @Part() String user_id,
+      @Part() String sub_cat_id,
+      @Part() List<Map<String, dynamic>> properties,
+      @Part(value: "image[]") List<MultipartFile> image);
   @GET("/getMyAdv_active.php")
   Future<MyAdveriseResponse> getMyAdv(@Query("id") String id);
   @GET("/getAdvertsBySub.php")

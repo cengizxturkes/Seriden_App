@@ -12,7 +12,6 @@ import 'widgets/widgets.dart';
 
 class PaymentPage extends GetView<PaymentController> {
   PaymentPage({Key? key}) : super(key: key);
-  AdvertiseRepository advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {
@@ -46,11 +45,15 @@ class PaymentPage extends GetView<PaymentController> {
                       height: 30.h,
                     ),
                     createTextBox("Ödeme Bilgileri",
-                        advertiseService.CardNumber, initisl[0]),
+                        AdvertiseRepositorys.instance.CardNumber, initisl[0]),
                     createTextBox(
-                        "", advertiseService.CardNameSurname, initisl[1]),
-                    createTextBox("", advertiseService.LastUseTime, initisl[2]),
-                    createTextBox("", advertiseService.CvCs, initisl[3]),
+                        "",
+                        AdvertiseRepositorys.instance.CardNameSurname,
+                        initisl[1]),
+                    createTextBox("", AdvertiseRepositorys.instance.LastUseTime,
+                        initisl[2]),
+                    createTextBox(
+                        "", AdvertiseRepositorys.instance.CvCs, initisl[3]),
                     SizedBox(
                       height: 20.h,
                     ),

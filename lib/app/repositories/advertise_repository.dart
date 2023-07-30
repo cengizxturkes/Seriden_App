@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:dio/dio.dart' as d;
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/routes/app_pages.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 
 import '../data/local/my_hive.dart';
+import '../data/models/advertise_post_model/adv_prop_data.dart';
 import '../data/models/advertise_post_model/advertise_post_model.dart';
 import '../data/models/category.dart';
 import '../data/models/category/category_sub_responce.dart';
@@ -12,16 +15,58 @@ import '../data/models/sub_category/sub_category_prop_response.dart';
 import 'adverise_pm_repository.dart';
 import '../services/advertise_service_pm.dart';
 
-class AdvertiseRepository {
+class AdvertiseRepositorys {
+  static AdvertiseRepositorys instance = AdvertiseRepositorys();
   NewAdvertiseModel newAdvertiseModel = NewAdvertiseModel();
   AdvertiseRepositoryPm advertiseRepositoryPm = AdvertiseRepositoryPm();
   AdvertiseServicePm advertiseServicePm = Get.find();
+  AdvertisePostData postModel = AdvertisePostData(
+    description: "",
+    price: 0,
+    props: [],
+    subCatId: "",
+    title: "",
+    userId: MyHive.getCurrentUser()?.id ?? "",
+  );
+  List<File> image = [];
+  var API_URL = "https://bekatos.com/seriden_api/";
 
+  Future<void> post() async {
+    var sFiles = <d.MultipartFile>[];
+    postModel.price = newAdvertiseModel.price;
+    postModel.description = newAdvertiseModel.description;
+    for (int i = 0; i < image.length; i++) {
+      sFiles.add(await d.MultipartFile.fromFile(
+        image[i].path,
+        filename: image[i].path.split("/").last,
+      ));
+    }
+    var result = await advertiseServicePm.postAdvertise(
+        postModel.description,
+        postModel.title,
+        postModel.price.toInt(),
+        postModel.userId,
+        postModel.subCatId,
+        props.map((e) => e.toJson()).toList(),
+        sFiles);
+    if (result.status == 1) {
+      newAdvertiseModel = NewAdvertiseModel();
+      advertiseRepositoryPm = AdvertiseRepositoryPm();
+      postModel = AdvertisePostData(
+        description: "",
+        price: 0,
+        props: [],
+        subCatId: "",
+        title: "",
+        userId: MyHive.getCurrentUser()?.id ?? "",
+      );
+      Get.offAllNamed(Routes.HOME);
+    }
+    Logger().d(result);
+  }
 
-var API_URL="https://bekatos.com/seriden_api/";
-
-
- Future<void> addAdvertise(Map<String, dynamic> data, List<XFile> files) async {
+  Future<void> addAdvertise(
+      Map<String, dynamic> data, List<XFile> files) async {
     var sFiles = [];
     for (int i = 0; i < files.length; i++) {
       sFiles.add(await d.MultipartFile.fromFile(
@@ -31,7 +76,6 @@ var API_URL="https://bekatos.com/seriden_api/";
     }
     data["image[]"] = sFiles;
     d.FormData formdata = d.FormData.fromMap(data);
-
 
     var login = await MyHive.getCurrentUser();
 
@@ -43,7 +87,7 @@ var API_URL="https://bekatos.com/seriden_api/";
         headers: {
           "Authorization": login?.token ?? "Bearer 123123",
           "Accept": "application/json",
-          "Content-Type":"application/json"
+          "Content-Type": "application/json"
         },
       ),
 
@@ -55,11 +99,9 @@ var API_URL="https://bekatos.com/seriden_api/";
     if (response.statusCode == 200) {
       print(response.data);
     }
-    
   }
 
-
-  List<AdvModel> props = [];
+  List<AdvPropData> props = [];
   void setCategory(Subcategory categoryModel) {
     newAdvertiseModel.categoryModel = categoryModel;
   }
@@ -93,10 +135,6 @@ var API_URL="https://bekatos.com/seriden_api/";
     newAdvertiseModel.price = double.tryParse(value) ?? 0;
   }
 
-  image(List<File?> value) {
-    newAdvertiseModel.imageList = value;
-  }
-
   setName(String value) {
     newAdvertiseModel.name = value;
   }
@@ -121,19 +159,19 @@ var API_URL="https://bekatos.com/seriden_api/";
     newAdvertiseModel.CvCs = int.tryParse(value) ?? 0;
   }
 
-  AdvModel getPropValue(SubcategoryProp prop) {
+  AdvPropData getPropValue(SubcategoryProp prop) {
     var propValue = props.where((element) => element.id == prop.id).firstOrNull;
 
     if (propValue == null) {
-      propValue = AdvModel()
-        ..id = prop.id
-        ..cat_id = prop.catId
-        ..description = "";
+      propValue = AdvPropData(id: prop.id, catId: prop.catId, description: "");
       props.add(propValue);
     }
 
-
     return propValue;
+  }
+
+  void setImages(List<File> image) {
+    this.image = image;
   }
 }
 
@@ -149,10 +187,4 @@ class NewAdvertiseModel {
   String LastUseTime = "";
   int CvCs = 0;
   List<File?> imageList = [];
-}
-
-class AdvModel {
-  String id = "";
-  String cat_id = "";
-  String description = "";
 }

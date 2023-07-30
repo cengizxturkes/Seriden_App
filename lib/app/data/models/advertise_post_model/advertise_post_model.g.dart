@@ -10,37 +10,36 @@ AdvertisePostModel _$AdvertisePostModelFromJson(Map<String, dynamic> json) =>
     AdvertisePostModel(
       status: json['status'] as int,
       message: json['message'] as String,
-      data: Data.fromJson(json['data'] as Map<String, dynamic>),
+      advertisePostData: AdvertisePostData.fromJson(
+          json['AdvertisePostData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AdvertisePostModelToJson(AdvertisePostModel instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
-      'data': instance.data,
+      'AdvertisePostData': instance.advertisePostData,
     };
 
-Data _$DataFromJson(Map<String, dynamic> json) => Data(
+AdvertisePostData _$AdvertisePostDataFromJson(Map<String, dynamic> json) =>
+    AdvertisePostData(
       title: json['title'] as String,
       description: json['description'] as String,
-      price: json['price'] as String,
+      price: (json['price'] as num).toDouble(),
       userId: json['user_id'] as String,
       subCatId: json['sub_cat_id'] as String,
-      image: (json['image'] as List<dynamic>)
-          .map((e) => Image.fromJson(e as Map<String, dynamic>))
-          .toList(),
       props: (json['props'] as List<dynamic>)
-          .map((e) => Prop.fromJson(e as Map<String, dynamic>))
+          .map((e) => AdvPropData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
+Map<String, dynamic> _$AdvertisePostDataToJson(AdvertisePostData instance) =>
+    <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'price': instance.price,
       'user_id': instance.userId,
       'sub_cat_id': instance.subCatId,
-      'image': instance.image,
       'props': instance.props,
     };
 

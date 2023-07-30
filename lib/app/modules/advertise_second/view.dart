@@ -18,7 +18,6 @@ import 'widgets/widgets.dart';
 
 class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
   AdvertiseSecondPage({Key? key}) : super(key: key);
-  AdvertiseRepository advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {
@@ -89,35 +88,7 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        List<String> list=[];
-
-
-                        for (int index = 0; index < advertiseService.props.length; index++) {
-                          
-
-                          var item=advertiseService.props[index];
-
-                          var id="properties["+index.toString()+"][id] :"+item.cat_id;
-                          var value="properties["+index.toString()+"][value] :"+item.description;
-
-                          list.add(id);
-                          list.add(value);
-
-
-                        }
-
-                        String joinedList = list.join("\n");
-
-                        await advertiseService.addAdvertise({
-                          "title": "title",
-                          "description": "adadadaad",
-                          "price": 3123,
-                          "user_id": 1,
-                          "sub_cat_id": 55,
-                           
-                            
-                        }, controller.selectedFiles);
-
+                        await controller.post();
                         Get.toNamed(
                           Routes.ADVERTISETHIRDPAGE,
                         );

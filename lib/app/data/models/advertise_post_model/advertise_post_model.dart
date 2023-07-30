@@ -1,105 +1,122 @@
-// To parse this JSON data, do
+// To parse this JSON AdvertisePostData, do
 //
 //     final advertisePostModel = advertisePostModelFromJson(jsonString);
 
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:retrofit/http.dart';
 import 'dart:convert';
+
+import 'adv_prop_data.dart';
 
 part 'advertise_post_model.g.dart';
 
-AdvertisePostModel advertisePostModelFromJson(String str) => AdvertisePostModel.fromJson(json.decode(str));
+AdvertisePostModel advertisePostModelFromJson(String str) =>
+    AdvertisePostModel.fromJson(json.decode(str));
 
-String advertisePostModelToJson(AdvertisePostModel data) => json.encode(data.toJson());
+String advertisePostModelToJson(AdvertisePostModel AdvertisePostData) =>
+    json.encode(AdvertisePostData.toJson());
 
 @JsonSerializable()
 class AdvertisePostModel {
-    @JsonKey(name:"status")
-    int status;
-    @JsonKey(name:"message")
-    String message;
-    @JsonKey(name:"data")
-    Data data;
+  @MultiPart()
+  @JsonKey(name: "status")
+  int status;
+  @MultiPart()
+  @JsonKey(name: "message")
+  String message;
+  @MultiPart()
+  @JsonKey(name: "AdvertisePostData")
+  AdvertisePostData advertisePostData;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  List<File> images = [];
+  AdvertisePostModel({
+    required this.status,
+    required this.message,
+    required this.advertisePostData,
+  });
 
-    AdvertisePostModel({
-        required this.status,
-        required this.message,
-        required this.data,
-    });
+  factory AdvertisePostModel.fromJson(Map<String, dynamic> json) =>
+      _$AdvertisePostModelFromJson(json);
 
-    factory AdvertisePostModel.fromJson(Map<String, dynamic> json) => _$AdvertisePostModelFromJson(json);
-
-    Map<String, dynamic> toJson() => _$AdvertisePostModelToJson(this);
+  Map<String, dynamic> toJson() => _$AdvertisePostModelToJson(this);
 }
 
 @JsonSerializable()
-class Data {
-    @JsonKey(name:"title")
-    String title;
-    @JsonKey(name:"description")
-    String description;
-    @JsonKey(name:"price")
-    String price;
-    @JsonKey(name:"user_id")
-    String userId;
-    @JsonKey(name:"sub_cat_id")
-    String subCatId;
-    @JsonKey(name:"image")
-    List<Image> image;
-    @JsonKey(name:"props")
-    List<Prop> props;
+class AdvertisePostData {
+  @MultiPart()
+  @JsonKey(name: "title")
+  String title;
+  @MultiPart()
+  @JsonKey(name: "description")
+  String description;
+  @MultiPart()
+  @JsonKey(name: "price")
+  double price;
+  @MultiPart()
+  @JsonKey(name: "user_id")
+  String userId;
+  @MultiPart()
+  @JsonKey(name: "sub_cat_id")
+  String subCatId;
+  @MultiPart()
+  @JsonKey(name: "props")
+  List<AdvPropData> props;
 
-    Data({
-        required this.title,
-        required this.description,
-        required this.price,
-        required this.userId,
-        required this.subCatId,
-        required this.image,
-        required this.props,
-    });
+  AdvertisePostData({
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.userId,
+    required this.subCatId,
+    required this.props,
+  });
 
-    factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+  factory AdvertisePostData.fromJson(Map<String, dynamic> json) =>
+      _$AdvertisePostDataFromJson(json);
 
-    Map<String, dynamic> toJson() => _$DataToJson(this);
+  Map<String, dynamic> toJson() => _$AdvertisePostDataToJson(this);
 }
 
 @JsonSerializable()
 class Image {
-    @JsonKey(name:"id")
-    String id;
-    @JsonKey(name:"url")
-    String url;
-    @JsonKey(name:"ad_id")
-    String adId;
-    @JsonKey(name:"is_active")
-    String isActive;
+  @JsonKey(name: "id")
+  String id;
+  @JsonKey(name: "url")
+  String url;
+  @JsonKey(name: "ad_id")
+  String adId;
+  @JsonKey(name: "is_active")
+  String isActive;
 
-    Image({
-        required this.id,
-        required this.url,
-        required this.adId,
-        required this.isActive,
-    });
+  Image({
+    required this.id,
+    required this.url,
+    required this.adId,
+    required this.isActive,
+  });
 
-    factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
+  factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
 
-    Map<String, dynamic> toJson() => _$ImageToJson(this);
+  Map<String, dynamic> toJson() => _$ImageToJson(this);
 }
 
 @JsonSerializable()
 class Prop {
-    @JsonKey(name:"value")
-    String value;
-    @JsonKey(name:"title")
-    String title;
+  @JsonKey(name: "value")
+  String value;
+  @JsonKey(name: "title")
+  String title;
 
-    Prop({
-        required this.value,
-        required this.title,
-    });
+  Prop({
+    required this.value,
+    required this.title,
+  });
 
-    factory Prop.fromJson(Map<String, dynamic> json) => _$PropFromJson(json);
+  factory Prop.fromJson(Map<String, dynamic> json) => _$PropFromJson(json);
 
-    Map<String, dynamic> toJson() => _$PropToJson(this);
+  Map<String, dynamic> toJson() => _$PropToJson(this);
 }

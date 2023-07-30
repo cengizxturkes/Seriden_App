@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../repositories/advertise_repository.dart';
 import 'image_helper.dart';
 import 'index.dart';
 
@@ -9,9 +10,8 @@ class AdvertiseSecondController extends GetxController {
   AdvertiseSecondController();
   final imageHelper = Get.put(ImageHelper());
   final state = AdvertiseSecondState();
-  List<File?> image = [];
+  List<File> image = [];
 
-  
   final selectedFiles = <XFile>[].obs;
 
   // tap
@@ -44,5 +44,10 @@ class AdvertiseSecondController extends GetxController {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  Future post() async {
+    image = selectedFiles.map((element) => File(element.path)).toList();
+    AdvertiseRepositorys.instance.setImages(image);
   }
 }

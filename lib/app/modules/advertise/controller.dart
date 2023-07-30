@@ -16,7 +16,6 @@ class AdvertiseController extends GetxController
     with CategorySubItemsRepository {
   AdvertiseController();
   final state = AdvertiseState();
-  AdvertiseRepository advertiseService = Get.find();
   // tap
   void handleTap(int index) {
     Get.snackbar(
@@ -46,13 +45,13 @@ class AdvertiseController extends GetxController
   @override
   void onInit() {
     initCategories();
-    advertiseService.clear();
+    AdvertiseRepositorys.instance.clear();
     super.onInit();
   }
 
   void onSelectCategory(Subcategory category) {
     Logger().i(category.name);
-    advertiseService.setCategory(category);
+    AdvertiseRepositorys.instance.setCategory(category);
     Get.toNamed(Routes.ADVERTISEFIRSTPAGE, arguments: category);
 
     //TODO: open next page

@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../repositories/advertise_repository.dart';
 import 'index.dart';
 
 class AdvertiseThirdController extends GetxController {
   AdvertiseThirdController();
-  final RxInt selectedMethodIndex= 0.obs;
+  final RxInt selectedMethodIndex = 0.obs;
 
   final state = AdvertiseThirdState();
 
@@ -38,5 +39,10 @@ class AdvertiseThirdController extends GetxController {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  Future post() async {
+    // image = selectedFiles.map((element) => File(element.path)).toList();
+    await AdvertiseRepositorys.instance.post();
   }
 }

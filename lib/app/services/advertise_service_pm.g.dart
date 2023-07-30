@@ -20,21 +20,50 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
 
   String? baseUrl;
 
-
-  
-
   @override
-  Future<AdvertiseResponseModel> postAdvertise(AdvertisePostModel model) async {
+  Future<AdvertiseResponseModel> postAdvertise(
+    String description,
+    String title,
+    int price,
+    String user_id,
+    String sub_cat_id,
+    List<Map<String, dynamic>> properties,
+    List<MultipartFile> image,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(model.toJson());
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'description',
+      description,
+    ));
+    _data.fields.add(MapEntry(
+      'title',
+      title,
+    ));
+    _data.fields.add(MapEntry(
+      'price',
+      price.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'user_id',
+      user_id,
+    ));
+    _data.fields.add(MapEntry(
+      'sub_cat_id',
+      sub_cat_id,
+    ));
+    properties.forEach((i) {
+      _data.fields.add(MapEntry('properties', jsonEncode(i)));
+    });
+    _data.files.addAll(image.map((i) => MapEntry('image[]', i)));
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AdvertiseResponseModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
+      contentType: 'multipart/form-data',
     )
             .compose(
               _dio.options,

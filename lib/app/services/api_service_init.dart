@@ -29,7 +29,6 @@ class ApiServiceInit {
     await Get.putAsync<UserService>(() async => UserService(BaseClient.dio));
     await Get.putAsync<FavoriteService>(
         () async => FavoriteService(BaseClient.dio));
-    Get.put(AdvertiseRepository());
     Get.put(RegirterPhoneNumberRepository());
   }
 }

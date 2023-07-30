@@ -7,6 +7,7 @@ import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
 
 import '../../components/color_manager.dart';
 import '../../components/custom_future_builder.dart';
+import '../../data/models/advertise_post_model/adv_prop_data.dart';
 import '../../routes/app_pages.dart';
 import '../advertise_second/view.dart';
 import '../constwidget/blue_text_profile.dart';
@@ -16,7 +17,6 @@ import 'widgets/widgets.dart';
 
 class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
   AdvertiseFirstPage({Key? key}) : super(key: key);
-  AdvertiseRepository advertiseService = Get.find();
 
   // 主视图
   Widget _buildView() {
@@ -24,10 +24,10 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
   }
 
   var argument = Get.arguments as Subcategory;
-
   @override
   Widget build(BuildContext context) {
     controller.load(argument.id);
+
     return GetBuilder<AdvertiseFirstController>(
       builder: (_) {
         return WillPopScope(
@@ -113,7 +113,6 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
 
 class CreateTextBox extends StatelessWidget {
   SubcategoryProp prop;
-  AdvertiseRepository advertiseService = Get.find();
 
   CreateTextBox({
     required this.prop,
@@ -122,7 +121,7 @@ class CreateTextBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AdvModel valueModel = advertiseService.getPropValue(prop);
+    AdvPropData valueModel = AdvertiseRepositorys.instance.getPropValue(prop);
     var controllerx = TextEditingController(text: valueModel.description);
     controllerx.addListener(() {
       if (valueModel.description != controllerx.text) {
