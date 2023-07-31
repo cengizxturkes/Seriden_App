@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../components/color_manager.dart';
+import '../../components/custom_snackbar.dart';
 import '../../routes/app_pages.dart';
 import '../../repositories/advertise_repository.dart';
 import '../constwidget/blue_text_profile.dart';
@@ -42,11 +43,23 @@ class AdvertiseThirdPage extends GetView<AdvertiseThirdController> {
                         AdvertiseRepositorys.instance.newAdvertiseModel.price
                             .toString(),
                         AdvertiseRepositorys.instance.setPrice),
+                    SizedBox(
+                      height: 15.h,
+                    ),
                     createTextBox(
                       "Açıklama",
                       AdvertiseRepositorys
                           .instance.newAdvertiseModel.description,
                       AdvertiseRepositorys.instance.setDescription,
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+
+                    createTextBox(
+                      "Başlık",
+                      AdvertiseRepositorys.instance.newAdvertiseModel.title,
+                      AdvertiseRepositorys.instance.setTitle,
                     ),
                     SizedBox(
                       height: 20.h,
@@ -84,6 +97,8 @@ class AdvertiseThirdPage extends GetView<AdvertiseThirdController> {
                     GestureDetector(
                       onTap: () async {
                         await controller.post();
+                        CustomSnackBar.showCustomSnackBar(
+                            title: "Başarılı", message: "İlan Oluşturuldu");
                       },
                       child: Container(
                           height: 40.h,
@@ -93,7 +108,7 @@ class AdvertiseThirdPage extends GetView<AdvertiseThirdController> {
                               color: Color(0xff0075FF)),
                           child: Center(
                             child: Text(
-                              "DEVAM ET 3/4",
+                              "Bitir",
                               style: TextStyle(
                                 fontSize: 15.h,
                                 color: Colors.white,

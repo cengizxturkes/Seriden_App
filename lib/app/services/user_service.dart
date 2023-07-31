@@ -5,6 +5,8 @@ import 'package:getx_skeleton/app/data/models/message/send_message_response.dart
 import 'package:getx_skeleton/app/data/models/user_model.dart';
 import 'package:retrofit/http.dart';
 
+import '../data/models/add_favorite/add_favorite_post.dart';
+import '../data/models/add_favorite/add_favorite_response.dart';
 import '../data/models/login_model/login_model.dart';
 import '../data/models/message/message_detail_response.dart';
 import '../data/models/message/message_response.dart';
@@ -31,6 +33,8 @@ abstract class UserService {
   Future<MessageDetailResponse> getMessageDetail(@Query("id") String id);
   @GET("/addMessage.php")
   Future<SendMessageResponse> sendMessage(@Body() SendMessagePost model);
-    @GET("/updateUser.php")
+  @GET("/updateUser.php")
   Future<UpdateProfileResponse> updateUser(@Body() UpdateUserModel model);
+  @POST("/addFavorite.php")
+  Future<AddFavoriteResponse> addFavorite(@Body() AddFavoritePost model);
 }

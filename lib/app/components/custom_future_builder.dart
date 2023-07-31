@@ -17,11 +17,19 @@ class CustomFutureBuilder<T> extends StatelessWidget {
       this.onloading,
       required this.onSuccess,
       this.onDataEmpty});
+  Future<T?> getFuture() async {
+    try {
+      return await future;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return FutureBuilder<T>(
+    return FutureBuilder<T?>(
         future: future,
         builder: (context, data) {
           if (data.connectionState != ConnectionState.done) {
@@ -34,12 +42,23 @@ class CustomFutureBuilder<T> extends StatelessWidget {
               ),
             );
           }
-          if (data.data == null) {
+          if (data.data == null ||
+              (data.data is List && (data.data as List).isEmpty)) {
             if (onError != null) {
-              return onError!("data not found");
+              return Container(
+                child: Center(
+                    child: Text(
+                  "Bulunamadı",
+                  style: TextStyle(color: Colors.blue, fontSize: 30),
+                )),
+              );
             }
             return Container(
-              child: Text("data not found"),
+              child: Center(
+                  child: Text(
+                "Bulunamadı",
+                style: TextStyle(color: Colors.blue, fontSize: 100),
+              )),
             );
           }
 

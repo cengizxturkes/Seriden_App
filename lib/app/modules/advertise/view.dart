@@ -92,14 +92,14 @@ class AdvertisePage extends GetView<AdvertiseController> {
                 SizedBox(
                   height: 20.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 30.w),
-                  child: Text("Kategori Arama", style: textTheme.bodySmall),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                SearchWidget(),
+                // Padding(
+                //   padding: EdgeInsets.only(left: 30.w),
+                //   child: Text("Kategori Arama", style: textTheme.bodySmall),
+                // ),
+                // SizedBox(
+                //   height: 20.h,
+                // ),
+                // SearchWidget(),
                 SizedBox(
                   height: 20.h,
                 ),

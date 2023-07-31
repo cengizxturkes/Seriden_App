@@ -7,7 +7,6 @@ class MessagesController extends GetxController with UserRepository {
   MessagesController();
 
   final state = MessagesState();
-
   // tap
   void handleTap(int index) {
     Get.snackbar(

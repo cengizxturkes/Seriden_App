@@ -1,18 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../data/models/message/message_response.dart';
 import '../../repositories/message_repository.dart';
 import '../../repositories/user_repository.dart';
 import 'index.dart';
 
 class MessageScreenController extends GetxController
     with UserRepository, MessageRepository {
+  static Message? lastMessage;
+
   MessageScreenController();
 
   final state = MessageScreenState();
   TextEditingController messageController = TextEditingController();
 
   // tap
+
   void handleTap(int index) {
     Get.snackbar(
       "标题",

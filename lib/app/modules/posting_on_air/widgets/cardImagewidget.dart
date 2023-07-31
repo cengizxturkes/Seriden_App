@@ -24,7 +24,7 @@ class CardImageWidget extends GetView<PostingOnAirController> {
       children: [
         GestureDetector(
           onTap: () {
-            Get.toNamed(Routes.FAVORITESUBCATEGORY, arguments: "sa");
+            Get.toNamed(Routes.ADVERTISELAST);
           },
           child: Container(
             height: 80.h,

@@ -54,8 +54,11 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
       'sub_cat_id',
       sub_cat_id,
     ));
-    properties.forEach((i) {
-      _data.fields.add(MapEntry('properties', jsonEncode(i)));
+    int index = 0;
+    properties.forEach((element) {
+      _data.fields.add(MapEntry("properties[$index][id]", element["id"]));
+      _data.fields.add(MapEntry("properties[$index][value]", element["value"]));
+      index++;
     });
     _data.files.addAll(image.map((i) => MapEntry('image[]', i)));
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -108,13 +111,13 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
   }
 
   @override
-  Future<MyAdveriseResponse> getAdvByCategory(int id) async {
+  Future<AdvertiseReponse> getAdvByCategory(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'id': id};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<MyAdveriseResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<AdvertiseReponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -130,7 +133,7 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = MyAdveriseResponse.fromJson(_result.data!);
+    final value = AdvertiseReponse.fromJson(_result.data!);
     return value;
   }
 

@@ -31,75 +31,72 @@ class AdvertiseListPage extends GetView<AdvertiseListController> {
           backgroundColor: ColorManager.base20,
           body: SafeArea(
               child: SingleChildScrollView(
-            child: Expanded(
-              child: Column(children: [
-                AppBarConst(),
-                Padding(
-                  padding: EdgeInsets.only(left: 30.w, right: 30.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: Get.back,
-                            child: Icon(
-                              Icons.navigate_before,
-                              color: Color(0xffBEBEBE),
-                            ),
+            child: Column(children: [
+              AppBarConst(),
+              Padding(
+                padding: EdgeInsets.only(left: 30.w, right: 30.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: Get.back,
+                          child: Icon(
+                            Icons.navigate_before,
+                            color: Color(0xffBEBEBE),
                           ),
-                          SizedBox(
-                            width: 10.w,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text(
+                          arguments!.name,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Color(0xff0075FF),
+                            fontFamily: "Gilroy",
+                            fontWeight: FontWeight.w500,
                           ),
-                          Text(
-                            arguments!.name,
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color(0xff0075FF),
-                              fontFamily: "Gilroy",
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      ...arguments.subcategories
-                          .map((e) => Container(
-                                margin: EdgeInsets.only(bottom: 20.h),
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    await Get.toNamed(Routes.ADVERTISELISTSUB,
-                                        arguments: AdvertiseListSubPageArgument(
-                                            arguments, e));
-                                  },
-                                  child: Container(
-                                    height: 60.h,
-                                    width: 315.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20.r),
-                                      color: Colors.white,
-                                    ),
-                                    child: ListTile(
-                                      title: Text(e.name),
-                                      trailing: Icon(Icons.navigate_next),
-                                    ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    ...arguments.subcategories
+                        .map((e) => Container(
+                              margin: EdgeInsets.only(bottom: 20.h),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  await Get.toNamed(Routes.ADVERTISELISTSUB,
+                                      arguments: e);
+                                },
+                                child: Container(
+                                  height: 60.h,
+                                  width: 315.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.r),
+                                    color: Colors.white,
+                                  ),
+                                  child: ListTile(
+                                    title: Text(e.name),
+                                    trailing: Icon(Icons.navigate_next),
                                   ),
                                 ),
-                              ))
-                          .toList(),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                    ],
-                  ),
-                )
-              ]),
-            ),
+                              ),
+                            ))
+                        .toList(),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                  ],
+                ),
+              )
+            ]),
           )),
         );
       },

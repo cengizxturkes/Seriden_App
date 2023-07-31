@@ -24,7 +24,10 @@ class MessageScreenPage extends GetView<MessageScreenController> {
   ScrollController scrollScontroller = ScrollController();
   @override
   Widget build(BuildContext context) {
-    var arguments = Get.arguments as Message;
+    var arguments = MessageScreenController.lastMessage;
+    if (Get.arguments is Message) {
+      arguments = Get.arguments as Message;
+    }
     var login = MyHive.getCurrentUser();
     return GetBuilder<MessageScreenController>(
       builder: (_) {
@@ -44,7 +47,7 @@ class MessageScreenPage extends GetView<MessageScreenController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        arguments.nameSurname + " İle Mesajlaşma",
+                        arguments!.nameSurname + " İle Mesajlaşma",
                         style: TextStyle(
                             fontFamily: "Gilroy", color: Color(0xff343434)),
                       ),
@@ -114,10 +117,11 @@ class MessageScreenPage extends GetView<MessageScreenController> {
               SizedBox(
                 height: 15.h,
               ),
+              Spacer(),
               createTextBox(
                   "", controller.setMessage, controller.messageModel.message,
                   () async {
-                await controller.send(arguments);
+                await controller.send(arguments!);
                 scrollToBotom();
 
                 controller.update();

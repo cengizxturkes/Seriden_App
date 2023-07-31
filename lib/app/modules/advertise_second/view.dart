@@ -3,26 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:getx_skeleton/app/data/models/advertise_post_model/advertise_post_model.dart';
-import 'package:getx_skeleton/app/modules/advertise_second/image_helper.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../components/color_manager.dart';
 import '../../routes/app_pages.dart';
-import '../../repositories/advertise_repository.dart';
 import '../constwidget/blue_text_profile.dart';
-import '../constwidget/profile_gray_text.dart';
 import '../home/views/home_view.dart';
-import 'index.dart';
-import 'widgets/widgets.dart';
+import 'controller.dart';
+import 'image_helper.dart';
 
 class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
   AdvertiseSecondPage({Key? key}) : super(key: key);
-
-  // 主视图
-  Widget _buildView() {
-    return const HelloWidget();
-  }
 
   ImagePicker picker = ImagePicker();
 
@@ -66,7 +57,7 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                     GridView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: controller.image.length,
+                      itemCount: controller.selectedFiles.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         mainAxisSpacing: 10.h,
@@ -74,12 +65,12 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                       itemBuilder: (context, index) {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          // child: controller.image != null
-                          //     ? Image.file(
-                          //         controller.image[index]!,
-                          //         fit: BoxFit.contain,
-                          //       )
-                          //     : Text('Resim seçilmedi.'),
+                          child: controller.image != null
+                              ? Image.file(
+                                  File(controller.selectedFiles[index].path),
+                                  fit: BoxFit.contain,
+                                )
+                              : Text('Resim seçilmedi.'),
                         );
                       },
                     ),
@@ -101,7 +92,7 @@ class AdvertiseSecondPage extends GetView<AdvertiseSecondController> {
                               color: Color(0xff0075FF)),
                           child: Center(
                             child: Text(
-                              "Paylaş",
+                              "Devam Et",
                               style: TextStyle(
                                 fontSize: 15.h,
                                 color: Colors.white,

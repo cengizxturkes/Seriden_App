@@ -32,7 +32,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) => Message(
       createdAt: json['created_at'] as String,
       title: json['title'] as String,
       nameSurname: json['name_surname'] as String,
-      photo: json['photo'] as String,
+      photo: json['photo'] as String?,
     );
 
 Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{

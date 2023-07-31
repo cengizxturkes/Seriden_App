@@ -7,8 +7,10 @@ import 'package:getx_skeleton/app/routes/app_pages.dart';
 import '../../../config/theme/my_fonts.dart';
 import '../../components/color_manager.dart';
 import '../../components/custom_future_builder.dart';
+import '../../components/custom_message_future_builder.dart';
 import '../../data/models/message/message_detail_response.dart';
 import '../../data/models/message/message_response.dart';
+import '../../repositories/user_repository.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
@@ -22,8 +24,7 @@ class MessageArgumentModels {
 }
 
 class MessagesPage extends GetView<MessagesController> {
-  const MessagesPage({Key? key}) : super(key: key);
-
+  MessagesPage({Key? key}) : super(key: key);
   // 主视图
   Widget _buildView() {
     return const HelloWidget();
@@ -33,30 +34,6 @@ class MessagesPage extends GetView<MessagesController> {
   Widget build(BuildContext context) {
     return GetBuilder<MessagesController>(
       builder: (_) {
-        List<String> jobList = [
-          'Yazılım Mühendisi',
-          'Veri Bilimcisi',
-          'Makine Öğrenmesi Mühendisi',
-          'Büyük Veri Mühendisi',
-          'Yapay Zeka Mühendisi',
-          'Oyun Geliştiricisi',
-          'Web Geliştiricisi',
-          'Mobil Geliştiricisi',
-          'DevOps Mühendisi',
-          'Ağ Mühendisi',
-        ];
-        List<String> nameSurnameList = [
-          'Ali Öztürk',
-          'Ayşe Yılmaz',
-          'Mehmet Aydın',
-          'Fatma Kara',
-          'Hasan Gül',
-          'Hatice Topal',
-          'Hüseyin Demir',
-          'Zeynep Çelik',
-          'Ahmet Kılıç',
-          'Gülşah Kaya',
-        ];
         return Scaffold(
           backgroundColor: ColorManager.base20,
           bottomNavigationBar: BottomNavbar(),
@@ -74,38 +51,40 @@ class MessagesPage extends GetView<MessagesController> {
               ),
               SizedBox(height: 20.h),
               Expanded(
-                  child: CustomFutureBuilder<List<Message>>(
-                future: controller.getMessage(),
-                onError: (msg) => Text(msg),
-                onSuccess: (data) {
-                  return ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: ((context, index) {
-                      var message = data[index];
-                      print(message);
-                      return GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.MESSAGESCREEN, arguments: message);
-                        },
-                        child: Padding(
-                          padding:
-                              EdgeInsets.only(left: 30, right: 30, bottom: 10),
-                          child: CardWidget(
-                            imageUrl: message.photo,
-                            name: message.nameSurname,
-                            job: message.title,
-                            isOnline: true,
-                            messagetime: message.createdAt.toString(),
+                child: CustomFutureBuilder<List<Message>>(
+                  future: controller.getMessage(),
+                  onError: (msg) => Text(msg),
+                  onSuccess: (data) {
+                    return ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: ((context, index) {
+                        var message = data[index];
+                        print(message);
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.MESSAGESCREEN,
+                                arguments: message);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 30, right: 30, bottom: 10),
+                            child: CardWidget(
+                              imageUrl: message.photo ?? "",
+                              name: message.nameSurname,
+                              job: message.title,
+                              isOnline: true,
+                              messagetime: message.createdAt.toString(),
+                            ),
                           ),
-                        ),
-                      );
-                    }),
-                  );
-                },
-                onDataEmpty: () {
-                  return Center(child: Text("Mesaj bulunamadı"));
-                },
-              )),
+                        );
+                      }),
+                    );
+                  },
+                  onDataEmpty: () {
+                    return Center(child: Text("Mesaj bulunamadı"));
+                  },
+                ),
+              )
             ],
           )),
         );

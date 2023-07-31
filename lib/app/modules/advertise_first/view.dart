@@ -89,7 +89,7 @@ class AdvertiseFirstPage extends GetView<AdvertiseFirstController> {
                                   color: Color(0xff0075FF)),
                               child: Center(
                                 child: Text(
-                                  "DEVAM ET 1/4",
+                                  "DEVAM ET",
                                   style: TextStyle(
                                     fontSize: 15.h,
                                     color: Colors.white,

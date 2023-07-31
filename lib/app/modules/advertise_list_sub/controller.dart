@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 
+import '../../repositories/my_adv_repository.dart';
 import 'index.dart';
 
-class AdvertiseListSubController extends GetxController {
+class AdvertiseListSubController extends GetxController
+    with MyAdveriseRepository {
   AdvertiseListSubController();
 
   final state = AdvertiseListSubState();

@@ -56,9 +56,42 @@ class FavoritePage extends GetView<FavoriteController> {
                     itemBuilder: ((context, index) {
                       var myAdv = data[index];
                       print(myAdv);
-                      return CardImageWidget(
-                        title: myAdv.title,
-                        image: "assets/images/favorite/ozel-ders-listem.png",
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.ADVERTISELAST,
+                                  arguments: myAdv);
+                            },
+                            child: Container(
+                              height: 80.h,
+                              width: 315.w,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/images/favorite/ozel-ders-listem.png",
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  myAdv.title,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15.sp,
+                                    fontFamily: "Gilroy",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                        ],
                       );
                     }),
                   );
@@ -71,6 +104,55 @@ class FavoritePage extends GetView<FavoriteController> {
           )),
         );
       },
+    );
+  }
+}
+
+class CardImageWidget extends StatelessWidget {
+  final String image;
+  final String title;
+  const CardImageWidget({
+    Key? key,
+    required this.image,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.ADVERTISELAST, arguments: "sa");
+          },
+          child: Container(
+            height: 80.h,
+            width: 315.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              image: DecorationImage(
+                image: AssetImage(
+                  image,
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Center(
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15.sp,
+                  fontFamily: "Gilroy",
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+      ],
     );
   }
 }

@@ -11,7 +11,9 @@ import '../data/models/advertise_post_model/adv_prop_data.dart';
 import '../data/models/advertise_post_model/advertise_post_model.dart';
 import '../data/models/category.dart';
 import '../data/models/category/category_sub_responce.dart';
+import '../data/models/favorite/favorite_response.dart';
 import '../data/models/sub_category/sub_category_prop_response.dart';
+import '../modules/advertise_first/controller.dart';
 import 'adverise_pm_repository.dart';
 import '../services/advertise_service_pm.dart';
 
@@ -35,6 +37,8 @@ class AdvertiseRepositorys {
     var sFiles = <d.MultipartFile>[];
     postModel.price = newAdvertiseModel.price;
     postModel.description = newAdvertiseModel.description;
+    postModel.title = newAdvertiseModel.title;
+
     for (int i = 0; i < image.length; i++) {
       sFiles.add(await d.MultipartFile.fromFile(
         image[i].path,
@@ -47,9 +51,13 @@ class AdvertiseRepositorys {
         postModel.price.toInt(),
         postModel.userId,
         postModel.subCatId,
-        props.map((e) => e.toJson()).toList(),
+        props
+            .where((element) => element.catId == postModel.subCatId)
+            .map((e) => e.toJson())
+            .toList(),
         sFiles);
     if (result.status == 1) {
+      AdvertiseFirstController.lastId = "";
       newAdvertiseModel = NewAdvertiseModel();
       advertiseRepositoryPm = AdvertiseRepositoryPm();
       postModel = AdvertisePostData(

@@ -5,7 +5,9 @@ import 'package:getx_skeleton/app/modules/constwidget/blue_text_profile.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 import '../../components/color_manager.dart';
+import '../../components/custom_future_builder.dart';
 import '../../data/models/category/category_sub_responce.dart';
+import '../../data/models/get_advertise/advertise_reponse.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
@@ -26,7 +28,7 @@ class AdvertiseListSubPage extends GetView<AdvertiseListSubController> {
 
   @override
   Widget build(BuildContext context) {
-    var argument = Get.arguments as AdvertiseListSubPageArgument;
+    var argument = Get.arguments as Subcategory;
     return GetBuilder<AdvertiseListSubController>(
       builder: (_) {
         return Scaffold(
@@ -34,130 +36,99 @@ class AdvertiseListSubPage extends GetView<AdvertiseListSubController> {
           backgroundColor: ColorManager.base20,
           body: SafeArea(
               child: SingleChildScrollView(
-            child: Expanded(
-              child: Column(children: [
-                AppBarConst(),
-                Padding(
-                  padding: EdgeInsets.only(left: 30.w, right: 30.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AppBarConst(),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Row(
                     children: [
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: Get.back,
-                            child: Icon(
-                              Icons.navigate_before,
-                              color: Color(0xffBEBEBE),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                argument.category.name,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xff0075FF),
-                                  fontFamily: "Gilroy",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                "/" + argument.subCategory.name,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xff0075FF),
-                                  fontFamily: "Gilroy",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      BlueTextProfile(title: "Yazılım Uzmanı İlan Bilgileri"),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Text(
-                          "KOZMETİK FİRMAMIZA YAZILIM GELİŞTİRME UZMANI VE AYNI ZAMANDA SOSYAL MEDYA İLE İLGİLENECEK *** INSTAGRAM GOOGLE REKLAM KAMPANYALARINI YÜRÜTECEK VE AYNI ZAMANDA REKLAM BANNERLARI VİDEOLARI HAZIRLAYACAK MEVCUTTA KODLAMA DİLİNDE PHP BİLEN TERCİHİMİZ OLACAKTIR MAAŞ DOLGUN SİGORTA YEMEK HEPSİ DAHİL CUMARTESİ ÖĞLEN 2 YE KADAR ÇALIŞIYORUZ İLGİLİ ARKADAŞLAR BANA CV LERİNİ İLETEBİLİRLER "),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Divider(),
-                      Row(
-                        children: [
-                          Text(
-                            "İl/İlçe",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w200, fontSize: 15.sp),
-                          ),
-                          Spacer(),
-                          BlueTextProfile(title: "Ankara Keçiören"),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 50.h,
-                      ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                                height: 60.h,
-                                width: 140.w,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    color: Color(0xff0075FF)),
-                                child: Center(
-                                  child: Text(
-                                    "ARA",
-                                    style: TextStyle(
-                                      fontSize: 15.h,
-                                      color: Colors.white,
-                                      fontFamily: "Gilroy",
-                                    ),
-                                  ),
-                                )),
-                          ),
-                          SizedBox(
-                            width: 35.w,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                                height: 60.h,
-                                width: 140.w,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    color: Color(0xff0075FF)),
-                                child: Center(
-                                  child: Text(
-                                    "MESAJ GÖNDER",
-                                    style: TextStyle(
-                                      fontSize: 15.h,
-                                      color: Colors.white,
-                                      fontFamily: "Gilroy",
-                                    ),
-                                  ),
-                                )),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Padding(
+                      //       padding: EdgeInsets.only(left: 30.w),
+                      //       child: Text(
+                      //         argument.category.name,
+                      //         style: TextStyle(
+                      //           fontSize: 15,
+                      //           color: Color(0xff0075FF),
+                      //           fontFamily: "Gilroy",
+                      //           fontWeight: FontWeight.w500,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Text(
+                      //       "/" + argument.subCategory.name,
+                      //       style: TextStyle(
+                      //         fontSize: 15,
+                      //         color: Color(0xff0075FF),
+                      //         fontFamily: "Gilroy",
+                      //         fontWeight: FontWeight.w500,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
-                )
-              ]),
-            ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  CustomFutureBuilder<List<GetAdvertise>>(
+                    future: controller.getAdvetiseBySub(argument.id),
+                    onError: (msg) => Text(msg),
+                    onSuccess: (data) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: data.length,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: ((context, index) {
+                          var myAdv = data[index];
+                          print(myAdv);
+                          return Padding(
+                            padding: EdgeInsets.only(left: 30.w, right: 30.w),
+                            child: Column(
+                              children: [
+                                Container(
+                                    height: 60.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20.r),
+                                      color: Colors.white,
+                                    ),
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          var id = myAdv.id;
+                                          Get.toNamed(Routes.ADVERTISELAST,
+                                              arguments: myAdv);
+                                        },
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.only(bottom: 15.h),
+                                          child: ListTile(
+                                            title: BlackTextProfileBold(
+                                              title: myAdv.title,
+                                            ),
+                                            // subtitle: BlackTextProfileEmail(
+                                            //   title: myAdv.,
+                                            // ),
+                                            trailing: Icon(Icons.navigate_next),
+                                          ),
+                                        ))),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
+                      );
+                    },
+                    onDataEmpty: () {
+                      return Center(child: Text("Kategori bulunamadı"));
+                    },
+                  ),
+                ]),
           )),
         );
       },

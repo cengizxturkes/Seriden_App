@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 
+import '../../data/models/get_advertise/advertise_reponse.dart';
+import '../../repositories/user_repository.dart';
 import 'index.dart';
 
-class AdvetiseLastController extends GetxController {
+class AdvetiseLastController extends GetxController with UserRepository {
   AdvetiseLastController();
-
   final state = AdvetiseLastState();
-
+  static GetAdvertise? lastAdvertice;
   // tap
   void handleTap(int index) {
     Get.snackbar(

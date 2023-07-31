@@ -43,7 +43,7 @@ Future<void> main() async {
   await MySharedPref.init();
 
   // inti fcm services
-  await FcmHelper.initFcm();
+  //await FcmHelper.initFcm();
 
   // initialize local notifications service
   await AwesomeNotificationsHelper.init();

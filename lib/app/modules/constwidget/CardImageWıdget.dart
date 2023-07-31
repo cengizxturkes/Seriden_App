@@ -21,7 +21,7 @@ class CardImageWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Get.toNamed(Routes.FAVORITESUBCATEGORY, arguments: "sa");
+            Get.toNamed(Routes.ADVERTISELAST, arguments: "sa");
           },
           child: Container(
             height: 80.h,

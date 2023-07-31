@@ -52,13 +52,13 @@ class JobCategoryItem extends StatelessWidget {
                     style: textTheme.titleLarge!.copyWith(color: textColor),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 15.h),
+                  SizedBox(height: 5.h),
                   Text(
                     category.subcategories
-                        .take(3)
+                        .take(2)
                         .map((e) => e.name)
                         .join(" - "),
-                    style: textTheme.titleMedium!.copyWith(color: textColor),
+                    style: textTheme.titleSmall!.copyWith(color: textColor),
                     textAlign: TextAlign.center,
                   ),
                 ],

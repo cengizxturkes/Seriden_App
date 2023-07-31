@@ -52,7 +52,7 @@ class Message {
   @JsonKey(name: "name_surname")
   String nameSurname;
   @JsonKey(name: "photo")
-  String photo;
+  String? photo;
 
   Message({
     required this.id,
@@ -64,7 +64,7 @@ class Message {
     required this.createdAt,
     required this.title,
     required this.nameSurname,
-    required this.photo,
+    this.photo,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) =>

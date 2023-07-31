@@ -26,10 +26,11 @@ import '../../../components/custom_bottom_nav_bar.dart';
 import '../../../components/my_widgets_animator.dart';
 import '../../../data/models/category/category_sub_responce.dart';
 import '../../../repositories/advertise_repository.dart';
+import '../../../routes/app_pages.dart';
 import '../../Map/widgets/JobCategoryItem.dart';
 import '../../account_info/view.dart';
 import '../../advertise_second/controller.dart';
-import '../../advetise_last/controller.dart';
+import '../../advertise_list_sub_single/controller.dart';
 import '../../change_number/controller.dart';
 import '../../change_password/controller.dart';
 import '../../delete_acc/controller.dart';
@@ -43,29 +44,42 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => AdvertiseController());
-    Get.lazyPut(() => MessagesController());
-    Get.lazyPut(() => FavoriteController());
-    Get.lazyPut(() => ProfileController());
-    Get.lazyPut(() => AccountInfoController());
-    Get.lazyPut(() => PersonalInformationController());
-    Get.lazyPut(() => PhoneNumberController());
-    Get.lazyPut(() => ChangeNumberController());
-    Get.lazyPut(() => NewPhoneNumberController());
-    Get.lazyPut(() => ChangePasswordController());
-    Get.lazyPut(() => DeleteAccController());
-    Get.lazyPut(() => PermissionsController());
-    Get.lazyPut(() => PermissionViewController());
-    Get.lazyPut(() => HelpAndGuideAppsController());
-    Get.lazyPut(() => ProblemSuggestionNotificationController());
-    Get.lazyPut(() => LanguageSelectController());
-    Get.lazyPut(() => AboutController());
-    Get.lazyPut(() => AdvertiseFirstController());
-    Get.lazyPut(() => AdvertiseSecondController());
-    Get.lazyPut(() => PaymentController());
-    Get.lazyPut(() => AdvetiseLastController());
-    Get.lazyPut(() => NewAdvertiseModel());
-
+    List<Color> color = [
+      Color(0xff304296),
+      Color(0xff0E2954),
+      Color(0xff393053),
+      Color(0xff4C0033),
+      Color(0xff5F6070),
+      Color(0xff2E4F4F),
+      Color(0xff2C5222),
+      Color(0xff52471E),
+      Color(0xff816BB4),
+      Color(0xff961414),
+    ];
+    List<Color> textcolor = [
+      Color(0xff343434),
+      Color(0xffFFFFFF),
+      Color(0xffFFFFFF),
+      Color(0xff343434),
+      Color(0xff343434),
+      Color(0xffFFFFFF),
+      Color(0xffFFFFFF),
+      Color(0xff343434),
+      Color(0xff343434),
+      Color(0xffFFFFFF),
+    ];
+    List<String> icon = [
+      "assets/images/category/is-ilanlari.png",
+      "assets/images/category/emlak.png",
+      "assets/images/category/satilik.png",
+      "assets/images/category/ozel-ders.png",
+      "assets/images/category/car.png",
+      "assets/images/category/car.png",
+      "assets/images/category/tools.png",
+      "assets/images/category/duyuru.png",
+      "assets/images/category/partner.png",
+      "assets/images/category/satilik.png"
+    ];
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: BottomNavbar(),
@@ -98,10 +112,13 @@ class HomeView extends GetView<HomeController> {
       //   ],
       // ),
 
-      body: Column(
+      body: Stack(
         children: [
-          AppBarConst(),
-          Expanded(
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 70,
             child: ListView(
               physics: BouncingScrollPhysics(),
               children: [
@@ -164,42 +181,6 @@ class HomeView extends GetView<HomeController> {
                           shrinkWrap: true,
                           itemCount: items.length,
                           itemBuilder: (context, index) {
-                            List<Color> color = [
-                              Color(0xff304296),
-                              Color(0xff0E2954),
-                              Color(0xff393053),
-                              Color(0xff4C0033),
-                              Color(0xff5F6070),
-                              Color(0xff2E4F4F),
-                              Color(0xff2C5222),
-                              Color(0xff52471E),
-                              Color(0xff816BB4),
-                              Color(0xff961414),
-                            ];
-                            List<Color> textcolor = [
-                              Color(0xff343434),
-                              Color(0xffFFFFFF),
-                              Color(0xffFFFFFF),
-                              Color(0xff343434),
-                              Color(0xff343434),
-                              Color(0xffFFFFFF),
-                              Color(0xffFFFFFF),
-                              Color(0xff343434),
-                              Color(0xff343434),
-                              Color(0xffFFFFFF),
-                            ];
-                            List<String> icon = [
-                              "assets/images/category/is-ilanlari.png",
-                              "assets/images/category/emlak.png",
-                              "assets/images/category/satilik.png",
-                              "assets/images/category/ozel-ders.png",
-                              "assets/images/category/car.png",
-                              "assets/images/category/car.png",
-                              "assets/images/category/tools.png",
-                              "assets/images/category/duyuru.png",
-                              "assets/images/category/partner.png",
-                              "assets/images/category/satilik.png"
-                            ];
                             return JobCategoryItem(
                               icon: "assets/images/category/satilik.png",
                               category: items[index],
@@ -215,6 +196,12 @@ class HomeView extends GetView<HomeController> {
                 ),
               ],
             ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            child: AppBarConst(),
           ),
         ],
       ),
@@ -251,6 +238,7 @@ class AppBarConst extends StatelessWidget {
 
 class BottomNavbar extends StatelessWidget {
   CustomBottomNavBarController controller = Get.find();
+  HomeController controller1 = Get.find();
   BottomNavbar({
     key,
   });
@@ -282,7 +270,7 @@ class BottomNavbar extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       controller.setSelectedIndex(0);
-                      Get.to(HomeView());
+                      Get.toNamed(Routes.HOME);
                     },
                     icon: Image.asset(
                       "assets/images/tabbar/majesticons_home-line.png",
@@ -293,7 +281,7 @@ class BottomNavbar extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       controller.setSelectedIndex(1);
-                      Get.to(AdvertisePage());
+                      Get.toNamed(Routes.ADVERTISE);
                     },
                     icon: Image.asset(
                         "assets/images/tabbar/icons8_advertising.png",
@@ -304,7 +292,7 @@ class BottomNavbar extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       controller.setSelectedIndex(2);
-                      Get.to(FavoritePage());
+                      Get.toNamed(Routes.FAVORITE);
                     },
                     icon: Image.asset(
                         "assets/images/tabbar/material-symbols_favorite-outline.png",
@@ -315,7 +303,9 @@ class BottomNavbar extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       controller.setSelectedIndex(3);
-                      Get.to(MessagesPage());
+                      Get.toNamed(
+                        Routes.MESSAGES,
+                      );
                     },
                     icon: Image.asset("assets/images/tabbar/ci_chat.png",
                         color: controller.isSelected(3)
@@ -325,7 +315,7 @@ class BottomNavbar extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       controller.setSelectedIndex(4);
-                      Get.to(ProfilePage());
+                      Get.toNamed(Routes.PROFILE);
                     },
                     icon: Image.asset(
                         "assets/images/tabbar/iconamoon_profile-fill.png",
