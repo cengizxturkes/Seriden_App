@@ -77,7 +77,7 @@ class RegisterPhoneNumberPage extends GetView<RegisterPhoneNumberController> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 30.w),
-                    child: createTextBox("Şifre", controller.addPass,
+                    child: createTextBox1("Şifre", controller.addPass,
                         controller.newRegisterPhoneModel.pass),
                   ),
                   SizedBox(
@@ -103,8 +103,9 @@ class RegisterPhoneNumberPage extends GetView<RegisterPhoneNumberController> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      controller.save();
-                      Get.toNamed(Routes.LOGINWITHEMAIL);
+                      if (await controller.save()) {
+                        Get.toNamed(Routes.LOGINWITHEMAIL);
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -338,4 +339,26 @@ class RegisterPhoneNumberPage extends GetView<RegisterPhoneNumberController> {
       ],
     );
   }
+}
+
+Widget createTextBox1(
+    String title, Function(String value) textChange, String value) {
+  var controller = TextEditingController(text: value);
+  controller.addListener(() {
+    textChange(controller.text);
+  });
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      TextField(
+        controller: controller,
+        keyboardType: TextInputType.visiblePassword,
+        obscureText:
+            true, // Şifre gibi giriş yapmak için bu özelliği true yapın.
+        decoration: InputDecoration(
+          labelText: title,
+        ),
+      )
+    ],
+  );
 }

@@ -3,6 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:getx_skeleton/app/data/models/login_response/login_response.dart';
 
+import '../components/custom_snackbar.dart';
 import '../data/models/login_model/login_model.dart';
 import '../data/models/user/user_response.dart';
 import '../services/login_service.dart';
@@ -29,7 +30,10 @@ class LoginEmailRepository {
     if (response.status == 1) {
       MyHive.saveUserToHive(response.data);
     }
-
+    var success = response.status == 1;
+    if (!success) {
+      CustomSnackBar.showCustomErrorToast(message: response.message);
+    }
     return response.status == 1;
   }
 }

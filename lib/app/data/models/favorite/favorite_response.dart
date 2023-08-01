@@ -35,24 +35,42 @@ class FavoriteResponse {
 class Favorite {
   @JsonKey(name: "id")
   String id;
-  @JsonKey(name: "ad_id")
-  String adId;
-  @JsonKey(name: "user_id")
-  String userId;
-  @JsonKey(name: "created_at")
-  String createdAt;
   @JsonKey(name: "title")
   String title;
   @JsonKey(name: "description")
   String description;
+  @JsonKey(name: "price")
+  String price;
+  @JsonKey(name: "user_id")
+  String userId;
+  @JsonKey(name: "sub_cat_id")
+  String subCatId;
+  @JsonKey(name: "created_at")
+  String createdAt;
+  @JsonKey(name: "is_active")
+  String isActive;
+  @JsonKey(name: "url")
+  String url;
+  @JsonKey(name: "name_surname")
+  String nameSurname;
+  @JsonKey(name: "email")
+  String email;
+  @JsonKey(name: "phone")
+  String phone;
 
   Favorite({
     required this.id,
-    required this.adId,
-    required this.userId,
-    required this.createdAt,
     required this.title,
     required this.description,
+    required this.price,
+    required this.userId,
+    required this.subCatId,
+    required this.createdAt,
+    required this.isActive,
+    required this.url,
+    required this.nameSurname,
+    required this.email,
+    required this.phone,
   });
 
   factory Favorite.fromJson(Map<String, dynamic> json) =>

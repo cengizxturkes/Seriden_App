@@ -29,6 +29,7 @@ class MessageScreenPage extends GetView<MessageScreenController> {
       arguments = Get.arguments as Message;
     }
     var login = MyHive.getCurrentUser();
+    controller.update();
     return GetBuilder<MessageScreenController>(
       builder: (_) {
         return Scaffold(
@@ -54,7 +55,7 @@ class MessageScreenPage extends GetView<MessageScreenController> {
                     ],
                   )),
               Flexible(
-                  child: CustomFutureBuilder<List<MessagDetail>>(
+                  child: CustomFutureBuilder<List<MessageDetail>>(
                 future: controller.getMessageDetail(arguments.id),
                 onError: (msg) => Text(msg),
                 onloading: controller.messages.isEmpty
@@ -147,7 +148,7 @@ class MessageScreenPage extends GetView<MessageScreenController> {
 }
 
 class Sender extends StatelessWidget {
-  MessagDetail messagDetail;
+  MessageDetail messagDetail;
   Sender({
     required this.messagDetail,
     Key? key,
@@ -195,7 +196,7 @@ class Sender extends StatelessWidget {
 }
 
 class Reciever extends StatelessWidget {
-  MessagDetail messagDetail;
+  MessageDetail messagDetail;
 
   Reciever({
     required this.messagDetail,

@@ -24,18 +24,30 @@ Map<String, dynamic> _$FavoriteResponseToJson(FavoriteResponse instance) =>
 
 Favorite _$FavoriteFromJson(Map<String, dynamic> json) => Favorite(
       id: json['id'] as String,
-      adId: json['ad_id'] as String,
-      userId: json['user_id'] as String,
-      createdAt: json['created_at'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
+      price: json['price'] as String,
+      userId: json['user_id'] as String,
+      subCatId: json['sub_cat_id'] as String,
+      createdAt: json['created_at'] as String,
+      isActive: json['is_active'] as String,
+      url: json['url'] as String,
+      nameSurname: json['name_surname'] as String,
+      email: json['email'] as String,
+      phone: json['phone'] as String,
     );
 
 Map<String, dynamic> _$FavoriteToJson(Favorite instance) => <String, dynamic>{
       'id': instance.id,
-      'ad_id': instance.adId,
-      'user_id': instance.userId,
-      'created_at': instance.createdAt,
       'title': instance.title,
       'description': instance.description,
+      'price': instance.price,
+      'user_id': instance.userId,
+      'sub_cat_id': instance.subCatId,
+      'created_at': instance.createdAt,
+      'is_active': instance.isActive,
+      'url': instance.url,
+      'name_surname': instance.nameSurname,
+      'email': instance.email,
+      'phone': instance.phone,
     };

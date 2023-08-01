@@ -40,7 +40,7 @@ class LoginEmailPage extends GetView<LoginEmailController> {
                   SizedBox(
                     height: 79.h,
                   ),
-                  createTextBox("Şifre", loginPhoneNumberRepository.addPass,
+                  createTextBox1("Şifre", loginPhoneNumberRepository.addPass,
                       loginPhoneNumberRepository.loginModel.pass as String),
                   SizedBox(
                     height: 30.h,
@@ -108,3 +108,32 @@ Widget createTextBox(
     ],
   );
 }
+
+Widget createTextBox1(
+    String title, Function(String value) textChange, String value) {
+  var controller = TextEditingController(text: value);
+  controller.addListener(() {
+    textChange(controller.text);
+  });
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      TextField(
+        controller: controller,
+        keyboardType: TextInputType.visiblePassword,
+        obscureText:
+            true, // Şifre gibi giriş yapmak için bu özelliği true yapın.
+        decoration: InputDecoration(
+          labelText: title,
+        ),
+      )
+    ],
+  );
+}
+// servis.g.dart 57.satırda olmalı
+//  int index = 0;
+//      properties.forEach((element) {
+//        _data.fields.add(MapEntry("properties[$index][id]", element["id"]));
+//        _data.fields.add(MapEntry("properties[$index][value]", element["value"]));
+//        index++;
+//      });

@@ -37,4 +37,10 @@ abstract class UserService {
   Future<UpdateProfileResponse> updateUser(@Body() UpdateUserModel model);
   @POST("/addFavorite.php")
   Future<AddFavoriteResponse> addFavorite(@Body() AddFavoritePost model);
+  @POST("/deleteUser.php")
+  Future<AddFavoriteResponse> deleteUser(@Query("id") String id);
+  @POST("/deleteAdvert.php")
+  Future<AddFavoriteResponse> deleteAdv(@Query("id") String id);
+  @POST("/deleteFavorite.php")
+  Future<AddFavoriteResponse> deleteFavorite(@Query("id") String id);
 }

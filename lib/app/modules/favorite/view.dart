@@ -6,6 +6,7 @@ import 'package:getx_skeleton/app/data/models/favorite/favorite_response.dart';
 import '../../../config/theme/my_fonts.dart';
 import '../../components/color_manager.dart';
 import '../../components/custom_future_builder.dart';
+import '../../data/models/get_advertise/advertise_reponse.dart';
 import '../../routes/app_pages.dart';
 import '../constwidget/CardImageWıdget.dart';
 import '../favoriteSubCategory/view.dart';
@@ -46,15 +47,15 @@ class FavoritePage extends GetView<FavoriteController> {
                 height: 20.h,
               ),
               Flexible(
-                  child: CustomFutureBuilder<List<Favorite>>(
+                  child: CustomFutureBuilder<List<GetAdvertise>?>(
                 future: controller.getFavorities(),
                 onError: (msg) => Text(msg),
                 onSuccess: (data) {
                   return ListView.builder(
                     shrinkWrap: true,
-                    itemCount: data.length,
+                    itemCount: data?.length,
                     itemBuilder: ((context, index) {
-                      var myAdv = data[index];
+                      var myAdv = data![index];
                       print(myAdv);
                       return Column(
                         children: [

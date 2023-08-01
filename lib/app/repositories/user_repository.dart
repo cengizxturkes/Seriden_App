@@ -15,7 +15,7 @@ import '../data/models/user/user_response.dart';
 
 class UserRepository {
   UserService service = Get.find();
-  List<MessagDetail> messages = [];
+  List<MessageDetail> messages = [];
   final formData = FormData({
     'name_surname': 'value1',
     'phone': 'value2',
@@ -45,7 +45,7 @@ class UserRepository {
     }
   }
 
-  Future<List<MessagDetail>> getMessageDetail(String messageid) async {
+  Future<List<MessageDetail>> getMessageDetail(String messageid) async {
     var response = await service.getMessageDetail(messageid);
     messages = response.data;
     return response.data;
@@ -53,6 +53,21 @@ class UserRepository {
 
   Future<String> addFavorite(AddFavoritePost userModel) async {
     var response = await service.addFavorite(userModel);
+    return response.message;
+  }
+
+  Future<String> deleteUser(String id) async {
+    var response = await service.deleteUser(id);
+    return response.message;
+  }
+
+  Future<String> deleteAdv(String id) async {
+    var response = await service.deleteAdv(id);
+    return response.message;
+  }
+
+  Future<String> deleteFavorite(String id) async {
+    var response = await service.deleteFavorite(id);
     return response.message;
   }
 

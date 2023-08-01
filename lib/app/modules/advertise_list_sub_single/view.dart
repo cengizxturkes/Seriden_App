@@ -127,49 +127,76 @@ class AdvetiseLastPage extends GetView<AdvetiseLastController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          GestureDetector(
-                            onTap: () async {
-                              var login = MyHive.getCurrentUser();
-                              // Message(
-                              //   adId: argument.subCatId,
-                              //   createdAt: DateTime.now().toString(),
-                              //   fromUserId: login!.id,
-                              //   toUserId: argument.id, id: 150000.toString(), message: '',
+                          argument.userId == MyHive.getCurrentUser()!.id
+                              ? GestureDetector(
+                                  onTap: () async {
+                                    var login = MyHive.getCurrentUser();
+                                    await controller.deleteAdv(argument!.id);
+                                    CustomSnackBar.showCustomSnackBar(
+                                        title: "Başarılı", message: "");
+                                  },
+                                  child: Container(
+                                      height: 60.h,
+                                      width: 140.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
+                                          color: Color(0xff0075FF)),
+                                      child: Center(
+                                        child: Text(
+                                          "İlanı Sil",
+                                          style: TextStyle(
+                                            fontSize: 15.h,
+                                            color: Colors.white,
+                                            fontFamily: "Gilroy",
+                                          ),
+                                        ),
+                                      )),
+                                )
+                              : GestureDetector(
+                                  onTap: () async {
+                                    var login = MyHive.getCurrentUser();
+                                    // Message(
+                                    //   adId: argument.subCatId,
+                                    //   createdAt: DateTime.now().toString(),
+                                    //   fromUserId: login!.id,
+                                    //   toUserId: argument.id, id: 150000.toString(), message: '',
 
-                              // );
-                              await Get.toNamed(
-                                Routes.MESSAGESCREEN,
-                                arguments: Message(
-                                    id: "-1",
-                                    fromUserId:
-                                        MyHive.getCurrentUser()?.id ?? "",
-                                    toUserId: argument!.userId,
-                                    message: "",
-                                    adId: argument!.id,
-                                    seen: "",
-                                    createdAt: "",
-                                    title: "",
-                                    nameSurname: "ilan sahibi",
-                                    photo: ""),
-                              );
-                            },
-                            child: Container(
-                                height: 60.h,
-                                width: 140.w,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    color: Color(0xff0075FF)),
-                                child: Center(
-                                  child: Text(
-                                    "MESAJ GÖNDER",
-                                    style: TextStyle(
-                                      fontSize: 15.h,
-                                      color: Colors.white,
-                                      fontFamily: "Gilroy",
-                                    ),
-                                  ),
-                                )),
-                          ),
+                                    // );
+                                    await Get.toNamed(
+                                      Routes.MESSAGESCREEN,
+                                      arguments: Message(
+                                          id: "-1",
+                                          fromUserId:
+                                              MyHive.getCurrentUser()?.id ?? "",
+                                          toUserId: argument!.userId,
+                                          message: "",
+                                          adId: argument!.id,
+                                          seen: "",
+                                          createdAt: "",
+                                          title: "",
+                                          nameSurname: "ilan sahibi",
+                                          photo: ""),
+                                    );
+                                  },
+                                  child: Container(
+                                      height: 60.h,
+                                      width: 140.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
+                                          color: Color(0xff0075FF)),
+                                      child: Center(
+                                        child: Text(
+                                          "MESAJ GÖNDER",
+                                          style: TextStyle(
+                                            fontSize: 15.h,
+                                            color: Colors.white,
+                                            fontFamily: "Gilroy",
+                                          ),
+                                        ),
+                                      )),
+                                ),
                           SizedBox(width: 20.w),
                           GestureDetector(
                             onTap: () {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/data/local/my_hive.dart';
+import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 import '../../components/color_manager.dart';
 import '../constwidget/blue_text_profile.dart';
@@ -75,10 +76,12 @@ class DeleteAccPage extends GetView<DeleteAccController> {
                         height: 20.h,
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           var user = MyHive.getCurrentUser();
-                          //controller.deleteProfile(user!.id);
+
+                          controller.deleteUser(user!.id);
                           MyHive.deleteCurrentUser();
+                          Get.toNamed(Routes.SIGNUP);
                         },
                         child: Container(
                             height: 40.h,

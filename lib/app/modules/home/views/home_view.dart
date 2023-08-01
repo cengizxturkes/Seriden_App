@@ -73,7 +73,7 @@ class HomeView extends GetView<HomeController> {
       "assets/images/category/emlak.png",
       "assets/images/category/satilik.png",
       "assets/images/category/ozel-ders.png",
-      "assets/images/category/car.png",
+      "assets/images/category/dog-paw.png",
       "assets/images/category/car.png",
       "assets/images/category/tools.png",
       "assets/images/category/duyuru.png",
@@ -182,7 +182,7 @@ class HomeView extends GetView<HomeController> {
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             return JobCategoryItem(
-                              icon: "assets/images/category/satilik.png",
+                              icon: icon[index],
                               category: items[index],
                               color: color[index],
                               textColor: Color(0xffFFFFFF),

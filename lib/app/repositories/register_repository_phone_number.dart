@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../components/custom_snackbar.dart';
 import '../data/models/register_post_model/register_post_model.dart';
 import '../services/register_service.dart';
 
@@ -33,6 +34,10 @@ class RegirterPhoneNumberRepository {
       phone: newRegisterPhoneModel.phone_number,
     );
     var response = await service.register(deneme);
+    var success = response.status == 1;
+    if (!success) {
+      CustomSnackBar.showCustomErrorToast(message: response.message);
+    }
     return response.status == 1;
   }
 }
