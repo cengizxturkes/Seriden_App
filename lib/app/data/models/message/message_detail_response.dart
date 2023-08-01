@@ -47,8 +47,6 @@ class MessageDetail {
   String seen;
   @JsonKey(name: "created_at")
   String createdAt;
-  @JsonKey(name: "title")
-  String title;
   @JsonKey(name: "name_surname")
   String nameSurname;
   @JsonKey(name: "photo")
@@ -62,7 +60,6 @@ class MessageDetail {
     required this.adId,
     required this.seen,
     required this.createdAt,
-    required this.title,
     required this.nameSurname,
     required this.photo,
   });

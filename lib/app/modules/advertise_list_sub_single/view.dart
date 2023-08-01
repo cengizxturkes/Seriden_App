@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_slider/carousel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:getx_skeleton/app/data/local/my_hive.dart';
 import 'package:getx_skeleton/app/data/models/add_favorite/add_favorite_post.dart';
 import 'package:getx_skeleton/app/data/models/get_advertise/advertise_reponse.dart';
@@ -25,6 +26,16 @@ class AdvetiseLastPage extends GetView<AdvetiseLastController> {
   // 主视图
   Widget _buildView() {
     return const HelloWidget();
+  }
+
+  void onOkeyDialog(argument, context) async {
+    Navigator.pop(context);
+    await controller.deleteAdv(argument!.id);
+    Get.back();
+    CustomSnackBar.showCustomSnackBar(
+      title: "Başarılı",
+      message: "",
+    );
   }
 
   @override
@@ -131,9 +142,96 @@ class AdvetiseLastPage extends GetView<AdvetiseLastController> {
                               ? GestureDetector(
                                   onTap: () async {
                                     var login = MyHive.getCurrentUser();
-                                    await controller.deleteAdv(argument!.id);
-                                    CustomSnackBar.showCustomSnackBar(
-                                        title: "Başarılı", message: "");
+                                    showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) => Container(
+                                              height: 220.h,
+                                              padding: EdgeInsets.all(20),
+                                              child: Column(
+                                                children: [
+                                                  BlueTextProfile(
+                                                    title:
+                                                        "İlanı silmek istiyor musunuz?",
+                                                  ),
+                                                  SizedBox(
+                                                    height: 45.h,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      InkWell(
+                                                          onTap: () {
+                                                            onOkeyDialog(
+                                                                argument,
+                                                                context);
+                                                          },
+                                                          child: Container(
+                                                            height: 60.h,
+                                                            width: 140.w,
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(10
+                                                                            .r),
+                                                                color: Colors
+                                                                    .redAccent),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "Evet, Sil",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      15.h,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontFamily:
+                                                                      "Gilroy",
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )),
+                                                      InkWell(
+                                                          onTap: () {
+                                                            Get.back();
+                                                          },
+                                                          child: Container(
+                                                            height: 60.h,
+                                                            width: 140.w,
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(10
+                                                                            .r),
+                                                                color: Color(
+                                                                    0xff0075FF)),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "Hayır",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      15.h,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontFamily:
+                                                                      "Gilroy",
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ));
+                                    //
+                                    //
+                                    //
+                                    //
+                                    //
+                                    //
                                   },
                                   child: Container(
                                       height: 60.h,

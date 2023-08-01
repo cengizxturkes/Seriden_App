@@ -78,7 +78,7 @@ class HomeView extends GetView<HomeController> {
       "assets/images/category/tools.png",
       "assets/images/category/duyuru.png",
       "assets/images/category/partner.png",
-      "assets/images/category/satilik.png"
+      "assets/images/category/group.png"
     ];
     return SafeArea(
         child: Scaffold(

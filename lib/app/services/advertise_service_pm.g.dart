@@ -54,11 +54,8 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
       'sub_cat_id',
       sub_cat_id,
     ));
-    int index = 0;
-    properties.forEach((element) {
-      _data.fields.add(MapEntry("properties[$index][id]", element["id"]));
-      _data.fields.add(MapEntry("properties[$index][value]", element["value"]));
-      index++;
+    properties.forEach((i) {
+      _data.fields.add(MapEntry('properties', jsonEncode(i)));
     });
     _data.files.addAll(image.map((i) => MapEntry('image[]', i)));
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -161,6 +158,33 @@ class _AdvertiseServicePm implements AdvertiseServicePm {
               baseUrl,
             ))));
     final value = MyAdvPassiveResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<AdvertiseReponse> getMyAdv_act(int id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': id};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AdvertiseReponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/getMyAdv_active.php',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AdvertiseReponse.fromJson(_result.data!);
     return value;
   }
 

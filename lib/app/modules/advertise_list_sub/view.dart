@@ -97,9 +97,10 @@ class AdvertiseListSubPage extends GetView<AdvertiseListSubController> {
                                       color: Colors.white,
                                     ),
                                     child: GestureDetector(
-                                        onTap: () {
+                                        onTap: () async {
                                           var id = myAdv.id;
-                                          Get.toNamed(Routes.ADVERTISELAST,
+                                          await Get.toNamed(
+                                              Routes.ADVERTISELAST,
                                               arguments: myAdv);
                                         },
                                         child: Padding(

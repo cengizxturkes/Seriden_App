@@ -14,6 +14,7 @@ import '../../repositories/user_repository.dart';
 import '../home/views/home_view.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class MessageArgumentModels {
   Message message;
@@ -110,6 +111,7 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime baslangicTarihi = DateTime.parse(messagetime);
     return Container(
       width: 250.w,
       height: 80,
@@ -140,8 +142,10 @@ class CardWidget extends StatelessWidget {
                 Expanded(
                   child: Container(
                     child: Text(
-                      job.length <= 20 ? job : job.substring(0, 10) + "...",
-                      style: textTheme.labelSmall,
+                      job,
+                      style: textTheme.labelSmall!.copyWith(
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                 ),
@@ -161,7 +165,7 @@ class CardWidget extends StatelessWidget {
                   height: 15.h,
                 ),
                 Text(
-                  messagetime,
+                  timeago.format(baslangicTarihi, locale: "tr"),
                   style: TextStyle(color: Colors.grey),
                 ),
               ],

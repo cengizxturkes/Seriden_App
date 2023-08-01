@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/get_advertise/advertise_reponse.dart';
 import 'package:getx_skeleton/app/modules/posting_on_air/widgets/cardImagewidget.dart';
 
 import '../../../config/theme/my_fonts.dart';
@@ -48,18 +49,52 @@ class PostingOnAirPage extends GetView<PostingOnAirController> {
                 height: 20.h,
               ),
               Expanded(
-                  child: CustomFutureBuilder<List<MyAdverise>>(
-                future: controller.getMyAdv(),
+                  child: CustomFutureBuilder<List<GetAdvertise>?>(
+                future: controller.getMYAdv(),
                 onError: (msg) => Text(msg),
                 onSuccess: (data) {
                   return ListView.builder(
-                    itemCount: data.length,
+                    itemCount: data!.length,
                     itemBuilder: ((context, index) {
-                      var myAdvPass = data[index];
-                      print(myAdvPass);
-                      return CardImageWidget(
-                        title: myAdvPass.title,
-                        image: "assets/images/favorite/ozel-ders-listem.png",
+                      var myAdvActive = data[index];
+                      print(myAdvActive);
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () async {
+                              await Get.toNamed(Routes.ADVERTISELAST,
+                                  arguments: myAdvActive);
+                              controller.update();
+                            },
+                            child: Container(
+                              height: 80.h,
+                              width: 315.w,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/images/favorite/ozel-ders-listem.png",
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  myAdvActive.title,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15.sp,
+                                    fontFamily: "Gilroy",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                        ],
                       );
                     }),
                   );

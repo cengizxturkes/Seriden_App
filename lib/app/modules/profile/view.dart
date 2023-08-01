@@ -59,18 +59,18 @@ class ProfilePage extends GetView<ProfileController> {
                         SizedBox(
                           height: 15.h,
                         ),
-                        Divider(),
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.UNPUBLISHEDADVERTICE);
-                          },
-                          child: ProfileGrayText(
-                            title: "Yayında Olmayanlar",
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
+                        // Divider(),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Get.toNamed(Routes.UNPUBLISHEDADVERTICE);
+                        //   },
+                        //   child: ProfileGrayText(
+                        //     title: "Yayında Olmayanlar",
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 15.h,
+                        // ),
                         Divider(),
                         BlueTextProfile(
                           title: "HESABIM",

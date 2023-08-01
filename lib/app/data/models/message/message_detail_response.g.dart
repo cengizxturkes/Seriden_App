@@ -33,7 +33,6 @@ MessageDetail _$MessageDetailFromJson(Map<String, dynamic> json) =>
       adId: json['ad_id'] as String,
       seen: json['seen'] as String,
       createdAt: json['created_at'] as String,
-      title: json['title'] as String,
       nameSurname: json['name_surname'] as String,
       photo: json['photo'] as String,
     );
@@ -47,7 +46,6 @@ Map<String, dynamic> _$MessageDetailToJson(MessageDetail instance) =>
       'ad_id': instance.adId,
       'seen': instance.seen,
       'created_at': instance.createdAt,
-      'title': instance.title,
       'name_surname': instance.nameSurname,
       'photo': instance.photo,
     };

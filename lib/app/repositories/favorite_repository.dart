@@ -13,4 +13,9 @@ class FavoriteRepository {
     var response = await service.getFavorities(login?.id ?? "");
     return response.data;
   }
+
+  Future<String> deleteFavorite(String id) async {
+    var response = await service.deleteFavorite(id);
+    return response.message;
+  }
 }

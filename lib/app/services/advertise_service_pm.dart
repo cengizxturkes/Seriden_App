@@ -33,6 +33,8 @@ abstract class AdvertiseServicePm {
   Future<AdvertiseReponse> getAdvByCategory(@Query("id") String id);
   @GET("/getMyAdv_passive.php")
   Future<MyAdvPassiveResponse> getMyAdvPassive(@Query("id") String id);
+  @GET("/getMyAdv_active.php")
+  Future<AdvertiseReponse> getMyAdv_act(@Query("id") int id);
 }
 
 //servis.g.dart 57.satırda olmalı

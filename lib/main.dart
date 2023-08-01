@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:getx_skeleton/app/data/models/login_response/login_response.dart';
 import 'package:getx_skeleton/app/repositories/advertise_repository.dart';
 import 'package:getx_skeleton/utils/awesome_notifications_helper.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 import 'app/components/custom_bottom_nav_bar.dart';
 import 'app/data/local/my_hive.dart';
@@ -44,7 +45,7 @@ Future<void> main() async {
 
   // inti fcm services
   //await FcmHelper.initFcm();
-
+  timeago.setLocaleMessages('tr', timeago.TrMessages());
   // initialize local notifications service
   await AwesomeNotificationsHelper.init();
   Get.put(CustomBottomNavBarController());

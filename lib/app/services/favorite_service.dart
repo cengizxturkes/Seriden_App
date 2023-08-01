@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:getx_skeleton/app/data/models/favorite/favorite_response.dart';
 import 'package:retrofit/http.dart';
 
+import '../data/models/add_favorite/add_favorite_response.dart';
 import '../data/models/get_advertise/advertise_reponse.dart';
 part 'favorite_service.g.dart';
 
@@ -11,4 +12,6 @@ abstract class FavoriteService {
 
   @GET("/getFavoritesByUser.php")
   Future<AdvertiseReponse> getFavorities(@Query("id") String id);
+  @POST("/deleteFavorite.php")
+  Future<AddFavoriteResponse> deleteFavorite(@Query("id") String id);
 }

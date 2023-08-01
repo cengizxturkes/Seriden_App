@@ -22,6 +22,12 @@ class MyAdveriseRepository {
     return response.data ?? [];
   }
 
+  Future<List<GetAdvertise>?> getMYAdv() async {
+    var login = await MyHive.getCurrentUser();
+    var response = await service.getMyAdv_act(int.parse(login?.id ?? "0"));
+    return response.data;
+  }
+
   Future<List<MyAdverisePassive>> getMyAdvPassive() async {
     var login = await MyHive.getCurrentUser();
     var response = await service.getMyAdvPassive(login?.id ?? "");
