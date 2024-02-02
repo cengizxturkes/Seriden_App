@@ -1,1 +1,10 @@
 
+![1e115881-b12a-4f14-8515-1ceddfb20a50](https://github.com/cengizxturkes/Seriden_App/assets/103938055/345af5d7-a8ac-4eb5-ab85-f8d8bb9063d5)
+![8ff9cdde-ffd5-4b9b-88b1-8fd443aaf5b6](https://github.com/cengizxturkes/Seriden_App/assets/103938055/e8349cad-463c-4012-91dc-6df663d8eb5d)
+![0894ee20-b340-4bd4-8185-e4d9d0248faa](https://github.com/cengizxturkes/Seriden_App/assets/103938055/2ca1ea5e-40ae-4530-b575-d15bd06bc029)
+![0894ee20-b340-4bd4-8185-e4d9d0248faa-2](https://github.com/cengizxturkes/Seriden_App/assets/103938055/a4e86781-25b4-4f8c-b4b2-dfcf19d117ea)
+![d6b9bfec-980d-41d4-935f-67a5425299a6](https://github.com/cengizxturkes/Seriden_App/assets/103938055/96921632-3884-4ff4-834a-948a91a89d90)
+![5f7452be-5e32-4ab7-91fb-8f74723f77b9](https://github.com/cengizxturkes/Seriden_App/assets/103938055/e70da9ae-f7fc-493c-84d3-f2470185a766)
+![d6b9bfec-980d-41d4-935f-67a5425299a6-2](https://github.com/cengizxturkes/Seriden_App/assets/103938055/8e3de822-a4d4-43ea-8a4d-e65b5a47c358)
+![a995da4f-0e97-451b-bef0-b67b48ffe003](https://github.com/cengizxturkes/Seriden_App/assets/103938055/7294cf59-7b75-4916-b23e-1b47e2ed45c1)
+![5f7452be-5e32-4ab7-91fb-8f74723f77b9-2](https://github.com/cengizxturkes/Seriden_App/assets/103938055/d388f0f5-ea65-469e-bb01-17d59d53195f)
